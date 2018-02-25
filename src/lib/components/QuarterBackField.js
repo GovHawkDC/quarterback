@@ -14,6 +14,7 @@ class QuarterBackField extends Component {
   }
 
   render () {
+    console.log('ere');
     return (
       <div className='QuarterBackField'>
 

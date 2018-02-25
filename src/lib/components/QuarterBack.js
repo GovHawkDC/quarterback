@@ -19,9 +19,21 @@ class QuarterBack extends Component {
       F:age>=25
       F:sex=M
   */
-  state = {
-    condition: null,
-    rules: []
+  // state = {
+  //   condition: null,
+  //   rules: []
+  // }
+
+  constructor (props) {
+    super(props)
+
+    const { preloadedState = {} } = props
+
+    this.state = {
+      condition: preloadedState.condition || null,
+      meta: preloadedState.meta || {},
+      rules: preloadedState.rules || [],
+    }
   }
 
   func = index => {
@@ -29,8 +41,9 @@ class QuarterBack extends Component {
   }
 
   render () {
-    // const { rules } = this.state
-    const { fields } = this.props
+    const { fieldsMap } = this.props
+
+    const { rules } = this.state
 
     return (
       <div className='QuarterBack'>
@@ -51,8 +64,23 @@ class QuarterBack extends Component {
 
 
         <div className="QuarterBack-container">
-          <QuarterBackField fields={fields} index={0} handleFieldChange={this.func} />
-          <QuarterBackField fields={fields} index={1} handleFieldChange={this.func} />
+          {rules.map((rule, index) => {
+            if (rule.condition === undefined) {
+              switch (rule.meta.type) {
+                default:
+                  return (
+                    <QuarterBackField key={index} index={index} fields={fieldsMap.root} handleFieldChange={this.func} />
+                  )
+              }
+            } else {
+              switch (rule.meta.type) {
+                default:
+                  return (
+                    <QuarterBack fieldsMap={fieldsMap} key={index} index={index} preloadedState={rule} />
+                  )
+              }
+            }
+          })}
         </div>
 
 
