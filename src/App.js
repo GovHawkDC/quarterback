@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import QuarterBack from './lib'
 
 const fieldsMap = {
-  root: [
-    { id: 'a', label: 'A' },
-    { id: 'b', label: 'B' }
-  ]
+  root: [{ id: 'a', label: 'A' }, { id: 'b', label: 'B' }]
 }
 
 const preloadedState = {
@@ -18,13 +15,13 @@ const preloadedState = {
 }
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
+      <div className='App'>
         <QuarterBack fieldsMap={fieldsMap} preloadedState={preloadedState} />
       </div>
     )
   }
 }
 
-export default App;
+export default App
