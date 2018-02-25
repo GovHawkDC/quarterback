@@ -10,7 +10,7 @@ const preloadedState = {
   meta: {},
   rules: [
     { id: 'a', operator: 'less', value: '1', meta: {} },
-    { id: 'a', operator: 'less', value: '1', meta: {} }
+    { id: 'a', operator: 'less', value: '2', meta: {} }
   ]
 }
 

@@ -14,22 +14,24 @@ class QuarterBackField extends Component {
   }
 
   render () {
-    console.log('ere');
     return (
       <div className='QuarterBackField'>
+        <pre>{this.props.index}</pre>
+        <pre>{JSON.stringify(this.props.rule)}</pre>
 
         <div onChange={this.handleFieldChange}>
           <select>
             {this.props.fields.map((field, index) => {
               return (
-                <option key={index} value={field.id}>{field.label}</option>
+                <option key={index} value={field.id}>
+                  {field.label}
+                </option>
               )
             })}
           </select>
         </div>
 
         <button onClick={this.handleDeleteClick}>Delete</button>
-
       </div>
     )
   }

@@ -32,12 +32,25 @@ class QuarterBack extends Component {
     this.state = {
       condition: preloadedState.condition || null,
       meta: preloadedState.meta || {},
-      rules: preloadedState.rules || [],
+      rules: preloadedState.rules || []
     }
   }
 
   func = index => {
     console.log(index)
+  }
+
+  funcDel = index => {
+    const rules = this.state.rules.filter((_, i) => {
+      return index !== i
+    })
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        rules
+      }
+    })
   }
 
   render () {
@@ -47,43 +60,43 @@ class QuarterBack extends Component {
 
     return (
       <div className='QuarterBack'>
-
-
         <div className='QuarterBack-container'>
+          <div className='QuarterBack-conditions' />
 
-
-          <div className="QuarterBack-conditions">
-          </div>
-
-
-          <div className="QuarterBack-actions">
-          </div>
-
-
+          <div className='QuarterBack-actions' />
         </div>
 
-
-        <div className="QuarterBack-container">
+        <div className='QuarterBack-container'>
           {rules.map((rule, index) => {
             if (rule.condition === undefined) {
               switch (rule.meta.type) {
                 default:
                   return (
-                    <QuarterBackField key={index} index={index} fields={fieldsMap.root} handleFieldChange={this.func} />
+                    <QuarterBackField
+                      rule={rule}
+                      key={index}
+                      index={index}
+                      fields={fieldsMap.root}
+                      handleFieldChange={this.func}
+                      handleFieldDeletion={this.funcDel}
+                    />
                   )
               }
             } else {
               switch (rule.meta.type) {
                 default:
                   return (
-                    <QuarterBack fieldsMap={fieldsMap} key={index} index={index} preloadedState={rule} />
+                    <QuarterBack
+                      fieldsMap={fieldsMap}
+                      key={index}
+                      index={index}
+                      preloadedState={rule}
+                    />
                   )
               }
             }
           })}
         </div>
-
-
       </div>
     )
   }
