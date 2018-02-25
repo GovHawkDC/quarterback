@@ -23,7 +23,7 @@ class App extends Component {
       <div className="App">
         <QuarterBack fieldsMap={fieldsMap} preloadedState={preloadedState} />
       </div>
-    );
+    )
   }
 }
 
