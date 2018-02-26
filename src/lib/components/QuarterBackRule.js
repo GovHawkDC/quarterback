@@ -1,40 +1,32 @@
 import React, { Component } from 'react'
 import QuarterBackFields from './QuarterBackFields'
+import QuarterBackOperators from './QuarterBackOperators'
 
 class QuarterBackRule extends Component {
   state = {
-    field: null
+    field: null,
+    operator: null,
+    value: null
   }
 
-  getFieldByFieldId (fieldId) {
-    if (!fieldId) {
-      return null
-    }
-
-    const { fields } = this.props
-
-    const field = fields.find(field => {
-      return field.id === fieldId
-    })
-
-    return field || null
-  }
-
-  handleFieldChange = event => {
-    const { target } = event
-    const { value = null } = target
-
-    const field = this.getFieldByFieldId(value)
-    console.log(field)
-
-    // TODO: send to parent
+  handleFieldChange = field => {
     const { handleFieldChange, index } = this.props
     handleFieldChange(index)
 
     this.setState(prevState => {
       return {
         ...prevState,
-        field
+        field,
+        operator: null
+      }
+    })
+  }
+
+  handleOperatorChange = operator => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        operator
       }
     })
   }
@@ -49,7 +41,10 @@ class QuarterBackRule extends Component {
           fields={fields}
           handleFieldChange={this.handleFieldChange}
         />
-        {/* OPERATORS */}
+        <QuarterBackOperators
+          field={field}
+          handleOperatorChange={this.handleOperatorChange}
+        />
         {/* FIELD */}
       </div>
     )
