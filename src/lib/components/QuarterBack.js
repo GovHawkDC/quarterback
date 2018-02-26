@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import QuarterBackField from './QuarterBackField'
+import QuarterBackRule from './QuarterBackRule'
 
 class QuarterBack extends Component {
   /*
@@ -72,7 +72,7 @@ class QuarterBack extends Component {
               switch (rule.meta.type) {
                 default:
                   return (
-                    <QuarterBackField
+                    <QuarterBackRule
                       rule={rule}
                       key={index}
                       index={index}

@@ -1,8 +1,6 @@
 import QuarterBack from './components/QuarterBack'
-import QuarterBackField from './components/QuarterBackField'
+import QuarterBackFields from './components/QuarterBackFields'
 
 export default QuarterBack
 
-export {
-  QuarterBackField,
-}
+export { QuarterBackFields }
