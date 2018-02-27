@@ -9,30 +9,23 @@ class QuarterBackOperators extends Component {
     handleOperatorChange(value)
   }
 
-  getDefaultOperatorValue () {
+  componentDidMount () {
     const { operators } = this.props
 
-    return operators === null ? null : operators[0]
-  }
-
-  handleDefaultOperator () {
-    const value = this.getDefaultOperatorValue()
-
-    if (value === null) {
+    if (operators === null) {
       return
     }
 
-    const { handleOperatorChange } = this.props
-    handleOperatorChange(value)
-  }
+    // TODO: Check existing value... if so, skip...
 
-  componentDidMount () {
-    this.handleDefaultOperator()
+    const { handleOperatorChange } = this.props
+    handleOperatorChange(operators[0])
   }
 
   render () {
     const { operators } = this.props
 
+    // TODO: Allow for display values?
     return (
       <div className='QuarterBackOperators'>
         <select onChange={this.handleChange}>
