@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { getOperators } from './utils'
 import QuarterBackFields from './QuarterBackFields'
+import QuarterBackInput from './QuarterBackInput'
 import QuarterBackOperators from './QuarterBackOperators'
-import QuarterBackField from './QuarterBackField'
 
 class QuarterBackRule extends Component {
   state = {
@@ -56,7 +56,7 @@ class QuarterBackRule extends Component {
           field={field}
           handleOperatorChange={this.handleOperatorChange}
         />
-        <QuarterBackField field={field} fields={fields} operator={operator} />
+        <QuarterBackInput field={field} fields={fields} operator={operator} />
       </div>
     )
   }

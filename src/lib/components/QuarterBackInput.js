@@ -3,10 +3,9 @@ import { getOperatorMeta } from './utils'
 import Checkbox from './inputs/Checkbox'
 import Text from './inputs/Text'
 
-class QuarterBackField extends Component {
+class QuarterBackInput extends Component {
   render () {
     const { field, operator } = this.props
-    console.log(field, operator)
 
     if (field === null || operator === null) {
       return null
@@ -35,4 +34,4 @@ class QuarterBackField extends Component {
   }
 }
 
-export default QuarterBackField
+export default QuarterBackInput
