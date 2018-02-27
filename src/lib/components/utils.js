@@ -177,20 +177,26 @@ export function normalizeType (field) {
 }
 
 export function getDefaultOperators (field) {
-  return OPERATORS.filter(op => {
-    const { meta: { applyTo } } = op
+  return OPERATORS.filter(data => {
+    const { meta: { applyTo } } = data
     return applyTo.includes(normalizeType(field))
-  }).map(op => {
-    return op.operator
+  }).map(data => {
+    const { operator } = data
+    return operator
   })
 }
 
 export function getOperatorMeta (operator) {
-  const data = OPERATORS.find(op => {
-    return op.operator === operator
+  const data = OPERATORS.find(data => {
+    return data.operator === operator
   })
 
-  return data ? data.meta : null
+  if (data) {
+    const { meta } = data
+    return meta
+  }
+
+  return null
 }
 
 export function getOperators (field) {
