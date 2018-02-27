@@ -24,7 +24,9 @@ class QuarterBackRule extends Component {
   }
 
   handleOperatorChange = operator => {
-    // TODO: Pass to parent
+    const { handleOperatorChange, index } = this.props
+    handleOperatorChange(index, operator)
+
     this.setState(prevState => {
       return {
         ...prevState,

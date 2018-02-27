@@ -53,6 +53,46 @@ class QuarterBack extends Component {
     })
   }
 
+  handleFieldChange = index => {
+    const { rules } = this.state
+    const rule = rules[index]
+    const updatedRule = {
+      ...rule,
+      operator: null,
+      value: null
+    }
+    const updatedRules = Object.assign([], [...rules], {
+      [index]: updatedRule
+    })
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        rules: updatedRules
+      }
+    })
+  }
+
+  handleOperatorChange = (index, operator) => {
+    const { rules } = this.state
+    const rule = rules[index]
+    const updatedRule = {
+      ...rule,
+      operator,
+      value: null
+    }
+    const updatedRules = Object.assign([], [...rules], {
+      [index]: updatedRule
+    })
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        rules: updatedRules
+      }
+    })
+  }
+
   render () {
     const { fieldsMap } = this.props
 
@@ -77,8 +117,9 @@ class QuarterBack extends Component {
                       key={index}
                       index={index}
                       fields={fieldsMap.root}
-                      handleFieldChange={this.func}
+                      handleFieldChange={this.handleFieldChange}
                       handleFieldDeletion={this.funcDel}
+                      handleOperatorChange={this.handleOperatorChange}
                     />
                   )
               }
