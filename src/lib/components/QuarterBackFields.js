@@ -10,11 +10,11 @@ class QuarterBackFields extends Component {
   }
 
   render () {
-    const { fields } = this.props
+    const { fieldId, fields } = this.props
 
     return (
       <div className='QuarterBackFields'>
-        <select onChange={this.handleChange}>
+        <select onChange={this.handleChange} value={fieldId}>
           <option value=''>------</option>
           {fields.map((field, index) => {
             return (

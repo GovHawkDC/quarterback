@@ -53,11 +53,13 @@ class QuarterBack extends Component {
     })
   }
 
-  handleFieldChange = index => {
+  handleFieldChange = (index, fieldId) => {
+    // TODO: Update types for rules!
     const { rules } = this.state
     const rule = rules[index]
     const updatedRule = {
       ...rule,
+      id: fieldId,
       operator: null,
       value: null
     }
