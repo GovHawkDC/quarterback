@@ -10,7 +10,7 @@ class QuarterBackOperators extends Component {
   }
 
   render () {
-    const { operators } = this.props
+    const { operator, operators } = this.props
 
     if (operators === null) {
       return null
@@ -19,7 +19,7 @@ class QuarterBackOperators extends Component {
     // TODO: Allow for display values?
     return (
       <div className='QuarterBackOperators'>
-        <select onChange={this.handleChange}>
+        <select onChange={this.handleChange} defaultValue={operator}>
           {operators.map((operator, index) => {
             return (
               <option key={index} value={operator}>
