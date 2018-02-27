@@ -17,9 +17,10 @@ class QuarterBackOperators extends Component {
     }
 
     // TODO: Allow for display values?
+    console.log(operator)
     return (
       <div className='QuarterBackOperators'>
-        <select onChange={this.handleChange} defaultValue={operator}>
+        <select onChange={this.handleChange} value={operator}>
           {operators.map((operator, index) => {
             return (
               <option key={index} value={operator}>
