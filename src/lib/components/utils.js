@@ -101,7 +101,7 @@ export const OPERATORS = {
   }
 }
 
-function normalizeType (type) {
+export function normalizeType (type) {
   switch (type) {
     case 'integer':
     case 'double':
