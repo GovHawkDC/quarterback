@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import QuarterBackFields from './QuarterBackFields'
-import QuarterBackOperators from './QuarterBackOperators'
+import QuarterBackOperatorsWrapper from './QuarterBackOperatorsWrapper'
+import QuarterBackField from './QuarterBackField'
 
 class QuarterBackRule extends Component {
   state = {
@@ -23,6 +24,7 @@ class QuarterBackRule extends Component {
   }
 
   handleOperatorChange = operator => {
+    // TODO: Pass to parent
     this.setState(prevState => {
       return {
         ...prevState,
@@ -33,7 +35,7 @@ class QuarterBackRule extends Component {
 
   render () {
     const { fields, index, rule } = this.props
-    const { field } = this.state
+    const { field, operator } = this.state
 
     return (
       <div className='QuarterBackRule'>
@@ -41,11 +43,11 @@ class QuarterBackRule extends Component {
           fields={fields}
           handleFieldChange={this.handleFieldChange}
         />
-        <QuarterBackOperators
+        <QuarterBackOperatorsWrapper
           field={field}
           handleOperatorChange={this.handleOperatorChange}
         />
-        {/* FIELD */}
+        <QuarterBackField field={field} fields={fields} operator={operator} />
       </div>
     )
   }
