@@ -43,7 +43,7 @@ class QuarterBackRule extends Component {
 
   render () {
     const { fields, index, rule } = this.props
-    const { field, operator, operators } = this.state
+    const { field, operator, operators, value } = this.state
 
     return (
       <div className='QuarterBackRule'>
@@ -57,7 +57,12 @@ class QuarterBackRule extends Component {
           field={field}
           handleOperatorChange={this.handleOperatorChange}
         />
-        <QuarterBackInput field={field} fields={fields} operator={operator} />
+        <QuarterBackInput
+          field={field}
+          fields={fields}
+          operator={operator}
+          value={value}
+        />
       </div>
     )
   }
