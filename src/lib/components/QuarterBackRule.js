@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+import { getOperators } from './utils'
 import QuarterBackFields from './QuarterBackFields'
-import QuarterBackOperatorsWrapper from './QuarterBackOperatorsWrapper'
+import QuarterBackOperators from './QuarterBackOperators'
 import QuarterBackField from './QuarterBackField'
 
 class QuarterBackRule extends Component {
   state = {
     field: null,
     operator: null,
+    operators: null,
     value: null
   }
 
@@ -14,11 +16,15 @@ class QuarterBackRule extends Component {
     const { handleFieldChange, index } = this.props
     handleFieldChange(index)
 
+    const operators = getOperators(field)
+    const operator = operators ? operators[0] : null
+
     this.setState(prevState => {
       return {
         ...prevState,
         field,
-        operator: null
+        operator,
+        operators
       }
     })
   }
@@ -37,7 +43,7 @@ class QuarterBackRule extends Component {
 
   render () {
     const { fields, index, rule } = this.props
-    const { field, operator } = this.state
+    const { field, operator, operators } = this.state
 
     return (
       <div className='QuarterBackRule'>
@@ -45,7 +51,8 @@ class QuarterBackRule extends Component {
           fields={fields}
           handleFieldChange={this.handleFieldChange}
         />
-        <QuarterBackOperatorsWrapper
+        <QuarterBackOperators
+          operators={operators}
           field={field}
           handleOperatorChange={this.handleOperatorChange}
         />

@@ -101,7 +101,9 @@ export const OPERATORS = {
   }
 }
 
-export function normalizeType (type) {
+export function normalizeType (field) {
+  const { type } = field
+
   switch (type) {
     case 'integer':
     case 'double':
@@ -114,10 +116,10 @@ export function normalizeType (type) {
   }
 }
 
-export function getDefaultOperators (type) {
+export function getDefaultOperators (field) {
   return Object.keys(OPERATORS).filter(operator => {
     const { applyTo } = OPERATORS[operator]
-    return applyTo.includes(normalizeType(type))
+    return applyTo.includes(normalizeType(field))
   })
 }
 
@@ -125,4 +127,14 @@ export function getOperatorMeta (operator) {
   const meta = OPERATORS[operator]
 
   return meta || null
+}
+
+export function getOperators (field) {
+  if (field === null) {
+    return null
+  }
+
+  const { operators = getDefaultOperators(field) } = field
+
+  return operators
 }
