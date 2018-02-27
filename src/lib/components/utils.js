@@ -208,3 +208,43 @@ export function getOperators (field) {
 
   return operators
 }
+
+export function parseValue (value, field, meta) {
+  const { numberOfInputs } = meta
+
+  if (numberOfInputs < 1) {
+    return null
+  }
+
+  const valueIsString = typeof value === 'string'
+
+  if (numberOfInputs === 1) {
+    if (valueIsString) {
+      return value
+    }
+
+    return null
+  }
+
+  const { value_separator = ',' } = field
+
+  const values = valueIsString ? value.split(value_separator) : value
+
+  if (values === null || values.length !== numberOfInputs) {
+    return [...Array(numberOfInputs)].map(_ => null)
+  }
+
+  return values
+}
+
+export function getFieldByFieldId (fieldId, fields) {
+  if (!fieldId || !fields) {
+    return null
+  }
+
+  const field = fields.find(field => {
+    return field.id === fieldId
+  })
+
+  return field || null
+}

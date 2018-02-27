@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-class Checkbox extends Component {
+class Text extends Component {
   render () {
-    const { field, meta, input } = this.props
+    const { field, meta, input, value } = this.props
     const { numberOfInputs } = meta
     console.log(numberOfInputs)
 
@@ -10,7 +10,9 @@ class Checkbox extends Component {
       return (
         <div>
           {[...Array(numberOfInputs)].map((_, index) => {
-            return <input key={index} type={input} />
+            return (
+              <input key={index} type={input} defaultValue={value[index]} />
+            )
           })}
         </div>
       )
@@ -18,10 +20,10 @@ class Checkbox extends Component {
 
     return (
       <div>
-        <input type={input} />
+        <input type={input} defaultValue={value} />
       </div>
     )
   }
 }
 
-export default Checkbox
+export default Text
