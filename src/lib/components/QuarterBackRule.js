@@ -18,8 +18,6 @@ class QuarterBackRule extends Component {
 
     const operators = getOperators(field)
     const operator = operators ? operators[0] : null
-    console.log('from papa')
-    console.log(operator)
 
     this.setState(prevState => {
       return {
@@ -46,8 +44,6 @@ class QuarterBackRule extends Component {
   render () {
     const { fields, index, rule } = this.props
     const { field, operator, operators } = this.state
-    console.log('from papa 2')
-    console.log(operator)
 
     return (
       <div className='QuarterBackRule'>
