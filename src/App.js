@@ -12,7 +12,7 @@ const fieldsMap = {
 condition: or
 rules:
 - condition: and
-  QuarterBack: 'QBPost'
+  _QB: 'QBPost'
   rules:
   - { ..., type: 'post' }
   - rules
@@ -33,6 +33,9 @@ const preloadedState = {
 ---
 _QB = [
   {
+    type: 'post'
+    id: 'QBPost'
+    component: QBPost
     action: 'Add Post'
     actions: [ 'Add item', 'Add group' ] ?defaults
     fields: [
