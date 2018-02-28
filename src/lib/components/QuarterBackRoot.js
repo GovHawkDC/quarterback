@@ -30,6 +30,15 @@ class QuarterBackRoot extends Component {
     types: []
   }
 
+  getUpdatedRule (index, changes) {
+    const { preloadedState: { rules } } = this.props
+
+    return {
+      ...rules[index],
+      ...changes
+    }
+  }
+
   handleChange = changes => {
     // TODO: Change var name for 'preloadedState'
     const { handleChange, index, preloadedState } = this.props
@@ -49,47 +58,29 @@ class QuarterBackRoot extends Component {
   }
 
   handleFieldChange = (index, fieldId) => {
-    const { fields, preloadedState } = this.props
-    const { rules } = preloadedState
-    const rule = rules[index]
+    const { fields } = this.props
 
     const field = getFieldByFieldId(fieldId, fields)
     const operator = getDefaultOperator(field)
 
-    const updatedRule = {
-      ...rule,
+    const updatedRule = this.getUpdatedRule(index, {
       id: fieldId,
       operator,
       value: ''
-    }
-
+    })
     this.handleRuleChange(index, updatedRule)
   }
 
   handleOperatorChange = (index, operator) => {
-    const { preloadedState } = this.props
-    const { rules } = preloadedState
-    const rule = rules[index]
-
-    const updatedRule = {
-      ...rule,
+    const updatedRule = this.getUpdatedRule(index, {
       operator,
       value: ''
-    }
-
+    })
     this.handleRuleChange(index, updatedRule)
   }
 
   handleValueChange = (index, value) => {
-    const { preloadedState } = this.props
-    const { rules } = preloadedState
-    const rule = rules[index]
-
-    const updatedRule = {
-      ...rule,
-      value
-    }
-
+    const updatedRule = this.getUpdatedRule(index, { value })
     this.handleRuleChange(index, updatedRule)
   }
 
