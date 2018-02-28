@@ -95,7 +95,7 @@ class QuarterBackRoot extends Component {
 
   render () {
     const { actions, conditions, fields, preloadedState, types } = this.props
-    const { rules } = preloadedState
+    const { rules = [] } = preloadedState
 
     return (
       <div className='QuarterBackRoot'>

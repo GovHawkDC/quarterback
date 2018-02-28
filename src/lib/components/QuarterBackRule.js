@@ -12,11 +12,8 @@ import QuarterBackOperators from './QuarterBackOperators'
 
 class QuarterBackRule extends Component {
   handleFieldChange = fieldId => {
-    const { fields, handleFieldChange, index } = this.props
-    // TODO: Should all comp go in qb?
-    const field = getFieldByFieldId(fieldId, fields)
-    const operator = getDefaultOperator(field)
-    handleFieldChange(index, fieldId, operator)
+    const { handleFieldChange, index } = this.props
+    handleFieldChange(index, fieldId)
   }
 
   handleOperatorChange = operator => {
