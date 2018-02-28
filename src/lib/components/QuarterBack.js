@@ -30,9 +30,11 @@ class QuarterBack extends Component {
   }
 
   render () {
-    console.log('from QB!!')
-    console.log(this.state)
-    const props = { ...this.props, handleChange: this.handleChange }
+    const props = {
+      ...this.props,
+      handleChange: this.handleChange,
+      preloadedState: this.state
+    }
 
     return <QuarterBackRoot {...props} />
   }
