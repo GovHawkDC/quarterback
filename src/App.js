@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import QuarterBack, { ROOT_COMPONENT_ID, RULE_ID } from './lib'
+import QuarterBack, { GROUP_ID, RULE_ID } from './lib'
 
 class App extends Component {
   render () {
@@ -10,13 +10,19 @@ class App extends Component {
             { id: 'a', label: 'A', input: 'number', type: 'integer' },
             { id: 'b', label: 'B', input: 'text', type: 'string' }
           ]}
-          isRoot={true}
           preloadedState={{
-            QB: ROOT_COMPONENT_ID,
             condition: 'or',
             rules: [
               { QB: RULE_ID, id: 'a', operator: 'less', value: 1 },
-              { QB: RULE_ID, id: 'a', operator: 'between', value: [1, 5] }
+              { QB: RULE_ID, id: 'a', operator: 'between', value: [1, 5] },
+              {
+                QB: GROUP_ID,
+                condition: 'and',
+                rules: [
+                  { QB: RULE_ID, id: 'a', operator: 'less', value: 1 },
+                  { QB: RULE_ID, id: 'a', operator: 'between', value: [1, 5] }
+                ]
+              }
             ]
           }}
         />

@@ -125,16 +125,24 @@ class QuarterBackRoot extends Component {
               const props = {
                 ...this.props,
                 handleChange: this.handleRuleChange,
-                index
+                index,
+                preloadedState: rule
               }
-              return <QuarterBackRoot {...props} />
+              return <QuarterBackRoot key={index} {...props} />
             }
 
             const type = types.find(type => {
               return type.QB === QB
             })
 
-            return <QuarterBackRoot index={index} {...type} />
+            return (
+              <QuarterBackRoot
+                index={index}
+                key={index}
+                preloadedState={rule}
+                {...type}
+              />
+            )
           })}
         </div>
       </div>
