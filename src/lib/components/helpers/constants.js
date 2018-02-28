@@ -160,3 +160,7 @@ export const OPERATORS = [
     }
   }
 ]
+
+export const ROOT_COMPONENT_ID = 'QuarterBackRoot'
+export const RULE_ID = 'QuarterBackRule'
+export const GROUP_ID = 'QuarterBackGroup'

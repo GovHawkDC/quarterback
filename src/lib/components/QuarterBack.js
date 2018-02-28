@@ -1,43 +1,59 @@
 import React, { Component } from 'react'
+import { GROUP_ID, ROOT_COMPONENT_ID, RULE_ID } from './helpers/constants'
+import QuarterBackActions from './QuarterBackActions'
+import QuarterBackConditions from './QuarterBackConditions'
 import QuarterBackRule from './QuarterBackRule'
 
 class QuarterBack extends Component {
-  /*
-  fields               allowed stuff...
-  data|preloadedState  {...}JSON
-  actions              ADD_RULE|ADD_GROUP[|...]
-  conditions           OR|AND[|XOR|NOT|...]
-
-  className            String=QuarterBack
-  */
-
-  /*
-  Q{STATE}
-    F:name=saxon
-    C:OR
-    Q{STATE}
-      F:age>=25
-      F:sex=M
-  */
-  // state = {
-  //   condition: null,
-  //   rules: []
-  // }
-
-  // static defaultProps = {
-  //   parent: '__Quar'
-  // }
+  static defaultProps = {
+    QB: ROOT_COMPONENT_ID,
+    action: '',
+    actions: [
+      { QB: RULE_ID, action: 'Add rule' },
+      { QB: GROUP_ID, action: 'Add group' }
+    ],
+    conditions: [
+      { condition: 'and', display: 'AND' },
+      { condition: 'or', display: 'OR' }
+    ],
+    fields: [],
+    isRoot: false,
+    preloadedState: {},
+    title: '',
+    types: []
+  }
 
   constructor (props) {
     super(props)
 
-    const { preloadedState = {} } = props
+    const { isRoot } = props
 
-    // TODO:
-    this.state = {
-      condition: preloadedState.condition || null,
-      meta: preloadedState.meta || {},
-      rules: preloadedState.rules || []
+    if (isRoot) {
+      const { QB, preloadedState } = props
+      const { condition = '', rules = [] } = preloadedState
+
+      this.state = {
+        QB,
+        condition,
+        rules
+      }
+    }
+  }
+
+  getState () {
+    const { isRoot } = this.props
+
+    if (isRoot) {
+      return this.state
+    }
+
+    const { QB, preloadedState } = this.props
+    const { condition = '', rules = [] } = preloadedState
+
+    return {
+      QB,
+      condition,
+      rules
     }
   }
 
@@ -104,50 +120,44 @@ class QuarterBack extends Component {
   }
 
   render () {
-    const { fieldsMap } = this.props
-
-    const { rules } = this.state
+    const { actions, conditions, fields, title, types } = this.props
+    const { rules } = this.getState()
     console.log('from QB!!')
-    console.log(rules)
+    console.log(this.getState())
 
     return (
       <div className='QuarterBack'>
-        <div className='QuarterBack-container'>
-          <div className='QuarterBack-conditions' />
-
-          <div className='QuarterBack-actions' />
+        <div className='QuarterBackContainer'>
+          <QuarterBackConditions conditions={conditions} />
+          <QuarterBackActions actions={actions} types={types} />
         </div>
-
-        <div className='QuarterBack-container'>
+        <div className='QuarterBackContainer'>
           {rules.map((rule, index) => {
-            if (rule.condition === undefined) {
-              switch (rule.meta.type) {
-                default:
-                  return (
-                    <QuarterBackRule
-                      rule={rule}
-                      key={index}
-                      index={index}
-                      fields={fieldsMap.root}
-                      handleFieldChange={this.handleFieldChange}
-                      handleOperatorChange={this.handleOperatorChange}
-                      handleValueChange={this.handleValueChange}
-                    />
-                  )
-              }
-            } else {
-              switch (rule.meta.type) {
-                default:
-                  return (
-                    <QuarterBack
-                      fieldsMap={fieldsMap}
-                      key={index}
-                      index={index}
-                      preloadedState={rule}
-                    />
-                  )
-              }
+            const { QB } = rule
+
+            if (QB === RULE_ID) {
+              return (
+                <QuarterBackRule
+                  fields={fields}
+                  handleFieldChange={this.handleFieldChange}
+                  handleOperatorChange={this.handleOperatorChange}
+                  handleValueChange={this.handleValueChange}
+                  index={index}
+                  key={index}
+                  rule={rule}
+                />
+              )
             }
+
+            if (QB === GROUP_ID) {
+              return <QuarterBack {...this.props} />
+            }
+
+            const type = types.find(type => {
+              return type.QB === QB
+            })
+
+            return <QuarterBack {...type} />
           })}
         </div>
       </div>
