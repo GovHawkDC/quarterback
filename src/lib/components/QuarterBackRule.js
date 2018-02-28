@@ -24,6 +24,11 @@ class QuarterBackRule extends Component {
     handleOperatorChange(index, operator)
   }
 
+  handleValueChange = value => {
+    const { handleValueChange, index } = this.props
+    handleValueChange(index, value)
+  }
+
   render () {
     // TODO: Probably overkill... revisit
     const { fields = [], rule = {} } = this.props
@@ -50,6 +55,7 @@ class QuarterBackRule extends Component {
         <QuarterBackInput
           field={field}
           fields={fields}
+          handleValueChange={this.handleValueChange}
           meta={meta}
           operator={operator}
           value={parsedValue}

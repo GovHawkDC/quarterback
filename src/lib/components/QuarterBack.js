@@ -39,7 +39,7 @@ class QuarterBack extends Component {
 
   // TODO: ...
   func = index => {
-    console.log(index)
+    // console.log(index)
   }
 
   funcDel = index => {
@@ -97,10 +97,32 @@ class QuarterBack extends Component {
     })
   }
 
+  handleValueChange = (index, value) => {
+    const { rules } = this.state
+    const rule = rules[index]
+    const updatedRule = {
+      ...rule,
+      value
+    }
+    // TODO: Helper func for this stuff
+    const updatedRules = Object.assign([], [...rules], {
+      [index]: updatedRule
+    })
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        rules: updatedRules
+      }
+    })
+  }
+
   render () {
     const { fieldsMap } = this.props
 
     const { rules } = this.state
+    console.log('from QB!!')
+    console.log(rules)
 
     return (
       <div className='QuarterBack'>
@@ -124,6 +146,7 @@ class QuarterBack extends Component {
                       handleFieldChange={this.handleFieldChange}
                       handleFieldDeletion={this.funcDel}
                       handleOperatorChange={this.handleOperatorChange}
+                      handleValueChange={this.handleValueChange}
                     />
                   )
               }
