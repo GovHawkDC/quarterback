@@ -1,39 +1,32 @@
 import React, { Component } from 'react'
-import { getOperatorMeta, parseValue } from './utils'
 import Checkbox from './inputs/Checkbox'
 import Text from './inputs/Text'
 
 class QuarterBackInput extends Component {
   render () {
-    const { field, operator, value } = this.props
+    const { field, meta, operator, value } = this.props
+    const { input } = field
 
-    if (field === null || operator === null) {
+    // TODO: field ===  ||
+    if (operator === '') {
       return null
     }
 
-    const meta = getOperatorMeta(operator)
     const { numberOfInputs } = meta
 
     if (numberOfInputs < 1) {
       return null
     }
 
-    const { input } = field
-    const parsedValue = parseValue(value, field, meta)
-
     switch (input) {
       case 'checkbox':
-        return <Checkbox field={field} meta={meta} value={parsedValue} />
+        return <Checkbox field={field} meta={meta} value={value} />
       case 'number':
-        return (
-          <Text field={field} meta={meta} input={input} value={parsedValue} />
-        )
+        return <Text field={field} meta={meta} input={input} value={value} />
       // case 'radio':
       // case 'select':
       case 'text':
-        return (
-          <Text field={field} meta={meta} input={input} value={parsedValue} />
-        )
+        return <Text field={field} meta={meta} input={input} value={value} />
       // case 'textarea':
     }
   }

@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
-import { getFieldByFieldId, getOperators } from './utils'
+import { getFieldByFieldId } from './helpers/fields'
+import {
+  getDefaultOperator,
+  getOperators,
+  getOperatorMeta
+} from './helpers/operators'
+import { parseValue } from './helpers/values'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackInput from './QuarterBackInput'
 import QuarterBackOperators from './QuarterBackOperators'
 
 class QuarterBackRule extends Component {
   handleFieldChange = fieldId => {
-    const { handleFieldChange, index } = this.props
-    handleFieldChange(index, fieldId)
+    const { fields, handleFieldChange, index } = this.props
+    // TODO: Should all comp go in qb?
+    const field = getFieldByFieldId(fieldId, fields)
+    const operator = getDefaultOperator(field)
+    handleFieldChange(index, fieldId, operator)
   }
 
   handleOperatorChange = operator => {
@@ -16,12 +25,14 @@ class QuarterBackRule extends Component {
   }
 
   render () {
-    const { fields, rule } = this.props
-    const { id = '', operator = '', value } = rule
+    // TODO: Probably overkill... revisit
+    const { fields = [], rule = {} } = this.props
+    const { id = '', operator = '', value = '' } = rule
 
     const field = getFieldByFieldId(id, fields)
     const operators = getOperators(field)
-    // TODO: Parsed value here?
+    const meta = getOperatorMeta(operator)
+    const parsedValue = parseValue(value, field, meta)
 
     return (
       <div className='QuarterBackRule'>
@@ -39,8 +50,9 @@ class QuarterBackRule extends Component {
         <QuarterBackInput
           field={field}
           fields={fields}
+          meta={meta}
           operator={operator}
-          value={value}
+          value={parsedValue}
         />
       </div>
     )

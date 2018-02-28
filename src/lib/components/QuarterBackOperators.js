@@ -12,7 +12,7 @@ class QuarterBackOperators extends Component {
   render () {
     const { operator, operators } = this.props
 
-    if (operators === null) {
+    if (operator === '' || operators.length < 1) {
       return null
     }
 

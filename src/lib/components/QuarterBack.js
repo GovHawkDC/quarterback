@@ -29,6 +29,7 @@ class QuarterBack extends Component {
 
     const { preloadedState = {} } = props
 
+    // TODO:
     this.state = {
       condition: preloadedState.condition || null,
       meta: preloadedState.meta || {},
@@ -36,6 +37,7 @@ class QuarterBack extends Component {
     }
   }
 
+  // TODO: ...
   func = index => {
     console.log(index)
   }
@@ -53,15 +55,15 @@ class QuarterBack extends Component {
     })
   }
 
-  handleFieldChange = (index, fieldId) => {
+  handleFieldChange = (index, fieldId, operator) => {
     // TODO: Update types for rules!
     const { rules } = this.state
     const rule = rules[index]
     const updatedRule = {
       ...rule,
       id: fieldId,
-      operator: null,
-      value: null
+      operator,
+      value: ''
     }
     const updatedRules = Object.assign([], [...rules], {
       [index]: updatedRule
@@ -81,7 +83,7 @@ class QuarterBack extends Component {
     const updatedRule = {
       ...rule,
       operator,
-      value: null
+      value: ''
     }
     const updatedRules = Object.assign([], [...rules], {
       [index]: updatedRule
