@@ -96,9 +96,10 @@ class QuarterBackRoot extends Component {
         </div>
         <div className='QuarterBackContainer'>
           {rules.map((rule, index) => {
-            const { QB } = rule
+            const { QB, condition } = rule
 
-            if (QB === RULE_ID) {
+            // TODO: Trying to accommodate older data sets from jq
+            if (QB === RULE_ID || condition === undefined) {
               return (
                 <QuarterBackRule
                   fields={fields}
@@ -112,7 +113,8 @@ class QuarterBackRoot extends Component {
               )
             }
 
-            if (QB === GROUP_ID) {
+            // TODO: Trying to accommodate older data sets from jq
+            if (QB === GROUP_ID || (condition && QB === undefined)) {
               const props = {
                 ...this.props,
                 handleChange: this.handleRuleChange,
@@ -125,6 +127,10 @@ class QuarterBackRoot extends Component {
             const type = types.find(type => {
               return type.QB === QB
             })
+
+            if (type === undefined) {
+              return null
+            }
 
             return (
               <QuarterBackRoot
