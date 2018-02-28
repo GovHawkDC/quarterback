@@ -24,6 +24,10 @@ class QuarterBack extends Component {
   //   rules: []
   // }
 
+  // static defaultProps = {
+  //   parent: '__Quar'
+  // }
+
   constructor (props) {
     super(props)
 
