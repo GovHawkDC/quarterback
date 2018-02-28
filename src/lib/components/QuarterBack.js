@@ -37,24 +37,6 @@ class QuarterBack extends Component {
     }
   }
 
-  // TODO: ...
-  func = index => {
-    // console.log(index)
-  }
-
-  funcDel = index => {
-    const rules = this.state.rules.filter((_, i) => {
-      return index !== i
-    })
-
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        rules
-      }
-    })
-  }
-
   handleFieldChange = (index, fieldId, operator) => {
     // TODO: Update types for rules!
     const { rules } = this.state
@@ -144,7 +126,6 @@ class QuarterBack extends Component {
                       index={index}
                       fields={fieldsMap.root}
                       handleFieldChange={this.handleFieldChange}
-                      handleFieldDeletion={this.funcDel}
                       handleOperatorChange={this.handleOperatorChange}
                       handleValueChange={this.handleValueChange}
                     />

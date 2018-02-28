@@ -17,6 +17,23 @@ const preloadedState = {
   ]
 }
 
+/**
+---
+_QB = [
+  {
+    action: 'Add Post'
+    actions: [ 'Add item', 'Add group' ] ?defaults
+    fields: [
+      { 'id': 'title', label: 'Title', input: 'text', type: 'string' }
+    ]
+  },
+  {
+    action:
+  }
+]
+---
+**/
+
 class App extends Component {
   render () {
     return (
