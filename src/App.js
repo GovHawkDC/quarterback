@@ -8,6 +8,18 @@ const fieldsMap = {
   ]
 }
 
+/**
+condition: or
+rules:
+- condition: and
+  QuarterBack: 'QBPost'
+  rules:
+  - { ..., type: 'post' }
+  - rules
+    - { ..., id: 'title', value: 'First post' }
+    - { ..., id: 'likes', value: 100 }
+**/
+
 const preloadedState = {
   condition: 'or',
   meta: {},
