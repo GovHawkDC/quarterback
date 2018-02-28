@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class QuarterBackFields extends Component {
   handleChange = event => {
     const { target } = event
-    const { value = null } = target
+    const { value = '' } = target
 
     const { handleFieldChange } = this.props
     handleFieldChange(value)
