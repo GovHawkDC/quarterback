@@ -28,6 +28,8 @@ class QuarterBackInput extends Component {
       case 'text':
         return <Text {...this.props} />
       // case 'textarea':
+      default:
+        return null // TODO
     }
   }
 }

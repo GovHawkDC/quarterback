@@ -120,7 +120,7 @@ class QuarterBack extends Component {
   }
 
   render () {
-    const { actions, conditions, fields, title, types } = this.props
+    const { actions, conditions, fields, types } = this.props
     const { rules } = this.getState()
     console.log('from QB!!')
     console.log(this.getState())

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import QuarterBack, { GROUP_ID, ROOT_COMPONENT_ID, RULE_ID } from './lib'
+import QuarterBack, { ROOT_COMPONENT_ID, RULE_ID } from './lib'
 
 class App extends Component {
   render () {

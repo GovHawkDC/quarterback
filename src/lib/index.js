@@ -4,7 +4,6 @@ import {
   RULE_ID
 } from './components/helpers/constants'
 import QuarterBack from './components/QuarterBack'
-import QuarterBackFields from './components/QuarterBackFields'
 
 export default QuarterBack
 

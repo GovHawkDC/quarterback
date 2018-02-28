@@ -19,7 +19,7 @@ class Text extends Component {
   }
 
   render () {
-    const { field, meta, input, value } = this.props
+    const { meta, input, value } = this.props
     const { numberOfInputs } = meta
 
     // TODO: Is onChange running too many times?
