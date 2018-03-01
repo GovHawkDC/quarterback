@@ -40,6 +40,7 @@ class Text extends Component {
       )
     }
 
+    console.log(value)
     return (
       <div>
         <input

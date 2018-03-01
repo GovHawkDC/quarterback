@@ -3,31 +3,37 @@ import './App.css'
 import './lib/components/QuarterBack.css'
 import QuarterBack, { GROUP_ID, RULE_ID } from './lib'
 
+const fields = [
+  { id: 'title', label: 'Title', input: 'text', type: 'string' },
+  { id: 'pub_year', label: 'Year Published', input: 'number', type: 'integer' },
+  { id: 'pages', label: 'Number of Pages', input: 'number', type: 'integer' }
+]
+
+const data = {
+  condition: 'or',
+  rules: [
+    {
+      QB: RULE_ID,
+      id: 'title',
+      operator: 'equal',
+      value: 'Where the red fern grows'
+    },
+    {
+      QB: GROUP_ID,
+      condition: 'and',
+      rules: [
+        { QB: RULE_ID, id: 'pub_year', operator: 'less', value: 1962 },
+        { QB: RULE_ID, id: 'pages', operator: 'greater', value: 200 }
+      ]
+    }
+  ]
+}
+
 class App extends Component {
   render () {
     return (
       <div className='App'>
-        <QuarterBack
-          fields={[
-            { id: 'a', label: 'A', input: 'number', type: 'integer' },
-            { id: 'b', label: 'B', input: 'text', type: 'string' }
-          ]}
-          preloadedState={{
-            condition: 'or',
-            rules: [
-              { QB: RULE_ID, id: 'a', operator: 'less', value: 1 },
-              { QB: RULE_ID, id: 'a', operator: 'between', value: [1, 5] },
-              {
-                QB: GROUP_ID,
-                condition: 'and',
-                rules: [
-                  { QB: RULE_ID, id: 'a', operator: 'less', value: 1 },
-                  { QB: RULE_ID, id: 'a', operator: 'between', value: [1, 5] }
-                ]
-              }
-            ]
-          }}
-        />
+        <QuarterBack fields={fields} preloadedState={data} />
       </div>
     )
   }
