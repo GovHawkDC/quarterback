@@ -29,7 +29,7 @@ class QuarterBackRule extends Component {
 
   render () {
     // TODO: Probably overkill... revisit
-    const { fields = [], index, rule = {} } = this.props
+    const { fields = [], handleDeletion, index, rule = {} } = this.props
     const { id = '', operator = '', value = '' } = rule
 
     const field = getFieldByFieldId(id, fields)
@@ -61,7 +61,10 @@ class QuarterBackRule extends Component {
           />
         </div>
         <div className='QuarterBackActions'>
-          <QuarterBackActionDelete index={index} />
+          <QuarterBackActionDelete
+            handleDeletion={handleDeletion}
+            index={index}
+          />
         </div>
       </div>
     )

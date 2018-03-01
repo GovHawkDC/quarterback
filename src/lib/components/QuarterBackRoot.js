@@ -57,6 +57,17 @@ class QuarterBackRoot extends Component {
     this.handleChange({ rules: updatedRules })
   }
 
+  handleRuleDeletion = index => {
+    const { preloadedState } = this.props
+    const { rules } = preloadedState
+
+    const updatedRules = rules.filter((_, rIndex) => {
+      return rIndex !== index
+    })
+
+    this.handleChange({ rules: updatedRules })
+  }
+
   handleFieldChange = (index, fieldId) => {
     const { fields } = this.props
 
@@ -117,6 +128,7 @@ class QuarterBackRoot extends Component {
                   handleFieldChange={this.handleFieldChange}
                   handleOperatorChange={this.handleOperatorChange}
                   handleValueChange={this.handleValueChange}
+                  handleDeletion={this.handleRuleDeletion}
                   index={index}
                   key={index}
                   rule={rule}
