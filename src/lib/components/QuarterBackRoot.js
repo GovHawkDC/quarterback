@@ -23,6 +23,7 @@ class QuarterBackRoot extends Component {
       { condition: 'or', display: 'OR' }
     ],
     fields: [],
+    handleAdd: () => {},
     handleChange: () => {},
     handleDeletion: () => {},
     index: -1,
@@ -37,6 +38,14 @@ class QuarterBackRoot extends Component {
     return {
       ...rules[index],
       ...changes
+    }
+  }
+
+  handleAdd = QB => {
+    if (QB === RULE_ID) {
+      this.handleRuleAdd()
+    } else {
+      this.handleGroupOrOtherAdd(QB)
     }
   }
 
@@ -56,6 +65,39 @@ class QuarterBackRoot extends Component {
     })
 
     this.handleChange({ rules: updatedRules })
+  }
+
+  handleRuleAdd = () => {
+    const { preloadedState } = this.props
+    const { rules } = preloadedState
+
+    const newRule = {
+      QB: RULE_ID,
+      fieldId: '',
+      operator: '',
+      value: ''
+    }
+
+    this.handleChange({ rules: [...rules, newRule] })
+  }
+
+  handleGroupOrOtherAdd = QB => {
+    const { preloadedState } = this.props
+    const { rules } = preloadedState
+
+    const newRule = {
+      QB: RULE_ID,
+      fieldId: '',
+      operator: '',
+      value: ''
+    }
+    const newSomething = {
+      QB,
+      condition: '',
+      rules: [newRule] // TODO: need schema or something for custom types...
+    }
+
+    this.handleChange({ rules: [...rules, newSomething] })
   }
 
   handleRuleDeletion = index => {
@@ -118,6 +160,7 @@ class QuarterBackRoot extends Component {
           />
           <QuarterBackActions
             actions={actions}
+            handleAdd={this.handleAdd}
             handleDeletion={handleDeletion}
             index={index}
             types={types}
@@ -148,6 +191,7 @@ class QuarterBackRoot extends Component {
             if (QB === GROUP_ID || (condition && QB === undefined)) {
               const props = {
                 ...this.props,
+                handleAdd: this.handleAdd,
                 handleChange: this.handleRuleChange,
                 handleDeletion: this.handleRuleDeletion,
                 index,
@@ -166,6 +210,7 @@ class QuarterBackRoot extends Component {
 
             return (
               <QuarterBackRoot
+                handleAdd={this.handleAdd}
                 handleChange={this.handleRuleChange}
                 handleDeletion={this.handleRuleDeletion}
                 index={index}

@@ -3,15 +3,15 @@ import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 class QuarterBackActions extends Component {
   render () {
-    const { actions, handleDeletion, index, types } = this.props
+    const { actions, handleAdd, handleDeletion, index, types } = this.props
     const actionItems = types.length > 0 ? types : actions
 
     return (
       <div className='QuarterBackActions'>
         {actionItems.map((actionItem, index) => {
-          const { action, componentId } = actionItem
+          const { QB, action } = actionItem
           return (
-            <button key={index} onClick={() => console.log(componentId)}>
+            <button key={index} onClick={() => handleAdd(QB)}>
               {action}
             </button>
           )
