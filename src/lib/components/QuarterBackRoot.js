@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { GROUP_ID, ROOT_COMPONENT_ID, RULE_ID } from './helpers/constants'
 import { getFieldByFieldId } from './helpers/fields'
@@ -9,6 +10,10 @@ import {
 import QuarterBackActions from './QuarterBackActions'
 import QuarterBackConditions from './QuarterBackConditions'
 import QuarterBackRule from './QuarterBackRule'
+
+type Props = {
+  QB: string
+}
 
 class QuarterBackRoot extends Component {
   static defaultProps = {
