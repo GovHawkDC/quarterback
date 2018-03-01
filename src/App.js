@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import './App.css'
+import './lib/components/QuarterBack.css'
 import QuarterBack, { GROUP_ID, RULE_ID } from './lib'
 
 class App extends Component {

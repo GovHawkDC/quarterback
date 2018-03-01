@@ -90,11 +90,11 @@ class QuarterBackRoot extends Component {
 
     return (
       <div className='QuarterBackRoot'>
-        <div className='QuarterBackContainer'>
+        <div className='QuarterBackContainer QuarterBackContainer-header'>
           <QuarterBackConditions conditions={conditions} />
           <QuarterBackActions actions={actions} types={types} />
         </div>
-        <div className='QuarterBackContainer'>
+        <div className='QuarterBackContainer QuarterBackContainer-body'>
           {rules.map((rule, index) => {
             const { QB, condition } = rule
 
