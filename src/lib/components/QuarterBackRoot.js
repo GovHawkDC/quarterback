@@ -24,6 +24,7 @@ class QuarterBackRoot extends Component {
     ],
     fields: [],
     handleChange: () => {},
+    handleDeletion: () => {},
     index: -1,
     preloadedState: {},
     title: '',
@@ -100,6 +101,7 @@ class QuarterBackRoot extends Component {
       actions,
       conditions,
       fields,
+      handleDeletion,
       index,
       preloadedState,
       types
@@ -114,8 +116,14 @@ class QuarterBackRoot extends Component {
             conditions={conditions}
             handleChange={this.handleChange}
           />
-          <QuarterBackActions actions={actions} index={index} types={types} />
+          <QuarterBackActions
+            actions={actions}
+            handleDeletion={handleDeletion}
+            index={index}
+            types={types}
+          />
         </div>
+        {/* TODO: Maybe break out into own component so can return null */}
         <div className='QuarterBackContainer QuarterBackContainer-body'>
           {rules.map((rule, index) => {
             const { QB, condition } = rule
@@ -141,6 +149,7 @@ class QuarterBackRoot extends Component {
               const props = {
                 ...this.props,
                 handleChange: this.handleRuleChange,
+                handleDeletion: this.handleRuleDeletion,
                 index,
                 preloadedState: rule
               }
@@ -157,6 +166,8 @@ class QuarterBackRoot extends Component {
 
             return (
               <QuarterBackRoot
+                handleChange={this.handleRuleChange}
+                handleDeletion={this.handleRuleDeletion}
                 index={index}
                 key={index}
                 preloadedState={rule}
