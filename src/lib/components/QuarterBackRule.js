@@ -9,6 +9,7 @@ import { parseValue } from './helpers/values'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackInput from './QuarterBackInput'
 import QuarterBackOperators from './QuarterBackOperators'
+import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 class QuarterBackRule extends Component {
   handleFieldChange = fieldId => {
@@ -28,7 +29,7 @@ class QuarterBackRule extends Component {
 
   render () {
     // TODO: Probably overkill... revisit
-    const { fields = [], rule = {} } = this.props
+    const { fields = [], index, rule = {} } = this.props
     const { id = '', operator = '', value = '' } = rule
 
     const field = getFieldByFieldId(id, fields)
@@ -38,25 +39,30 @@ class QuarterBackRule extends Component {
 
     return (
       <div className='QuarterBackRule'>
-        <QuarterBackFields
-          fieldId={id}
-          fields={fields}
-          handleFieldChange={this.handleFieldChange}
-        />
-        <QuarterBackOperators
-          operator={operator}
-          operators={operators}
-          field={field}
-          handleOperatorChange={this.handleOperatorChange}
-        />
-        <QuarterBackInput
-          field={field}
-          fields={fields}
-          handleValueChange={this.handleValueChange}
-          meta={meta}
-          operator={operator}
-          value={parsedValue}
-        />
+        <div className='QuarterBackRuleItems'>
+          <QuarterBackFields
+            fieldId={id}
+            fields={fields}
+            handleFieldChange={this.handleFieldChange}
+          />
+          <QuarterBackOperators
+            operator={operator}
+            operators={operators}
+            field={field}
+            handleOperatorChange={this.handleOperatorChange}
+          />
+          <QuarterBackInput
+            field={field}
+            fields={fields}
+            handleValueChange={this.handleValueChange}
+            meta={meta}
+            operator={operator}
+            value={parsedValue}
+          />
+        </div>
+        <div className='QuarterBackActions'>
+          <QuarterBackActionDelete index={index} />
+        </div>
       </div>
     )
   }

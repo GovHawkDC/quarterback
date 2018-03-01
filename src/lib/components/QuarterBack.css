@@ -8,6 +8,10 @@
   padding: 5px;
 }
 
+.QuarterBackRuleItems {
+  display: flex;
+}
+
 .QuarterBackRoot,
 .QuarterBackRule {
   border: 1px solid #ffe09e;
@@ -16,7 +20,8 @@
   position: relative;
 }
 
-.QuarterBackContainer-header {
+.QuarterBackContainer-header,
+.QuarterBackRule {
   justify-content: space-between;
 }
 

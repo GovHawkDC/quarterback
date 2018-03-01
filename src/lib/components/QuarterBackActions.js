@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 class QuarterBackActions extends Component {
   render () {
-    const { actions, types } = this.props
+    const { actions, index, types } = this.props
     const actionItems = types.length > 0 ? types : actions
 
     return (
@@ -15,6 +16,7 @@ class QuarterBackActions extends Component {
             </button>
           )
         })}
+        <QuarterBackActionDelete index={index} />
       </div>
     )
   }
