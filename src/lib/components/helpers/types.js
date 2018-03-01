@@ -24,8 +24,8 @@ export type QBProps = {
   data: Data,
   fields: Array, // Spec out Field type
   handleCreate: (QB: string) => void,
-  handleUpdate: () => void, // TODO:
   handleDelete: () => void, // TODO:
+  handleUpdate: () => void, // TODO:
   index: number,
   title: string,
   types: Array<QBProps> // TODO
