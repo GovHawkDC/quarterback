@@ -2,6 +2,22 @@ import React, { Component } from 'react'
 import { ROOT_COMPONENT_ID } from './helpers/constants'
 import QuarterBackRoot from './QuarterBackRoot'
 
+// const defaultProps = {
+//   QB: ROOT_COMPONENT_ID,
+//   action: '',
+//   actions: [
+//     { QB: RULE_ID, action: 'Add rule' },
+//     { QB: GROUP_ID, action: 'Add group' }
+//   ],
+//   conditions: [
+//     { condition: 'and', display: 'AND' },
+//     { condition: 'or', display: 'OR' }
+//   ],
+//   fields: [],
+//   title: '',
+//   types: []
+// }
+
 class QuarterBack extends Component {
   constructor (props) {
     super(props)

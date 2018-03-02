@@ -1,7 +1,11 @@
 // @flow
 export type Action = {
   QB: string,
-  action: string
+  action: string,
+  // NOTE: Idea...
+  // for basic rule -> { field: '', value: null } QB(inherited + merged)
+  // for basic group -> { condition: '', rules: [ {BASIC_RULE} ] } QB(inherited + merged)
+  defaultData: Object // Maybe a func that takes QB...
 }
 
 export type Condition = {
@@ -17,16 +21,24 @@ export type Data = {
 
 // TODO: Might not need to be shared...
 export type QBProps = {
+
+
+
+  // I think this belongs to separate...
+  handleCreate: (QB: string) => void,
+  handleDelete: () => void, // TODO:
+  handleUpdate: () => void, // TODO:
+  index: number
+}
+
+export type QuarterBackProps = {
   QB: string,
-  action: string, // Might not need...
+  // NOTE: Way to allow custom component to be injected by user
+  QBComponent: React.ComponentType<QBProps>, // TODO: ...
   actions: Array<Action>,
   conditions: Array<Condition>,
   data: Data,
   fields: Array, // Spec out Field type
-  handleCreate: (QB: string) => void,
-  handleDelete: () => void, // TODO:
-  handleUpdate: () => void, // TODO:
-  index: number,
   title: string,
-  types: Array<QBProps> // TODO
+  types: Array<QuarterBackProps>, // TODO
 }

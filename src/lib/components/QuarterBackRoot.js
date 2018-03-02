@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import { GROUP_ID, ROOT_COMPONENT_ID, RULE_ID } from './helpers/constants'
 import { getFieldByFieldId } from './helpers/fields'
