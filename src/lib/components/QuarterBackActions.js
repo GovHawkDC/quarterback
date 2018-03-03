@@ -1,24 +1,38 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
+import type { Action } from '../utils/Action'
+import type { Data } from '../utils/Data'
+import { ruleAction, groupAction } from '../utils/actions'
+import QuarterBackActionCreate from './QuarterBackActionCreate'
 import QuarterBackActionDelete from './QuarterBackActionDelete'
 
-class QuarterBackActions extends Component {
-  render () {
-    const { actions, handleAdd, handleDeletion, index, types } = this.props
-    const actionItems = types.length > 0 ? types : actions
+type Props = {
+  // fields
+  index: number,
+  // types
+  handleCreate: (data: Data) => void,
+  handleDelete: (index: number) => void
+}
 
+class QuarterBackActions extends React.Component<Props> {
+  render () {
+    // TODO: Just for testing out...
+    const actions: Array<Action> = [ruleAction, groupAction]
     return (
       <div className='QuarterBackActions'>
-        {actionItems.map((actionItem, index) => {
-          const { QB, action } = actionItem
+        {/* TODO: Iter type actions if available... */}
+        {actions.map((action, index) => {
           return (
-            <button key={index} onClick={() => handleAdd(QB)}>
-              {action}
-            </button>
+            <QuarterBackActionCreate
+              key={index}
+              action={action}
+              handleCreate={this.props.handleCreate}
+            />
           )
         })}
         <QuarterBackActionDelete
-          handleDeletion={handleDeletion}
           index={index}
+          handleDelete={this.props.handleDelete}
         />
       </div>
     )

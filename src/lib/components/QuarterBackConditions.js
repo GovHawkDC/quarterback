@@ -21,6 +21,7 @@ class QuarterBackConditions extends React.Component<Props> {
         {conditions.map((condition, index) => {
           return (
             <QuarterBackCondition
+              key={index}
               condition={condition}
               value={this.props.value}
               handleUpdate={this.props.handleUpdate}
