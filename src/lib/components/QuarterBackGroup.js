@@ -2,14 +2,18 @@
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { Data, Group, GroupFragment } from '../utils/Data'
+import type { Field } from '../utils/Field'
 import QuarterBackHeader from './QuarterBackHeader'
 import QuarterBackRules from './QuarterBackRules'
 
 type Props = {
   QB: string,
   conditions: Array<Condition>,
+  fields: Array<Field>,
   group: Group,
   index: number,
+  title: string,
+  types: Array<>,
   handleUpdate: (group: Group) => void,
   handleDelete: (index: number) => void
 }
@@ -36,18 +40,19 @@ class QuarterBackGroup extends React.Component<Props> {
   render () {
     return(
       <div className='QuarterBackGroup'>
-        {/* TODO: HEADER{this.handleCreate, this.props.handleDelete} */}
         <QuarterBackHeader
           condition={this.props.group.condition}
           conditions={this.props.conditions}
+          fields={this.props.fields}
           index={this.props.index}
           handleCreate={this.handleCreate}
           handleUpdate={this.handleUpdate}
           handleDelete={this.props.handleDelete}
         />
         <QuarterBackRules
-          handleUpdate={this.handleUpdate}
+          fields={this.props.fields}
           rules={this.props.group.rules}
+          handleUpdate={this.handleUpdate}
         />
       </div>
     )

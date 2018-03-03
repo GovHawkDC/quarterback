@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 export type Field = {
-  QBFieldComponent?: React.ComponentType<>, // TODO: Props
+  component?: React.ComponentType<>, // TODO: Props
   id: string,
   input: string, // TODO: Constrain to set?
   label: string,

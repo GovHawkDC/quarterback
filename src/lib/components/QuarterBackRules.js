@@ -1,13 +1,14 @@
 // @flow
 import * as React from 'react'
 import type { Data, GroupFragment } from '../utils/Data'
+import type { Field } from '../utils/Field'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 import QuarterBackRule from './QuarterBackRule'
 import QuarterBackGroup from './QuarterBackGroup'
 
 type Props = {
+  fields: Array<Field>,
   rules: Array<Data>,
-  types: Array<mixed>, // TODO: spec out this type
   handleUpdate: (fragment: GroupFragment) => void
 }
 
@@ -51,6 +52,7 @@ class QuarterBackRules extends React.Component<Props> {
               <QuarterBackRule
                 key={index}
                 QB={QB}
+                fields={this.props.fields}
                 index={index}
                 rule={data}
                 handleUpdate={this.handleUpdate}

@@ -2,26 +2,39 @@
 import * as React from 'react'
 import type { Action } from '../utils/Action'
 import type { Data } from '../utils/Data'
+import type { Field } from '../utils/Field'
+import type { Type } from '../utils/Type'
 import { ruleAction, groupAction } from '../utils/actions'
 import QuarterBackActionCreate from './QuarterBackActionCreate'
 import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 type Props = {
-  // fields
+  fields: Array<Field>,
   index: number,
-  // types
+  types: Array<Type>,
   handleCreate: (data: Data) => void,
   handleDelete: (index: number) => void
 }
 
 class QuarterBackActions extends React.Component<Props> {
+  getActions(): Array<Action> {
+    if (this.props.fields.length > 0) {
+      return [ruleAction, groupAction]
+    }
+
+    const actions = this.props.types.map(type => type.action)
+
+    if (actions.length < 1) {
+      return []
+    }
+
+    return [...actions, groupAction]
+  }
+
   render () {
-    // TODO: Just for testing out...
-    const actions: Array<Action> = [ruleAction, groupAction]
     return (
       <div className='QuarterBackActions'>
-        {/* TODO: Iter type actions if available... */}
-        {actions.map((action, index) => {
+        {this.getActions().map((action, index) => {
           return (
             <QuarterBackActionCreate
               key={index}
