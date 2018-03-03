@@ -1,23 +1,23 @@
 // @flow
 import type { Data } from './Data'
 
-type GroupQB = {
+type GroupQBFragment = {
   QB?: string
 }
 
-export type GroupCondition = {
+export type GroupConditionFragment = {
   condition: string
 }
 
-export type GroupRules = {
+export type GroupRulesFragment = {
   rules: Array<Data>
 }
 
 export type GroupFragment =
-  | GroupCondition
-  | GroupRules
+  | GroupConditionFragment
+  | GroupRulesFragment
 
 export type Group =
-  & GroupQB
-  & GroupCondition
-  & GroupRules
+  & GroupQBFragment
+  & GroupConditionFragment
+  & GroupRulesFragment
