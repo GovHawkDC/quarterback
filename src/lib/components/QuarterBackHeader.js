@@ -1,8 +1,26 @@
-import React, { Component } from 'react'
+import * as React from 'react'
+import type { Condition } from '../utils/Condition'
+import type { Data, GroupCondition } from '../utils/Data'
+import QuarterBackConditions from './QuarterBackConditions'
 
-class QuarterBackHeader extends Component {
+type Props = {
+  condition: string,
+  conditions: Array<Condition>,
+  index: number,
+  handleCreate: (data: Data) => void,
+  handleUpdate: (fragment: GroupCondition) => void,
+  handleDelete: (index: number) => void
+}
+
+class QuarterBackHeader extends React.Component<Props> {
   render () {
-    return null
+    <div className='QuarterBackHeader'>
+      <QuarterBackConditions
+        value={this.props.condition}
+        conditions={this.props.conditions}
+        handleUpdate={this.props.handleUpdate}
+      />
+    </div>
   }
 }
 

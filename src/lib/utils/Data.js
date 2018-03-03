@@ -17,7 +17,7 @@ type GroupQB = {
   QB?: string
 }
 
-type GroupCondition = {
+export type GroupCondition = {
   condition: string
 }
 
@@ -29,7 +29,7 @@ export type GroupFragment =
   | GroupCondition
   | GroupRules
 
-type Group =
+export type Group =
   & GroupQB
   & GroupCondition
   & GroupRules

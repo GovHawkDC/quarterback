@@ -2,22 +2,16 @@
 import * as React from 'react'
 import type { Data, GroupFragment } from '../utils/Data'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
+import QuarterBackRule from './QuarterBackRule'
+import QuarterBackGroup from './QuarterBackGroup'
 
 type Props = {
-  handleUpdate: (fragment: GroupFragment) => void,
   rules: Array<Data>,
-  types: Array<mixed> // TODO: spec out this type
+  types: Array<mixed>, // TODO: spec out this type
+  handleUpdate: (fragment: GroupFragment) => void
 }
 
 class QuarterBackRules extends React.Component<Props> {
-  /**
-   * Takes a new group or rule and appends it to a copy of the current
-   * rules prop. Passes the modified rules copy to parent
-   */
-  handleCreate (data: Data): void {
-    this.props.handleUpdate({ rules: [...this.props.rules, data] })
-  }
-
   /**
    * Takes a modified group or rule and index and overwrites a copy of
    * the current rules prop at the specified index. Passes the modified
@@ -39,7 +33,7 @@ class QuarterBackRules extends React.Component<Props> {
   }
 
   render () {
-    const { rules /*, types*/ } = this.props
+    const { rules } = this.props
 
     if (rules.length < 1) {
       return null
@@ -47,22 +41,35 @@ class QuarterBackRules extends React.Component<Props> {
 
     return (
       <div className='QuarterBackRules'>
-        {rules.map((rule, index) => {
-          const { QB } = rule
+        {rules.map((data, index) => {
+          const { QB, condition } = data
 
-          // TODO: Legacy, test condition (undefined)
-          if (QB === QB_RULE) {
-            // TODO: Rule
+          // "Old" rule data from jQuery plugin will not have "condition"
+          // key
+          if (QB === QB_RULE || condition === undefined) {
             return (
-              null
+              <QuarterBackRule
+                key={index}
+                QB={QB}
+                index={index}
+                rule={data}
+                handleUpdate={this.handleUpdate}
+                handleDelete={this.handleDelete}
+              />
             )
           }
 
-          // TODO: Legacy, test condition (!undefined, but QB is)
-          if (QB === QB_GROUP) {
-            // TODO: Group, existing data
+          // "Old" group data from jQuery plugin _will_ have a "condition" key
+          if (QB === QB_GROUP || (QB === undefined && condition !== undefined)) {
             return (
-              null
+              <QuarterBackGroup
+                key={index}
+                QB={QB}
+                group={data}
+                index={index}
+                handleUpdate={this.handleUpdate}
+                handleDelete={this.handleDelete}
+              />
             )
           }
 
