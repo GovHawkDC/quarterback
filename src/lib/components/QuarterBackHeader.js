@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { Data, GroupCondition } from '../utils/Data'
