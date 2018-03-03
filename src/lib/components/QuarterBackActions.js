@@ -17,7 +17,7 @@ type Props = {
 }
 
 class QuarterBackActions extends React.Component<Props> {
-  getActions(): Array<Action> {
+  getActions (): Array<Action> {
     if (this.props.fields.length > 0) {
       return [ruleAction, groupAction]
     }
