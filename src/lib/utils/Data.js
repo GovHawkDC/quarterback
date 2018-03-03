@@ -3,7 +3,7 @@
 type Value = string | Array<string>
 
 // TODO: Others, e.g., http://querybuilder.js.org/index.html#method-setRules
-type Rule = {
+export type Rule = {
   QB?: string,
   field?: string,
   id: string,

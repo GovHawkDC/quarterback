@@ -1,12 +1,21 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
+import type { Data, Rule } from '../utils/Data'
+import type { Field } from '../utils/Field'
 
-class QuarterBackOperators extends Component {
+type Props = {
+  field: Field,
+  index: number,
+  rule: Rule,
+  handleUpdate: (data: Data, index: number) => void
+}
+
+class QuarterBackOperators extends React.Component<Props> {
   handleChange = event => {
-    const { target } = event
-    const { value } = target
-
-    const { handleOperatorChange } = this.props
-    handleOperatorChange(value)
+    // TODO: value...
+    const fragment = { operator: event.target.value }
+    const rule = { ...this.props.rule, ...fragment }
+    this.props.handleUpdate(rule, this.props.index)
   }
 
   render () {
@@ -16,7 +25,6 @@ class QuarterBackOperators extends Component {
       return null
     }
 
-    // TODO: Allow for display values?
     return (
       <div className='QuarterBackOperators'>
         <select onChange={this.handleChange} value={operator}>
