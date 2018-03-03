@@ -1,29 +1,40 @@
 // @flow
 import * as React from 'react'
-import type { Data } from '../utils/Data'
+import type { Data, GroupFragment } from '../utils/Data'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 
 type Props = {
-  handleUpdate: (groupPartial) => void, // TODO: type for partial group update
+  handleUpdate: (fragment: GroupFragment) => void,
   rules: Array<Data>,
   types: Array<mixed> // TODO: spec out this type
 }
 
 class QuarterBackRules extends React.Component<Props> {
-  handleCreate (data: Data) {
-    const rules = [...this.props.rules, data]
-    this.props.handleUpdate({ rules })
+  /**
+   * Takes a new group or rule and appends it to a copy of the current
+   * rules prop. Passes the modified rules copy to parent
+   */
+  handleCreate (data: Data): void {
+    this.props.handleUpdate({ rules: [...this.props.rules, data] })
   }
 
+  /**
+   * Takes a modified group or rule and index and overwrites a copy of
+   * the current rules prop at the specified index. Passes the modified
+   * rules copy to parent
+   */
   handleUpdate (data: Data, index: number) {
-    const rules = Object.assign([], [...this.props.rules], {
-      [index]: data
-    })
+    const rules = Object.assign([], [...this.props.rules], { [index]: data })
     this.props.handleUpdate({ rules })
   }
 
+  /**
+   * Takes an index and removes the rule or group in a copy of the current
+   * rules prop at the specified index. Passes the modified rules copy to
+   * parent
+   */
   handleDelete (index: number) {
-    const rules = this.props.rules.filter((_, ruleIndex) => ruleIndex !== index)
+    const rules = this.props.rules.filter((...args) => args[1] !== index)
     this.props.handleUpdate({ rules })
   }
 

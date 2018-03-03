@@ -13,10 +13,25 @@ type Rule = {
   value: Value
 }
 
-type Group = {
-  QB?: string,
-  condition: string,
+type GroupQB = {
+  QB?: string
+}
+
+type GroupCondition = {
+  condition: string
+}
+
+type GroupRules = {
   rules: Array<Data>
 }
+
+export type GroupFragment =
+  | GroupCondition
+  | GroupRules
+
+type Group =
+  & GroupQB
+  & GroupCondition
+  & GroupRules
 
 export type Data = Group | Rule
