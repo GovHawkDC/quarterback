@@ -1,16 +1,25 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
 
-class QuarterBackActionDelete extends Component {
+type Props = {
+  index: number,
+  handleDelete: (index: number) => void
+}
+
+class QuarterBackActionDelete extends React.Component<Props> {
+  handleClick = event => {
+    event.preventDefault()
+    this.props.handleDelete(this.props.index)
+  }
+
   render () {
-    // TODO: option to omit deletions?
-    const { handleDeletion, index } = this.props
-
-    if (index < 0) {
+    // We do not want to delete the "root" element, which will have an
+    // index set to -1
+    if (this.props.index < 0) {
       return null
     }
 
-    // TODO: On click...
-    return <button onClick={() => handleDeletion(index)}>Delete</button>
+    return <button className='QuarterBackActionDelete' onClick={this.handleClick}>Delete</button>
   }
 }
 
