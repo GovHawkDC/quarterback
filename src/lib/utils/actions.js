@@ -1,9 +1,26 @@
 // @flow
 import type { Action } from './Action'
+import type { Type } from './Type'
 import { QB_RULE, QB_GROUP } from './constants'
 
 function getActionByQB (actions: Array<Action>, QB: string): ?Action {
   return actions.find(action => action.QB === QB)
+}
+
+function getActionByType (type: Type): Action {
+  if (type.action != null) {
+    return type.action
+  }
+
+  const display = type.title != null
+    ? type.title.toLowerCase()
+    : 'custom'
+
+  return {
+    ...groupAction,
+    QB: type.QB,
+    display: `Add ${display}`
+  }
 }
 
 const ruleAction: Action = {
@@ -40,6 +57,7 @@ const groupAction: Action = {
 
 export {
   getActionByQB,
+  getActionByType,
   ruleAction,
   groupAction
 }

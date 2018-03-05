@@ -4,20 +4,8 @@ import './lib/components/QuarterBack.css'
 import './lib/components/QuarterBackClassic.css'
 import QuarterBack, { ruleAction } from './lib'
 
-const bookAction = {
-  QB: 'Book',
-  display: 'Add book',
-  getDefaultData: function () {
-    return {
-      QB: this.QB,
-      condition: '',
-      rules: [ruleAction.getDefaultData()]
-    }
-  }
-}
 const book = {
   QB: 'Book',
-  action: bookAction,
   fields: [
     { id: 'title', label: 'Title', input: 'text', type: 'string' },
     { id: 'pub_year', label: 'Year Published', input: 'number', type: 'integer' },

@@ -4,7 +4,7 @@ import type { Action } from '../utils/Action'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Type } from '../utils/Type'
-import { ruleAction, groupAction } from '../utils/actions'
+import { ruleAction, groupAction, getActionByType } from '../utils/actions'
 import QuarterBackActionCreate from './QuarterBackActionCreate'
 import QuarterBackActionDelete from './QuarterBackActionDelete'
 
@@ -22,7 +22,7 @@ class QuarterBackActions extends React.Component<Props> {
       return [ruleAction, groupAction]
     }
 
-    const actions = this.props.types.map(type => type.action)
+    const actions = this.props.types.map(getActionByType)
 
     if (actions.length < 1) {
       return []
