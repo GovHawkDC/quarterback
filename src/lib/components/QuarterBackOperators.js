@@ -25,8 +25,8 @@ class QuarterBackOperators extends React.Component<Props> {
     return this.props.rule.value
   }
 
-  handleChange = (event: SyntheticEvent<>) => {
-    const operator = getOperatorById(event.target.value)
+  handleUpdate = (val) => {
+    const operator = getOperatorById(val)
     const value = getDefaultValueByOperator(operator)
 
     const data = {
@@ -69,7 +69,7 @@ class QuarterBackOperators extends React.Component<Props> {
             }
           })}
           value={this.props.rule.operator}
-          handleChange={this.handleChange}
+          handleUpdate={this.handleUpdate}
         />
       </div>
     )

@@ -15,8 +15,8 @@ type Props = {
 }
 
 class QuarterBackFields extends React.Component<Props> {
-  handleChange = (event: SyntheticEvent<>) => {
-    const field = getFieldById(this.props.fields, event.target.value)
+  handleUpdate = (val) => {
+    const field = getFieldById(this.props.fields, val)
     const operator = field ? getDefaultOperatorByField(field) : null
     const value = operator ? getDefaultValueByOperator(operator) : null
 
@@ -44,7 +44,7 @@ class QuarterBackFields extends React.Component<Props> {
             }
           })}
           value={this.props.rule.id}
-          handleChange={this.handleChange}
+          handleUpdate={this.handleUpdate}
         />
       </div>
     )

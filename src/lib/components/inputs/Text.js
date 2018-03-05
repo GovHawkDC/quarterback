@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 type Props = {
-  index: number,
+  index?: number,
   value: string,
   type: string,
   handleChange: (value: string, index: number) => void
