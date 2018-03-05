@@ -24,7 +24,9 @@ class QuarterBackFields extends React.Component<Props> {
       ...this.props.rule,
       field: field ? field.id : '',
       id: field ? field.id : '',
+      input: field ? field.input : '',
       operator: operator ? operator.id : null,
+      type: field ? field.type : '',
       value
     }
 
