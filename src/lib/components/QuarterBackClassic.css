@@ -1,0 +1,46 @@
+.QuarterBackGroup {
+  background: #fdf7e9;
+}
+
+.QuarterBackGroup,
+.QuarterBackRuleWrapper {
+  border: 1px solid #ffe09e;
+  border-radius: 3px;
+  padding: 6px;
+  margin: 2px 0;
+  position: relative;
+}
+
+.QuarterBackRules {
+  flex-flow: column;
+  margin-left: 20px;
+}
+
+.QuarterBackRules > ::after,
+.QuarterBackRules > ::before {
+  border-color: #ccc;
+  border-style: solid;
+  content: '';
+  height: calc(50% + 4px);
+  left: -12px;
+  position: absolute;
+  width: 10px;
+}
+
+.QuarterBackRules > ::after {
+  border-width: 0 0 0 2px;
+  top: 50%;
+}
+
+.QuarterBackRules > ::before {
+  border-width: 0 0 2px 2px;
+  top: -4px;
+}
+
+.QuarterBackRules > :last-child::after {
+  display: none;
+}
+
+.QuarterBackRules > :last-child::before {
+  border-radius: 0 0 0 4px;
+}

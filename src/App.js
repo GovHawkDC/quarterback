@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
+import './lib/components/QuarterBackClassic.css'
 import QuarterBack, { QB_RULE, QB_GROUP } from './lib'
 
 const fields = [
