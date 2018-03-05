@@ -1,24 +1,25 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
 
-class Text extends Component {
-  handleChange = (event, index) => {
-    this.props.handleChange(event.target.value, index)
+type Props = {
+  index: number,
+  value: string,
+  type: string,
+  handleChange: (value: string, index: number) => void
+}
+
+class Text extends React.Component<Props> {
+  handleChange = (event) => {
+    this.props.handleChange(event.target.value, this.props.index)
   }
 
   render () {
     return (
-      <div>
-        {this.props.values.map((value, index) => {
-          return (
-            <input
-              key={index}
-              type={this.props.type}
-              value={value}
-              onChange={event => this.handleChange(event, index)}
-            />
-          )
-        })}
-      </div>
+      <input
+        type={this.props.type}
+        value={this.props.value}
+        onChange={this.handleChange}
+      />
     )
   }
 }

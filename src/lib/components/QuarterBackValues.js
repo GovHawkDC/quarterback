@@ -12,36 +12,51 @@ type Props = {
 }
 
 class QuarterBackValues extends React.Component<Props> {
-  handleChange = (value, index) => {
-    const values = typeof this.props.rule.value === 'string'
-      ? [this.props.rule.value]
-      : this.props.rule.value
-    const v = Object.assign([], [...values], { [index]: value })
+  getValues () {
+    if (this.props.rule.value === null) {
+      return null
+    }
+
+    if (typeof this.props.rule.value === 'string') {
+      return [this.props.rule.value]
+    }
+
+    return this.props.rule.value
+  }
+
+  handleChange = (value: string, index: number) => {
+    const values = Object.assign([], [...this.getValues()], { [index]: value })
     const data = {
       ...this.props.rule,
-      value: v.length === 1 ? v.join('') : v
+      value: values.length === 1 ? values[0] : values
     }
     this.props.handleUpdate(data, this.props.index)
   }
 
   render () {
-    if (this.props.rule.value === null) {
+    const values = this.getValues()
+
+    if (values === null) {
       return null
     }
-
-    const values = typeof this.props.rule.value === 'string'
-      ? [this.props.rule.value]
-      : this.props.rule.value
 
     switch (this.props.field.input) {
       case 'number':
       case 'text':
         return (
-          <Text
-            type={this.props.field.input}
-            values={values}
-            handleChange={this.handleChange}
-          />
+          <div>
+            {values.map((value, index) => {
+              return (
+                <Text
+                  key={index}
+                  index={index}
+                  value={value}
+                  type={this.props.field.input}
+                  handleChange={this.handleChange}
+                />
+              )
+            })}
+          </div>
         )
       default:
         return null // TODO:
