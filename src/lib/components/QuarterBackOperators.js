@@ -14,16 +14,25 @@ type Props = {
 }
 
 class QuarterBackOperators extends React.Component<Props> {
+  getValue (defaultValue) {
+    if (
+      defaultValue === null ||
+      this.props.rule.value === null ||
+      typeof defaultValue !== typeof this.props.rule.value
+    ) {
+      return defaultValue
+    }
+    return this.props.rule.value
+  }
+
   handleChange = (event: React.SyntheticEvent<React.HTMLSelectElement>) => {
     const operator = getOperatorById(event.target.value)
     const value = getDefaultValueByOperator(operator)
-    // TODO: null->array transition defaults
+
     const data = {
       ...this.props.rule,
       operator: operator.id,
-      value: value === null || typeof value !== typeof this.props.rule.value
-        ? value
-        : this.props.rule.value
+      value: this.getValue(value)
     }
 
     this.props.handleUpdate(data, this.props.index)
