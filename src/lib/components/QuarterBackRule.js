@@ -4,8 +4,8 @@ import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import QuarterBackFields from './QuarterBackFields'
-import QuarterBackInput from './QuarterBackInput'
 import QuarterBackOperators from './QuarterBackOperators'
+import QuarterBackValues from './QuarterBackValues'
 import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 type Props = {
@@ -32,7 +32,7 @@ class QuarterBackRule extends React.Component<Props> {
             rule={this.props.rule}
             handleUpdate={this.props.handleUpdate}
           />
-          <QuarterBackInput
+          <QuarterBackValues
             index={this.props.index}
             rule={this.props.rule}
             handleUpdate={this.props.handleUpdate}

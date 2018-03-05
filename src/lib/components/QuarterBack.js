@@ -1,58 +1,40 @@
-import React, { Component } from 'react'
-import { ROOT_COMPONENT_ID } from './helpers/constants'
-import QuarterBackRoot from './QuarterBackRoot'
+import * as React from 'react'
+import QuarterBackGroup from './QuarterBackGroup'
 
-// const defaultProps = {
-//   QB: ROOT_COMPONENT_ID,
-//   action: '',
-//   actions: [
-//     { QB: RULE_ID, action: 'Add rule' },
-//     { QB: GROUP_ID, action: 'Add group' }
-//   ],
-//   conditions: [
-//     { condition: 'and', display: 'AND' },
-//     { condition: 'or', display: 'OR' }
-//   ],
-//   fields: [],
-//   title: '',
-//   types: []
-// }
+type Props = {}
 
-class QuarterBack extends Component {
+class QuarterBack extends React.Component<Props> {
   constructor (props) {
     super(props)
 
-    const { preloadedState } = props
     const {
-      QB = ROOT_COMPONENT_ID,
       condition = '',
       rules = []
-    } = preloadedState
+    } = props.rules
 
     this.state = {
-      QB,
+      // QB,
       condition,
       rules
     }
   }
 
-  handleChange = (_index, changes) => {
+  handleUpdate = (data) => {
     this.setState(prevState => {
       return {
         ...prevState,
-        ...changes
+        ...data
       }
     })
   }
 
   render () {
-    const props = {
-      ...this.props,
-      handleChange: this.handleChange,
-      preloadedState: this.state
-    }
-
-    return <QuarterBackRoot {...props} />
+    return (
+      <QuarterBackGroup
+        group={this.state}
+        handleUpdate={this.handleUpdate}
+      />
+    )
   }
 }
 

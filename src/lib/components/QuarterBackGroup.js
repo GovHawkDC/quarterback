@@ -4,6 +4,7 @@ import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Group, GroupFragment } from '../utils/Group'
+import type { Type } from '../utils/Type'
 import QuarterBackHeader from './QuarterBackHeader'
 import QuarterBackRules from './QuarterBackRules'
 
@@ -13,13 +14,18 @@ type Props = {
   fields: Array<Field>,
   group: Group,
   index: number,
-  title: string,
-  types: Array<>,
+  title?: string,
+  types: Array<Type>,
   handleUpdate: (group: Group) => void,
   handleDelete: (index: number) => void
 }
 
 class QuarterBackGroup extends React.Component<Props> {
+  static defaultProps = {
+    index: -1,
+    handleDelete: (index: number) => {}
+  }
+
   /**
    * Takes a new group or rule and appends it to a copy of the current
    * group's rules prop. Passes the modified rules copy to update
