@@ -6,7 +6,7 @@ export type Rule = {
   field?: string,
   id: string,
   input?: string,
-  operator: string,
+  operator: null | string,
   type?: string,
   value: Value
 }
