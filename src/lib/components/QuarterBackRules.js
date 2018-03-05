@@ -1,15 +1,20 @@
 // @flow
 import * as React from 'react'
+import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { GroupFragment } from '../utils/Group'
+import type { Type } from '../utils/Type'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
+import { getTypeByQB } from '../utils/types'
 import QuarterBackRule from './QuarterBackRule'
 import QuarterBackGroup from './QuarterBackGroup'
 
 type Props = {
+  conditions: Array<Condition>,
   fields: Array<Field>,
   rules: Array<Data>,
+  types: Array<Type>,
   handleUpdate: (fragment: GroupFragment) => void
 }
 
@@ -52,7 +57,7 @@ class QuarterBackRules extends React.Component<Props> {
             return (
               <QuarterBackRule
                 key={index}
-                QB={QB}
+                QB={QB_RULE}
                 fields={this.props.fields}
                 index={index}
                 rule={data}
@@ -67,7 +72,31 @@ class QuarterBackRules extends React.Component<Props> {
             return (
               <QuarterBackGroup
                 key={index}
-                QB={QB}
+                QB={QB_GROUP}
+                conditions={this.props.conditions}
+                fields={this.props.fields}
+                group={data}
+                index={index}
+                types={this.props.types}
+                handleUpdate={this.handleUpdate}
+                handleDelete={this.handleDelete}
+              />
+            )
+          }
+
+          const type = getTypeByQB(this.props.types, QB)
+
+          if (!type) {
+            throw new Error('Unable to find type')
+          }
+
+          const { QBComponent, ...typeProps } = type
+
+          if (QBComponent) {
+            return (
+              <QBComponent
+                {...typeProps}
+                key={index}
                 group={data}
                 index={index}
                 handleUpdate={this.handleUpdate}
@@ -76,10 +105,16 @@ class QuarterBackRules extends React.Component<Props> {
             )
           }
 
-          // TODO: Temporary!
-          throw new Error('Could not find type...')
-
-          // TODO: Custom types, needs extra type probably for sharing...
+          return (
+            <QuarterBackGroup
+              {...typeProps}
+              key={index}
+              group={data}
+              index={index}
+              handleUpdate={this.handleUpdate}
+              handleDelete={this.handleDelete}
+            />
+          )
         })}
       </div>
     )

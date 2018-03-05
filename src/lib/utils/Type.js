@@ -6,8 +6,8 @@ import type { Field } from './Field'
 
 export type Type = {
   QB?: string,
+  QBComponent?: React.ComponentType<>, // TODO: Props
   action: Action,
-  component?: React.ComponentType<>, // TODO: Props
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   title?: string,

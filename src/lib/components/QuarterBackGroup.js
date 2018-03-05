@@ -5,6 +5,7 @@ import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Group, GroupFragment } from '../utils/Group'
 import type { Type } from '../utils/Type'
+import { QB_GROUP } from '../utils/constants'
 import QuarterBackHeader from './QuarterBackHeader'
 import QuarterBackRules from './QuarterBackRules'
 
@@ -22,6 +23,7 @@ type Props = {
 
 class QuarterBackGroup extends React.Component<Props> {
   static defaultProps = {
+    QB: QB_GROUP,
     index: -1,
     handleDelete: (index: number) => {}
   }
@@ -57,6 +59,7 @@ class QuarterBackGroup extends React.Component<Props> {
           handleDelete={this.props.handleDelete}
         />
         <QuarterBackRules
+          conditions={this.props.conditions}
           fields={this.props.fields}
           rules={this.props.group.rules}
           handleUpdate={this.handleUpdate}
