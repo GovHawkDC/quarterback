@@ -2,7 +2,8 @@
 import * as React from 'react'
 import type { Rule } from '../utils/Rule'
 import { getFieldById } from '../utils/fields'
-import { getDefaultOperatorsByField } from '../utils/operators'
+import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
+import { getDefaultValueByOperator } from '../utils/values'
 import QuarterBackOperator from './QuarterBackOperator'
 
 type Props = {
@@ -13,10 +14,18 @@ type Props = {
 
 class QuarterBackOperators extends React.Component<Props> {
   handleChange = event => {
-    // TODO: value...
-    const fragment = { operator: event.target.value }
-    const rule = { ...this.props.rule, ...fragment }
-    this.props.handleUpdate(rule, this.props.index)
+    const operator = getOperatorById(event.target.value)
+    const value = getDefaultValueByOperator(operator)
+
+    const data = {
+      ...this.props.rule,
+      operator: operator.id,
+      value: value === null || typeof value !== typeof this.props.rule.value
+        ? value
+        : this.props.rule.value
+    }
+
+    this.props.handleUpdate(data, this.props.index)
   }
 
   render () {
