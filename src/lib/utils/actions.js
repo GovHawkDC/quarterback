@@ -43,6 +43,7 @@ const groupAction: Action = {
   QB: QB_GROUP,
   display: 'Add group',
   getDefaultData: function (fields) {
+    console.log(fields)
     const rules = fields != null && fields.length > 0
       ? [ruleAction.getDefaultData()]
       : []

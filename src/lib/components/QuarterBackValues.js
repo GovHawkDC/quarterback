@@ -2,6 +2,7 @@
 import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
+import Select from './inputs/Select'
 import Text from './inputs/Text'
 
 type Props = {
@@ -24,7 +25,7 @@ class QuarterBackValues extends React.Component<Props> {
     return this.props.rule.value
   }
 
-  handleChange = (value: string, index: number) => {
+  handleUpdate = (value: string, index: number) => {
     const values = Object.assign([], [...this.getValues()], { [index]: value })
     const data = {
       ...this.props.rule,
@@ -53,6 +54,22 @@ class QuarterBackValues extends React.Component<Props> {
                   value={value}
                   type={this.props.field.input}
                   handleChange={this.handleChange}
+                />
+              )
+            })}
+          </div>
+        )
+      case 'select':
+        return (
+          <div>
+            {values.map((value, index) => {
+              return (
+                <Select
+                  key={index}
+                  index={index}
+                  options={this.props.field.options}
+                  value={value}
+                  handleChange={this.handleUpdate}
                 />
               )
             })}

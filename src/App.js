@@ -9,7 +9,15 @@ const book = {
   fields: [
     { id: 'title', label: 'Title', input: 'text', type: 'string' },
     { id: 'pub_year', label: 'Year Published', input: 'number', type: 'integer' },
-    { id: 'pages', label: 'Number of Pages', input: 'number', type: 'integer' }
+    { id: 'pages', label: 'Number of Pages', input: 'number', type: 'integer' },
+    { id: 'genre',
+      label: 'Genre',
+      input: 'select',
+      type: 'string',
+      options: [
+        { label: 'Sci-Fi', value: 'scifi' },
+        { label: 'Romance', value: 'romance' }
+      ] }
   ],
   title: 'Book Query'
 }
