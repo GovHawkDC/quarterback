@@ -53,7 +53,7 @@ class QuarterBackValues extends React.Component<Props> {
                   index={index}
                   value={value}
                   type={this.props.field.input}
-                  handleChange={this.handleChange}
+                  handleUpdate={this.handleUpdate}
                 />
               )
             })}
@@ -69,7 +69,7 @@ class QuarterBackValues extends React.Component<Props> {
                   index={index}
                   options={this.props.field.options}
                   value={value}
-                  handleChange={this.handleUpdate}
+                  handleUpdate={this.handleUpdate}
                 />
               )
             })}

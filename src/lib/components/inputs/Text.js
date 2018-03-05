@@ -5,12 +5,12 @@ type Props = {
   index?: number,
   value: string,
   type: string,
-  handleChange: (value: string, index: number) => void
+  handleUpdate: (value: string, index: number) => void
 }
 
 class Text extends React.Component<Props> {
   handleChange = (event) => {
-    this.props.handleChange(event.target.value, this.props.index)
+    this.props.handleUpdate(event.target.value, this.props.index)
   }
 
   render () {
