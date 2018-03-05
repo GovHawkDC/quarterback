@@ -6,7 +6,7 @@ type Props = {
   value: string
 }
 
-class QuarterBackField extends React.Component<Props> {
+class Option extends React.Component<Props> {
   render () {
     return (
       <option value={this.props.value}>{this.props.label}</option>
@@ -14,4 +14,4 @@ class QuarterBackField extends React.Component<Props> {
   }
 }
 
-export default QuarterBackField
+export default Option

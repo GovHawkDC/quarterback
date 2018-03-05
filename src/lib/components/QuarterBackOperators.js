@@ -4,7 +4,7 @@ import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
 import { getDefaultValueByOperator } from '../utils/values'
-import QuarterBackOperator from './QuarterBackOperator'
+import Select from './inputs/Select'
 
 type Props = {
   field: Field,
@@ -14,10 +14,10 @@ type Props = {
 }
 
 class QuarterBackOperators extends React.Component<Props> {
-  handleChange = event => {
+  handleChange = (event: React.SyntheticEvent<React.HTMLSelectElement>) => {
     const operator = getOperatorById(event.target.value)
     const value = getDefaultValueByOperator(operator)
-
+    // TODO: null->array transition defaults
     const data = {
       ...this.props.rule,
       operator: operator.id,
@@ -52,17 +52,16 @@ class QuarterBackOperators extends React.Component<Props> {
 
     return (
       <div className='QuarterBackOperators'>
-        <select onChange={this.handleChange} value={this.props.rule.operator}>
-          {operators.map((operator, index) => {
-            return (
-              <QuarterBackOperator
-                key={index}
-                label={operator.id.replace(/_/g, ' ')}
-                value={operator.id}
-              />
-            )
+        <Select
+          options={operators.map(operator => {
+            return {
+              label: operator.id.replace(/_/g, ' '),
+              value: operator.id
+            }
           })}
-        </select>
+          value={this.props.rule.operator}
+          handleChange={this.handleChange}
+        />
       </div>
     )
   }

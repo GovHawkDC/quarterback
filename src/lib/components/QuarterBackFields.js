@@ -5,7 +5,7 @@ import type { Rule } from '../utils/Rule'
 import { getFieldById } from '../utils/fields'
 import { getDefaultOperatorByField } from '../utils/operators'
 import { getDefaultValueByOperator } from '../utils/values'
-import QuarterBackField from './QuarterBackField'
+import Select from './inputs/Select'
 
 type Props = {
   fields: Array<Field>,
@@ -15,7 +15,7 @@ type Props = {
 }
 
 class QuarterBackFields extends React.Component<Props> {
-  handleChange = event => {
+  handleChange = (event: React.SyntheticEvent<React.HTMLSelectElement>) => {
     const field = getFieldById(this.props.fields, event.target.value)
     const operator = field ? getDefaultOperatorByField(field) : null
     const value = operator ? getDefaultValueByOperator(operator) : null
@@ -32,20 +32,20 @@ class QuarterBackFields extends React.Component<Props> {
   }
 
   render () {
+    const fields = [ { label: '------', value: '' }, ...this.props.fields ]
+
     return (
       <div className='QuarterBackFields'>
-        <select onChange={this.handleChange} value={this.props.rule.id}>
-          <QuarterBackField label='------' value='' />
-          {this.props.fields.map((field, index) => {
-            return (
-              <QuarterBackField
-                key={index}
-                label={field.label}
-                value={field.id}
-              />
-            )
+        <Select
+          options={fields.map(field => {
+            return {
+              label: field.label,
+              value: field.id
+            }
           })}
-        </select>
+          value={this.props.rule.id}
+          handleChange={this.handleChange}
+        />
       </div>
     )
   }
