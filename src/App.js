@@ -12,7 +12,7 @@ class AsyncSelect extends Component {
 
   componentDidMount () {
     setTimeout(() => {
-      this.props.handleUpdate('penguin', this.props.index)
+      // this.props.handleUpdate('penguin', this.props.index)
 
       this.setState(prevState => {
         return {
@@ -60,7 +60,8 @@ const book = {
       id: 'publisher',
       label: 'Publisher',
       input: 'select',
-      type: 'string'
+      type: 'string',
+      defaultValue: 'penguin'
     }
   ],
   title: 'Book Query'
