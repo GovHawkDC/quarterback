@@ -4,7 +4,7 @@ import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import { getFieldById } from '../utils/fields'
 import { getDefaultOperatorByField } from '../utils/operators'
-import { getDefaultValueByOperator } from '../utils/values'
+import { getDefaultValue } from '../utils/values'
 import Select from './inputs/Select'
 
 type Props = {
@@ -18,7 +18,7 @@ class QuarterBackFields extends React.Component<Props> {
   handleUpdate = (val) => {
     const field = getFieldById(this.props.fields, val)
     const operator = field ? getDefaultOperatorByField(field) : null
-    const value = operator ? getDefaultValueByOperator(operator) : null
+    const value = operator ? getDefaultValue(field, operator) : null
 
     const data = {
       ...this.props.rule,
