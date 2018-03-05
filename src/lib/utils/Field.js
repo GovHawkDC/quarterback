@@ -6,5 +6,7 @@ export type Field = {
   id: string,
   input: string, // TODO: Constrain to set?
   label: string,
-  type: string // TODO: Constrain to set?
+  operators?: Array<string>,
+  type: string, // TODO: Constrain to set?
+  // values: // TODO:
 }
