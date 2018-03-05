@@ -28,6 +28,7 @@ class QuarterBackRule extends React.Component<Props> {
             handleUpdate={this.props.handleUpdate}
           />
           <QuarterBackOperators
+            fields={this.props.fields}
             index={this.props.index}
             rule={this.props.rule}
             handleUpdate={this.props.handleUpdate}

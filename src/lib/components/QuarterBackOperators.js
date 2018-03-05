@@ -33,7 +33,7 @@ class QuarterBackOperators extends React.Component<Props> {
       return null
     }
 
-    const field = getFieldById(this.props.rule.id)
+    const field = getFieldById(this.props.fields, this.props.rule.id)
     const operators = getDefaultOperatorsByField(field)
 
     if (operators.length < 1) {

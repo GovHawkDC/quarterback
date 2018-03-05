@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
-import QuarterBack, { GROUP_ID, RULE_ID } from './lib'
+import QuarterBack, { QB_RULE, QB_GROUP } from './lib'
 
 const fields = [
   { id: 'title', label: 'Title', input: 'text', type: 'string' },
@@ -13,17 +13,17 @@ const data = {
   condition: 'or',
   rules: [
     {
-      QB: RULE_ID,
+      QB: QB_RULE,
       id: 'title',
       operator: 'equal',
       value: 'Where the red fern grows'
     },
     {
-      QB: GROUP_ID,
+      QB: QB_GROUP,
       condition: 'and',
       rules: [
-        { QB: RULE_ID, id: 'pub_year', operator: 'less', value: 1962 },
-        { QB: RULE_ID, id: 'pages', operator: 'greater', value: 200 }
+        { QB: QB_RULE, id: 'pub_year', operator: 'less', value: '1962' },
+        { QB: QB_RULE, id: 'pages', operator: 'greater', value: '200' }
       ]
     }
   ]
@@ -33,7 +33,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <QuarterBack fields={fields} preloadedState={data} />
+        <QuarterBack fields={fields} rules={data} />
       </div>
     )
   }

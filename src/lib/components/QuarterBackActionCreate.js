@@ -11,13 +11,13 @@ type Props = {
 class QuarterBackActionCreate extends React.Component<Props> {
   handleClick = event => {
     event.preventDefault()
-    this.props.handleCreate(action.getDefaultData())
+    this.props.handleCreate(this.props.action.getDefaultData())
   }
 
   render () {
     return (
       <button className='QuarterBackActionCreate' onClick={this.handleClick}>
-        {action.display}
+        {this.props.action.display}
       </button>
     )
   }

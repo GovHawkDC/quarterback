@@ -44,7 +44,7 @@ class QuarterBackActions extends React.Component<Props> {
           )
         })}
         <QuarterBackActionDelete
-          index={index}
+          index={this.props.index}
           handleDelete={this.props.handleDelete}
         />
       </div>
