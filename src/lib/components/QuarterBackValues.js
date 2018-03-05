@@ -41,6 +41,8 @@ class QuarterBackValues extends React.Component<Props> {
       return null
     }
 
+    // TODO: Maybe check for QBComponent here, earlier...
+
     switch (this.props.field.input) {
       case 'number':
       case 'text':
