@@ -1,15 +1,21 @@
 // @flow
+import type { Field } from './Field'
 import type { Operator } from './Operator'
 import { OPERATORS } from './constants'
 
-function getAllOperatorsByFieldType (fieldType: string): Array<Operator> {
+function getAllOperatorsByField (field: Field): Array<Operator> {
   return OPERATORS.filter(operator => {
-    return operator.meta.fieldTypes.includes(fieldType)
+    return operator.meta.fieldTypes.includes(field.type)
   })
 }
 
-function getDefaultOperatorByFieldType (fieldType: string): ?Operator {
-  return getAllOperatorsByFieldType(fieldType)[0]
+function getDefaultOperatorsByField (field: Field): Array<Operator> {
+  const { operators = getAllOperatorsByField(field) } = field
+  return operators
+}
+
+function getDefaultOperatorByField (field: Field): ?Operator {
+  return getDefaultOperatorsByField(field)[0]
 }
 
 function getOperatorById (id: string): ?Operator {
@@ -17,7 +23,8 @@ function getOperatorById (id: string): ?Operator {
 }
 
 export {
-  getAllOperatorsByFieldType,
-  getDefaultOperatorByFieldType,
+  getAllOperatorsByField,
+  getDefaultOperatorsByField,
+  getDefaultOperatorByField,
   getOperatorById
 }
