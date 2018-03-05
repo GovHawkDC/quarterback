@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react'
+import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 
 type Props = {
+  field: Field,
   index: number,
   rule: Rule,
   handleUpdate: (data: Rule, index: number) => void

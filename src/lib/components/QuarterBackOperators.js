@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
+import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
-import { getFieldById } from '../utils/fields'
 import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
 import { getDefaultValueByOperator } from '../utils/values'
 import QuarterBackOperator from './QuarterBackOperator'
 
 type Props = {
+  field: Field,
   index: number,
   rule: Rule,
   handleUpdate: (data: Rule, index: number) => void
@@ -33,8 +34,7 @@ class QuarterBackOperators extends React.Component<Props> {
       return null
     }
 
-    const field = getFieldById(this.props.fields, this.props.rule.id)
-    const operators = getDefaultOperatorsByField(field)
+    const operators = getDefaultOperatorsByField(this.props.field)
 
     if (operators.length < 1) {
       return null

@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
+import { getFieldById } from '../utils/fields'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackOperators from './QuarterBackOperators'
 import QuarterBackValues from './QuarterBackValues'
@@ -18,6 +19,8 @@ type Props = {
 
 class QuarterBackRule extends React.Component<Props> {
   render () {
+    const field = getFieldById(this.props.fields, this.props.rule.id)
+
     return (
       <div className='QuarterBackRuleWrapper'>
         <div className='QuarterBackRule'>
@@ -28,12 +31,13 @@ class QuarterBackRule extends React.Component<Props> {
             handleUpdate={this.props.handleUpdate}
           />
           <QuarterBackOperators
-            fields={this.props.fields}
+            field={field}
             index={this.props.index}
             rule={this.props.rule}
             handleUpdate={this.props.handleUpdate}
           />
           <QuarterBackValues
+            field={field}
             index={this.props.index}
             rule={this.props.rule}
             handleUpdate={this.props.handleUpdate}
