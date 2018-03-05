@@ -4,6 +4,10 @@ import type { Operator } from './Operator'
 import type { Value } from './Value'
 
 function getDefaultValueByField (field: Field): Value {
+  if (field.defaultValue != null) {
+    return field.defaultValue
+  }
+
   switch (field.input) {
     case 'select':
       const [option] = field.options || []

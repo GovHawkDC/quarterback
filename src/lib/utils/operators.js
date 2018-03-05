@@ -21,6 +21,10 @@ function getDefaultOperatorsByField (field: Field): Array<?Operator> {
 }
 
 function getDefaultOperatorByField (field: Field): ?Operator {
+  if (field.defaultOperator != null) {
+    return field.defaultOperator
+  }
+
   return getDefaultOperatorsByField(field)[0]
 }
 
