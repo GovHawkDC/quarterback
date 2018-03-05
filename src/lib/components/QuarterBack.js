@@ -34,7 +34,7 @@ class QuarterBack extends React.Component<Props> {
         ...prevState,
         ...data
       }
-    }, () => this.props.handleUpdate(data))
+    }, () => this.props.handleUpdate(this.state))
   }
 
   render () {
