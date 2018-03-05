@@ -1,28 +1,31 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
+import type { Condition } from '../utils/Condition'
+import type { GroupConditionFragment } from '../utils/Group'
+import QuarterBackCondition from './QuarterBackCondition'
 
-class QuarterBackConditions extends Component {
-  handleChange = condition => {
-    const { handleChange } = this.props
-    handleChange({ condition })
-  }
+type Props = {
+  conditions: Array<Condition>,
+  value: string,
+  handleUpdate: (fragment: GroupConditionFragment) => void,
+}
 
+class QuarterBackConditions extends React.Component<Props> {
   render () {
-    const { condition, conditions } = this.props
+    if (this.props.conditions.length < 1) {
+      return null
+    }
 
     return (
       <div className='QuarterBackConditions'>
-        {conditions.map((cond, index) => {
-          const activeClassName =
-            cond.condition === condition ? 'QuarterBackConditionActive' : ''
-
+        {this.props.conditions.map((condition, index) => {
           return (
-            <button
-              className={`QuarterBackCondition ${activeClassName}`}
+            <QuarterBackCondition
               key={index}
-              onClick={() => this.handleChange(cond.condition)}
-            >
-              {cond.display}
-            </button>
+              condition={condition}
+              value={this.props.value}
+              handleUpdate={this.props.handleUpdate}
+            />
           )
         })}
       </div>

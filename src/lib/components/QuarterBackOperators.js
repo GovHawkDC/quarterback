@@ -1,33 +1,76 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
+import type { Field } from '../utils/Field'
+import type { Rule } from '../utils/Rule'
+import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
+import { getDefaultValueByOperator } from '../utils/values'
+import Select from './inputs/Select'
 
-class QuarterBackOperators extends Component {
-  handleChange = event => {
-    const { target } = event
-    const { value } = target
+type Props = {
+  field: Field,
+  index: number,
+  rule: Rule,
+  handleUpdate: (data: Rule, index: number) => void
+}
 
-    const { handleOperatorChange } = this.props
-    handleOperatorChange(value)
+class QuarterBackOperators extends React.Component<Props> {
+  getValue (defaultValue) {
+    if (
+      defaultValue === null ||
+      this.props.rule.value === null ||
+      typeof defaultValue !== typeof this.props.rule.value
+    ) {
+      return defaultValue
+    }
+    return this.props.rule.value
+  }
+
+  handleChange = (event: SyntheticEvent<>) => {
+    const operator = getOperatorById(event.target.value)
+    const value = getDefaultValueByOperator(operator)
+
+    const data = {
+      ...this.props.rule,
+      operator: operator.id,
+      value: this.getValue(value)
+    }
+
+    this.props.handleUpdate(data, this.props.index)
   }
 
   render () {
-    const { operator, operators } = this.props
-
-    if (operator === '' || operators.length < 1) {
+    if (this.props.rule.operator === null) {
       return null
     }
 
-    // TODO: Allow for display values?
+    const operators = getDefaultOperatorsByField(this.props.field)
+
+    if (operators.length < 1) {
+      return null
+    }
+
+    if (operators.length === 1) {
+      return (
+        <div className='QuarterBackOperators'>
+          <span className='QuarterBackOperator'>
+            {this.props.rule.operator}
+          </span>
+        </div>
+      )
+    }
+
     return (
       <div className='QuarterBackOperators'>
-        <select onChange={this.handleChange} value={operator}>
-          {operators.map((operator, index) => {
-            return (
-              <option key={index} value={operator}>
-                {operator.replace(/_/g, ' ')}
-              </option>
-            )
+        <Select
+          options={operators.map(operator => {
+            return {
+              label: operator.id.replace(/_/g, ' '),
+              value: operator.id
+            }
           })}
-        </select>
+          value={this.props.rule.operator}
+          handleChange={this.handleChange}
+        />
       </div>
     )
   }

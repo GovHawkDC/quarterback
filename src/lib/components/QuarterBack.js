@@ -1,42 +1,54 @@
-import React, { Component } from 'react'
-import { ROOT_COMPONENT_ID } from './helpers/constants'
-import QuarterBackRoot from './QuarterBackRoot'
+import * as React from 'react'
+import type { Condition } from './Condition'
+import type { Field } from './Field'
+import type { Group } from './Group'
+import type { Type } from './Type'
+import { groupAction } from '../utils/actions'
+import QuarterBackGroup from './QuarterBackGroup'
 
-class QuarterBack extends Component {
-  constructor (props) {
+type Props = {
+  conditions?: Array<Condition>,
+  fields?: Array<Field>,
+  rules?: Group,
+  types?: Array<Type>,
+  handleUpdate: (data: Group) => void
+}
+
+class QuarterBack extends React.Component<Props> {
+  static defaultProps = {
+    handleUpdate: (data: Group) => {}
+  }
+
+  constructor (props: Props) {
     super(props)
 
-    const { preloadedState } = props
-    const {
-      QB = ROOT_COMPONENT_ID,
-      condition = '',
-      rules = []
-    } = preloadedState
-
     this.state = {
-      QB,
-      condition,
-      rules
+      ...groupAction.getDefaultData(),
+      ...props.rules
     }
   }
 
-  handleChange = (_index, changes) => {
+  handleUpdate = (data: Group) => {
     this.setState(prevState => {
       return {
         ...prevState,
-        ...changes
+        ...data
       }
-    })
+    }, () => this.props.handleUpdate(data))
   }
 
   render () {
-    const props = {
-      ...this.props,
-      handleChange: this.handleChange,
-      preloadedState: this.state
-    }
-
-    return <QuarterBackRoot {...props} />
+    return (
+      <div className='QuarterBack'>
+        <QuarterBackGroup
+          conditions={this.props.conditions}
+          fields={this.props.fields}
+          group={this.state}
+          types={this.props.types}
+          handleUpdate={this.handleUpdate}
+        />
+      </div>
+    )
   }
 }
 

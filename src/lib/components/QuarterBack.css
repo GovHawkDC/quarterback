@@ -1,60 +1,10 @@
-.QuarterBackRoot {
-  background: #fdf7e9;
-}
-
-.QuarterBackContainer,
-.QuarterBackRule {
+.QuarterBackHeader,
+.QuarterBackRule,
+.QuarterBackRuleWrapper {
   display: flex;
-  padding: 5px;
-}
-
-.QuarterBackRuleItems {
-  display: flex;
-}
-
-.QuarterBackRoot,
-.QuarterBackRule {
-  border: 1px solid #ffe09e;
-  border-radius: 3px;
-  margin: 2px 0;
-  position: relative;
-}
-
-.QuarterBackContainer-header,
-.QuarterBackRule {
   justify-content: space-between;
 }
 
-.QuarterBackContainer-body {
-  flex-flow: column;
-  margin-left: 20px;
-}
-
-.QuarterBackContainer-body > ::after,
-.QuarterBackContainer-body > ::before {
-  border-color: #ccc;
-  border-style: solid;
-  content: '';
-  height: calc(50% + 4px);
-  left: -12px;
-  position: absolute;
-  width: 10px;
-}
-
-.QuarterBackContainer-body > ::after {
-  border-width: 0 0 0 1px;
-  top: 50%;
-}
-
-.QuarterBackContainer-body > ::before {
-  border-width: 0 0 1px 1px;
-  top: -6px;
-}
-
-.QuarterBackContainer-body > :last-child::after {
-  display: none;
-}
-
-.QuarterBackContainer-body > :last-child::before {
-  border-radius: 0 0 0 4px;
+.QuarterBackRule {
+  justify-content: normal;
 }

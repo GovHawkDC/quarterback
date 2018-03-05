@@ -1,4 +1,11 @@
-.App > .QuarterBackRoot {
+pre,
+.QuarterBack {
   margin: 20px auto;
   max-width: 600px;
+}
+
+pre {
+  background: #f8f8f8;
+  font-family: Consolas, monospace;
+  padding: 6px;
 }
