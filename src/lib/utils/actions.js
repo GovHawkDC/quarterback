@@ -15,7 +15,7 @@ const ruleAction: Action = {
       field: '',
       id: '',
       input: '',
-      operator: '',
+      operator: null,
       type: '',
       value: null
     }
