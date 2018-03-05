@@ -9,6 +9,7 @@ import { andCondition, orCondition } from '../utils/conditions'
 import { QB_GROUP } from '../utils/constants'
 import QuarterBackHeader from './QuarterBackHeader'
 import QuarterBackRules from './QuarterBackRules'
+import QuarterBackTitle from './QuarterBackTitle'
 
 type Props = {
   QB: string,
@@ -53,6 +54,7 @@ class QuarterBackGroup extends React.Component<Props> {
   render () {
     return (
       <div className='QuarterBackGroup'>
+        <QuarterBackTitle title={this.props.title} />
         <QuarterBackHeader
           condition={this.props.group.condition}
           conditions={this.props.conditions}
