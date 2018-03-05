@@ -24,7 +24,7 @@ class QuarterBackRules extends React.Component<Props> {
    * the current rules prop at the specified index. Passes the modified
    * rules copy to parent
    */
-  handleUpdate (data: Data, index: number) {
+  handleUpdate = (data: Data, index: number) => {
     const rules = Object.assign([], [...this.props.rules], { [index]: data })
     this.props.handleUpdate({ rules })
   }
@@ -34,7 +34,7 @@ class QuarterBackRules extends React.Component<Props> {
    * rules prop at the specified index. Passes the modified rules copy to
    * parent
    */
-  handleDelete (index: number) {
+  handleDelete = (index: number) => {
     const rules = this.props.rules.filter((...args) => args[1] !== index)
     this.props.handleUpdate({ rules })
   }

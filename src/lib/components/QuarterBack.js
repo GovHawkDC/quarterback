@@ -23,7 +23,7 @@ class QuarterBack extends React.Component<Props> {
     }
   }
 
-  handleUpdate (data: Group) {
+  handleUpdate = (data: Group) => {
     this.setState(prevState => {
       return {
         ...prevState,

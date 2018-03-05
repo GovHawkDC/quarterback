@@ -37,7 +37,7 @@ class QuarterBackGroup extends React.Component<Props> {
    * group's rules prop. Passes the modified rules copy to update
    * method
    */
-  handleCreate (data: Data) {
+  handleCreate = (data: Data) => {
     this.handleUpdate({ rules: [...this.props.group.rules, data] })
   }
 
@@ -45,7 +45,7 @@ class QuarterBackGroup extends React.Component<Props> {
    * Takes a group fragment and merges it with a copy of the current
    * group prop. Passes the modified group copy to parent
    */
-  handleUpdate (fragment: GroupFragment) {
+  handleUpdate = (fragment: GroupFragment) => {
     const group = { QB: this.props.QB, ...this.props.group, ...fragment }
     this.props.handleUpdate(group, this.props.index)
   }
