@@ -10,10 +10,15 @@ type Props = {
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   rules?: Group,
-  types?: Array<Type>
+  types?: Array<Type>,
+  handleUpdate: (data: Group) => void
 }
 
 class QuarterBack extends React.Component<Props> {
+  static defaultProps = {
+    handleUpdate: (data: Group) => {}
+  }
+
   constructor (props: Props) {
     super(props)
 
@@ -29,7 +34,7 @@ class QuarterBack extends React.Component<Props> {
         ...prevState,
         ...data
       }
-    })
+    }, () => this.props.handleUpdate(data))
   }
 
   render () {

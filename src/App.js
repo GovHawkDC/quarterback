@@ -31,10 +31,19 @@ const data = {
 }
 
 class App extends Component {
+  state = {
+    data
+  }
+
+  handleUpdate = data => {
+    this.setState(prevState => ({ ...prevState, data }))
+  }
+
   render () {
     return (
       <div className='App'>
-        <QuarterBack fields={fields} rules={data} />
+        <QuarterBack fields={fields} handleUpdate={this.handleUpdate} rules={data} />
+        <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
       </div>
     )
   }
