@@ -41,7 +41,7 @@ class QuarterBackFields extends React.Component<Props> {
               <QuarterBackField
                 key={index}
                 label={field.label}
-                value={field.value}
+                value={field.id}
               />
             )
           })}
