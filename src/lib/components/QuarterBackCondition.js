@@ -16,8 +16,12 @@ class QuarterBackCondition extends React.Component<Props> {
   }
 
   render () {
+    const className = this.props.condition.value === this.props.value
+      ? 'QuarterBackCondition QuarterBackConditionActive'
+      : 'QuarterBackCondition'
+
     return (
-      <button className='QuarterBackCondition' onClick={this.handleClick}>
+      <button className={className} onClick={this.handleClick}>
         {this.props.condition.display}
       </button>
     )

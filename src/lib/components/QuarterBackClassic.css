@@ -44,3 +44,8 @@
 .QuarterBackRules > :last-child::before {
   border-radius: 0 0 0 4px;
 }
+
+.QuarterBackConditionActive {
+  background: #5caafa;
+  color: #fff;
+}
