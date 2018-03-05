@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
-import type { Data, Group, GroupFragment } from '../utils/Data'
+import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
+import type { Group, GroupFragment } from '../utils/Group'
 import QuarterBackHeader from './QuarterBackHeader'
 import QuarterBackRules from './QuarterBackRules'
 
@@ -38,7 +39,7 @@ class QuarterBackGroup extends React.Component<Props> {
   }
 
   render () {
-    return(
+    return (
       <div className='QuarterBackGroup'>
         <QuarterBackHeader
           condition={this.props.group.condition}

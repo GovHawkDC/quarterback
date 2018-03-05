@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
-import type { GroupCondition } from '../utils/Data'
+import type { GroupConditionFragment } from '../utils/Group'
 
 type Props = {
   condition: Condition,
   value: string,
-  handleUpdate: (fragment: GroupCondition) => void
+  handleUpdate: (fragment: GroupConditionFragment) => void
 }
 
 class QuarterBackCondition extends React.Component<Props> {

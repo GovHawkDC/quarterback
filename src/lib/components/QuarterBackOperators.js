@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
-import type { Data, Rule } from '../utils/Data'
+import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
+import type { Rule } from '../utils/Rule'
 
 type Props = {
   field: Field,

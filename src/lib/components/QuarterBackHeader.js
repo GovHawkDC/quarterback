@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
-import type { Data, GroupCondition } from '../utils/Data'
+import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
+import type { GroupConditionFragment } from '../utils/Group'
 import type { Type } from '../utils/Type'
 import QuarterBackConditions from './QuarterBackConditions'
 import QuarterBackActions from './QuarterBackActions'
@@ -14,26 +15,28 @@ type Props = {
   index: number,
   types: Array<Type>,
   handleCreate: (data: Data) => void,
-  handleUpdate: (fragment: GroupCondition) => void,
+  handleUpdate: (fragment: GroupConditionFragment) => void,
   handleDelete: (index: number) => void
 }
 
 class QuarterBackHeader extends React.Component<Props> {
   render () {
-    <div className='QuarterBackHeader'>
-      <QuarterBackConditions
-        value={this.props.condition}
-        conditions={this.props.conditions}
-        handleUpdate={this.props.handleUpdate}
-      />
-      <QuarterBackActions
-        fields={this.props.fields}
-        index={this.props.index}
-        types={this.props.types}
-        handleCreate={this.props.handleCreate}
-        handleDelete={this.props.handleDelete}
-      />
-    </div>
+    return (
+      <div className='QuarterBackHeader'>
+        <QuarterBackConditions
+          value={this.props.condition}
+          conditions={this.props.conditions}
+          handleUpdate={this.props.handleUpdate}
+        />
+        <QuarterBackActions
+          fields={this.props.fields}
+          index={this.props.index}
+          types={this.props.types}
+          handleCreate={this.props.handleCreate}
+          handleDelete={this.props.handleDelete}
+        />
+      </div>
+    )
   }
 }
 

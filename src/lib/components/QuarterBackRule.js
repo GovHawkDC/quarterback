@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import type { Data, Rule } from '../utils/Data'
+import type { Data } from '../utils/Data'
+import type { Rule } from '../utils/Rule'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackInput from './QuarterBackInput'
 import QuarterBackOperators from './QuarterBackOperators'
@@ -38,7 +39,7 @@ class QuarterBackRule extends React.Component<Props> {
         </div>
         <div className='QuarterBackActions'>
           <QuarterBackActionDelete
-            index={index}
+            index={this.props.index}
             handleDelete={this.props.handleDelete}
           />
         </div>

@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
-import type { Data, GroupFragment } from '../utils/Data'
+import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
+import type { GroupFragment } from '../utils/Group'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 import QuarterBackRule from './QuarterBackRule'
 import QuarterBackGroup from './QuarterBackGroup'
