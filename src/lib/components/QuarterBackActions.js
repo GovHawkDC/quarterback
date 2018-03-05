@@ -39,6 +39,7 @@ class QuarterBackActions extends React.Component<Props> {
             <QuarterBackActionCreate
               key={index}
               action={action}
+              fields={this.props.fields}
               handleCreate={this.props.handleCreate}
             />
           )
