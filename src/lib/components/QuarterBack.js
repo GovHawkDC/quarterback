@@ -1,25 +1,29 @@
 import * as React from 'react'
+import type { Condition } from './Condition'
+import type { Field } from './Field'
+import type { Group } from './Group'
+import type { Type } from './Type'
+import { groupAction } from '../utils/actions'
 import QuarterBackGroup from './QuarterBackGroup'
 
-type Props = {}
+type Props = {
+  conditions?: Array<Condition>,
+  fields?: Array<Field>,
+  rules?: Group,
+  types?: Array<Type>
+}
 
 class QuarterBack extends React.Component<Props> {
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
 
-    const {
-      condition = '',
-      rules = []
-    } = props.rules
-
     this.state = {
-      // QB,
-      condition,
-      rules
+      ...groupAction.getDefaultData(),
+      ...props.rules
     }
   }
 
-  handleUpdate = (data) => {
+  handleUpdate (data: Group) {
     this.setState(prevState => {
       return {
         ...prevState,
