@@ -24,6 +24,9 @@
     "parser": "babel-eslint",
     "plugins": [
       "flowtype"
+    ],
+    "globals": [
+      "SyntheticEvent"
     ]
   },
   "lint-staged": {

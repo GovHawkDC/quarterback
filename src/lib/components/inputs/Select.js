@@ -6,7 +6,7 @@ type Props = {
   className?: string,
   options: Array<{label: string, value: string}>,
   value: string,
-  handleChange: (event: React.SyntheticEvent<React.HTMLSelectElement>) => void
+  handleChange: (event: SyntheticEvent<>) => void
 }
 
 class Select extends React.Component<Props> {

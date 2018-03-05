@@ -15,7 +15,7 @@ type Props = {
 }
 
 class QuarterBackFields extends React.Component<Props> {
-  handleChange = (event: React.SyntheticEvent<React.HTMLSelectElement>) => {
+  handleChange = (event: SyntheticEvent<>) => {
     const field = getFieldById(this.props.fields, event.target.value)
     const operator = field ? getDefaultOperatorByField(field) : null
     const value = operator ? getDefaultValueByOperator(operator) : null

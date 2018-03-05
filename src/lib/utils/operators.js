@@ -9,9 +9,15 @@ function getAllOperatorsByField (field: Field): Array<Operator> {
   })
 }
 
-function getDefaultOperatorsByField (field: Field): Array<Operator> {
-  const { operators = getAllOperatorsByField(field) } = field
-  return operators
+function getDefaultOperatorsByField (field: Field): Array<?Operator> {
+  // TODO: override operators
+  // const { operators } = field
+  //
+  // if (operators !== null || operators !== undefined) {
+  //   return operators.map(getOperatorById).filter(operator => operator != null)
+  // }
+
+  return getAllOperatorsByField(field)
 }
 
 function getDefaultOperatorByField (field: Field): ?Operator {

@@ -25,7 +25,7 @@ class QuarterBackOperators extends React.Component<Props> {
     return this.props.rule.value
   }
 
-  handleChange = (event: React.SyntheticEvent<React.HTMLSelectElement>) => {
+  handleChange = (event: SyntheticEvent<>) => {
     const operator = getOperatorById(event.target.value)
     const value = getDefaultValueByOperator(operator)
 
