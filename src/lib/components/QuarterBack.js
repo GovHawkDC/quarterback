@@ -34,13 +34,15 @@ class QuarterBack extends React.Component<Props> {
 
   render () {
     return (
-      <QuarterBackGroup
-        conditions={this.props.conditions}
-        fields={this.props.fields}
-        group={this.state}
-        types={this.props.types}
-        handleUpdate={this.handleUpdate}
-      />
+      <div className='QuarterBack'>
+        <QuarterBackGroup
+          conditions={this.props.conditions}
+          fields={this.props.fields}
+          group={this.state}
+          types={this.props.types}
+          handleUpdate={this.handleUpdate}
+        />
+      </div>
     )
   }
 }
