@@ -6,7 +6,7 @@ import type { Value } from './Value'
 function getDefaultValueByField (field: Field): Value {
   switch (field.input) {
     case 'select':
-      const [option] = field.options
+      const [option] = field.options || []
       return option ? option.value : ''
     default:
       return ''

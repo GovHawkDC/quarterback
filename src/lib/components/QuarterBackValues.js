@@ -62,11 +62,14 @@ class QuarterBackValues extends React.Component<Props> {
           </div>
         )
       case 'select':
+        let QBComponent = this.props.field.QBComponent
+          ? this.props.field.QBComponent
+          : Select
         return (
           <div>
             {values.map((value, index) => {
               return (
-                <Select
+                <QBComponent
                   key={index}
                   index={index}
                   options={this.props.field.options}

@@ -2,7 +2,44 @@ import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
 import './lib/components/QuarterBackClassic.css'
-import QuarterBack, { ruleAction } from './lib'
+import QuarterBack, { ruleAction, Select } from './lib'
+
+class AsyncSelect extends Component {
+  state = {
+    loading: true,
+    options: []
+  }
+
+  componentDidMount () {
+    setTimeout(() => {
+      this.props.handleUpdate('penguin', this.props.index)
+
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          loading: false,
+          options: [
+            { label: 'Penguin', value: 'penguin' },
+            { label: 'Pearson', value: 'pearson' }
+          ]
+        }
+      })
+    }, 5e2)
+  }
+
+  render () {
+    if (this.state.loading) {
+      return <p>Loading&hellip;</p>
+    }
+
+    const props = {
+      ...this.props,
+      options: this.state.options
+    }
+
+    return <Select {...props} />
+  }
+}
 
 const book = {
   QB: 'Book',
@@ -17,7 +54,14 @@ const book = {
       options: [
         { label: 'Sci-Fi', value: 'scifi' },
         { label: 'Romance', value: 'romance' }
-      ] }
+      ] },
+    {
+      QBComponent: AsyncSelect,
+      id: 'publisher',
+      label: 'Publisher',
+      input: 'select',
+      type: 'string'
+    }
   ],
   title: 'Book Query'
 }
