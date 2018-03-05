@@ -58,6 +58,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={this.props.conditions}
           fields={this.props.fields}
           index={this.props.index}
+          types={this.props.types}
           handleCreate={this.handleCreate}
           handleUpdate={this.handleUpdate}
           handleDelete={this.props.handleDelete}
@@ -66,6 +67,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={this.props.conditions}
           fields={this.props.fields}
           rules={this.props.group.rules}
+          types={this.props.types}
           handleUpdate={this.handleUpdate}
         />
       </div>

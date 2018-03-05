@@ -22,8 +22,13 @@ class QuarterBack extends React.Component<Props> {
   constructor (props: Props) {
     super(props)
 
+    const defaultGroupData = groupAction.getDefaultData()
+    const group = this.props.fields && this.props.fields.length > 0
+      ? defaultGroupData
+      : { ...defaultGroupData, rules: [] }
+
     this.state = {
-      ...groupAction.getDefaultData(),
+      ...group,
       ...props.rules
     }
   }
