@@ -90,7 +90,7 @@ class QuarterBackRules extends React.Component<Props> {
             throw new Error('Unable to find type')
           }
 
-          const { QBComponent, ...typeProps } = type
+          const { QBComponent, action, ...typeProps } = type
 
           if (QBComponent) {
             return (
