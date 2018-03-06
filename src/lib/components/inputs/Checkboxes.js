@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { FieldValue } from '../../utils/Field'
+import type { NonEmptyValue } from '../../utils/Value'
 import Checkbox from './Checkbox'
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
   index: number,
   values?: Array<FieldValue>,
   value: string,
-  handleUpdate: (value: string, index: number) => void
+  handleUpdate: (value: NonEmptyValue, index: number) => void
 }
 
 class Checkboxes extends React.Component<Props> {

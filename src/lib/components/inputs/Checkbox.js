@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
+import type { NonEmptyValue } from '../../utils/Value'
 
 type Props = {
   checked: string | Array<string>,
   index: number,
   label: string,
   value: string,
-  handleUpdate: (value: string, index: number) => void
+  handleUpdate: (value: NonEmptyValue, index: number) => void
 }
 
 class Checkbox extends React.Component<Props> {
