@@ -62,13 +62,13 @@ class QuarterBackOperators extends React.Component<Props> {
     return (
       <div className='QuarterBackOperators'>
         <Select
-          options={operators.map(operator => {
+          value={this.props.rule.operator}
+          values={operators.map(operator => {
             return {
               label: operator.id.replace(/_/g, ' '),
               value: operator.id
             }
           })}
-          value={this.props.rule.operator}
           handleUpdate={this.handleUpdate}
         />
       </div>

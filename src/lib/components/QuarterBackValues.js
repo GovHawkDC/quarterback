@@ -72,8 +72,8 @@ class QuarterBackValues extends React.Component<Props> {
                 <QBComponent
                   key={index}
                   index={index}
-                  options={this.props.field.options}
                   value={value}
+                  values={this.props.field.values}
                   handleUpdate={this.handleUpdate}
                 />
               )

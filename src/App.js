@@ -7,7 +7,7 @@ import QuarterBack, { ruleAction, Select } from './lib'
 class AsyncSelect extends Component {
   state = {
     loading: true,
-    options: []
+    values: []
   }
 
   componentDidMount () {
@@ -18,7 +18,7 @@ class AsyncSelect extends Component {
         return {
           ...prevState,
           loading: false,
-          options: [
+          values: [
             { label: 'Penguin', value: 'penguin' },
             { label: 'Pearson', value: 'pearson' }
           ]
@@ -34,7 +34,7 @@ class AsyncSelect extends Component {
 
     const props = {
       ...this.props,
-      options: this.state.options
+      values: this.state.values
     }
 
     return <Select {...props} />
@@ -51,7 +51,7 @@ const book = {
       label: 'Genre',
       input: 'select',
       type: 'string',
-      options: [
+      values: [
         { label: 'Sci-Fi', value: 'scifi' },
         { label: 'Romance', value: 'romance' }
       ] },

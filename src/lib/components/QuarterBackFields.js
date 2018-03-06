@@ -39,13 +39,13 @@ class QuarterBackFields extends React.Component<Props> {
     return (
       <div className='QuarterBackFields'>
         <Select
-          options={fields.map(field => {
+          value={this.props.rule.id}
+          values={fields.map(field => {
             return {
               label: field.label,
               value: field.id
             }
           })}
-          value={this.props.rule.id}
           handleUpdate={this.handleUpdate}
         />
       </div>

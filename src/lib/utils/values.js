@@ -10,8 +10,8 @@ function getDefaultValueByField (field: Field): Value {
 
   switch (field.input) {
     case 'select':
-      const [option] = field.options || []
-      return option ? option.value : ''
+      const [value] = field.values || []
+      return value ? value.value : ''
     default:
       return ''
   }

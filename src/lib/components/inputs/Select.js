@@ -5,7 +5,7 @@ import Option from './Option'
 type Props = {
   className?: string,
   index?: number,
-  options: Array<{label: string, value: string}>,
+  values: Array<{label: string, value: string}>,
   value: string,
   handleUpdate: (value: string, index?: number) => void
 }
@@ -18,7 +18,7 @@ class Select extends React.Component<Props> {
   render () {
     return (
       <select className={this.props.className} onChange={this.handleChange} value={this.props.value}>
-        {this.props.options.map((option, index) => {
+        {this.props.values.map((option, index) => {
           return <Option key={index} {...option} />
         })}
       </select>
