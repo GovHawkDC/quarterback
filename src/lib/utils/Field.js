@@ -1,12 +1,16 @@
 // @flow
 import * as React from 'react'
-import type { SelectValue } from './SelectValue'
+
+export type FieldValue = {
+  label: string,
+  value: string
+}
 
 type Props = {
   index?: number,
   type?: string,
   value?: string,
-  values?: Array<SelectValue>,
+  values?: Array<FieldValue>,
   handleUpdate: (value: string, index: number) => void
 }
 
@@ -19,5 +23,5 @@ export type Field = {
   label: string,
   operators?: Array<string>,
   type: string, // TODO: Constrain to set?
-  values?: Array<SelectValue>
+  values?: Array<FieldValue>
 }
