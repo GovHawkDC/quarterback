@@ -8,3 +8,7 @@
 .QuarterBackRule {
   justify-content: normal;
 }
+
+.QuarterBackActions {
+  margin-left: auto;
+}

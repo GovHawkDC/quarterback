@@ -11,6 +11,10 @@ type Props = {
 }
 
 class QuarterBackConditions extends React.Component<Props> {
+  static defaultProps = {
+    conditions: []
+  }
+
   render () {
     if (this.props.conditions.length < 1) {
       return null

@@ -2,7 +2,58 @@ import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
 import './lib/components/QuarterBackClassic.css'
-import QuarterBack, { ruleAction, Select } from './lib'
+import QuarterBack, { ruleAction, Select, QuarterBackHeader, QuarterBackTitle } from './lib'
+
+class PowerGroup extends Component {
+  handleUpdate = (value, index) => {
+    const rule = { ...this.props.group.rules[index], value }
+    const rules = Object.assign([], [...this.props.group.rules], { [index]: rule })
+    const group = { ...this.props.group, rules }
+    this.props.handleUpdate(group, this.props.index)
+  }
+
+  handleCustom =event => {
+    const { checked, value } = event.target
+    let chcks = this.props.group.rules[1].value.split(',').filter(Boolean)
+
+    if ((checked && chcks.includes(value)) || (!checked && !chcks.includes(value))) {
+      return
+    }
+
+    if (checked) {
+      chcks = [...chcks, value]
+    } else {
+      chcks = chcks.filter(c => c !== value)
+    }
+    this.handleUpdate(chcks.join(','), 1)
+  }
+
+  render () {
+    const chcks = this.props.group.rules[1].value.split(',')
+    return (
+      <div className='QuarterBackGroup'>
+        <QuarterBackTitle title={this.props.title} />
+        <QuarterBackHeader
+          condition={this.props.group.condition}
+          conditions={this.props.conditions}
+          fields={this.props.fields}
+          index={this.props.index}
+          types={this.props.types}
+          handleCreate={this.handleCreate}
+          handleUpdate={this.handleUpdate}
+          handleDelete={this.props.handleDelete}
+        />
+        <div className='QuarterBackRules'>
+          <input type='text' value={this.props.group.rules[0].value} onChange={event => this.handleUpdate(event.target.value, 0)} />
+          <div>
+            <input checked={chcks.includes('book')} type='checkbox' value='book' onChange={event => this.handleCustom(event)} /> Book{' '}
+            <input checked={chcks.includes('movie')} type='checkbox' value='movie' onChange={event => this.handleCustom(event)} /> Movie
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
 class AsyncSelect extends Component {
   state = {
@@ -89,7 +140,41 @@ const movie = {
   title: 'Movie Query'
 }
 
-const types = [book, movie]
+const types = [book, movie, {
+  QB: 'Search',
+  QBComponent: PowerGroup,
+  action: {
+    QB: 'Search',
+    display: 'Add search',
+    getDefaultData: function () {
+      return {
+        QB: this.QB,
+        condition: '',
+        rules: [
+          {
+            QB: 'query_string',
+            field: 'qs',
+            id: 'qs',
+            input: 'search',
+            operator: 'equal',
+            type: 'string',
+            value: ''
+          },
+          {
+            QB: 'type',
+            field: 'qstype',
+            id: 'qstype',
+            input: 'checkbox',
+            operator: 'equal',
+            type: 'string',
+            value: ''
+          }
+        ]
+      }
+    }
+  },
+  title: 'Search'
+}]
 
 // const data = {
 //   condition: 'or',

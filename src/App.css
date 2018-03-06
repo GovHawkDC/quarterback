@@ -1,11 +1,17 @@
 pre,
 .QuarterBack {
-  margin: 20px auto;
   max-width: 600px;
+  width: 50%;
 }
 
 pre {
   background: #f8f8f8;
   font-family: Consolas, monospace;
   padding: 6px;
+}
+
+.App {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
 }
