@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import type { SelectValue } from '../utils/SelectValue'
+import type { SelectValue } from '../../utils/SelectValue'
 import Option from './Option'
 
 type Props = {

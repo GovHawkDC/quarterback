@@ -5,7 +5,7 @@ type Props = {
   index?: number,
   value: string,
   type: string,
-  handleUpdate: (value: string, index: number) => void
+  handleUpdate: (value: string, index: ?number) => void
 }
 
 class Text extends React.Component<Props> {

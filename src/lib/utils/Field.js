@@ -2,8 +2,16 @@
 import * as React from 'react'
 import type { SelectValue } from './SelectValue'
 
+type Props = {
+  index?: number,
+  type?: string,
+  value?: string,
+  values?: Array<SelectValue>,
+  handleUpdate: (value: string, index: ?number) => void
+}
+
 export type Field = {
-  QBComponent?: React.ComponentType<>, // TODO: Props
+  QBComponent?: React.ComponentType<Props>,
   defaultOperator?: string,
   defaultValue?: string,
   id: string,
