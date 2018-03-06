@@ -8,7 +8,7 @@ type Props = {
   className?: string,
   index: number,
   values?: Array<FieldValue>,
-  value: string,
+  value: NonEmptyValue,
   handleUpdate: (value: NonEmptyValue, index: number) => void
 }
 
@@ -28,6 +28,7 @@ class Checkboxes extends React.Component<Props> {
           return (
             <Checkbox
               key={index}
+              checked={this.props.value}
               index={this.props.index}
               {...checkbox}
               handleUpdate={this.props.handleUpdate}

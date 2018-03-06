@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
 import './lib/components/QuarterBackClassic.css'
-import QuarterBack, { ruleAction, Select, QuarterBackHeader, QuarterBackTitle } from './lib'
+import QuarterBack, { ruleAction, Checkboxes, Select, QuarterBackHeader, QuarterBackTitle } from './lib'
 
 class PowerGroup extends Component {
   handleUpdate = (value, index) => {
@@ -12,24 +12,11 @@ class PowerGroup extends Component {
     this.props.handleUpdate(group, this.props.index)
   }
 
-  handleCustom =event => {
-    const { checked, value } = event.target
-    let chcks = this.props.group.rules[1].value.split(',').filter(Boolean)
-
-    if ((checked && chcks.includes(value)) || (!checked && !chcks.includes(value))) {
-      return
-    }
-
-    if (checked) {
-      chcks = [...chcks, value]
-    } else {
-      chcks = chcks.filter(c => c !== value)
-    }
-    this.handleUpdate(chcks.join(','), 1)
-  }
-
   render () {
-    const chcks = this.props.group.rules[1].value.split(',')
+    const { rules } = this.props.group
+    const searchValue = rules[0].value
+    const typeValue = rules[1].value
+
     return (
       <div className='QuarterBackGroup'>
         <QuarterBackTitle title={this.props.title} />
@@ -44,11 +31,20 @@ class PowerGroup extends Component {
           handleDelete={this.props.handleDelete}
         />
         <div className='QuarterBackRules'>
-          <input type='text' value={this.props.group.rules[0].value} onChange={event => this.handleUpdate(event.target.value, 0)} />
-          <div>
-            <input checked={chcks.includes('book')} type='checkbox' value='book' onChange={event => this.handleCustom(event)} /> Book{' '}
-            <input checked={chcks.includes('movie')} type='checkbox' value='movie' onChange={event => this.handleCustom(event)} /> Movie
-          </div>
+          <input
+            type='text'
+            value={searchValue}
+            onChange={event => this.handleUpdate(event.target.value, 0)}
+          />
+          <Checkboxes
+            index={1}
+            value={typeValue}
+            values={[
+              { label: 'Book', value: 'book' },
+              { label: 'Movie', value: 'movie' }
+            ]}
+            handleUpdate={this.handleUpdate}
+          />
         </div>
       </div>
     )
@@ -167,7 +163,7 @@ const types = [book, movie, {
             input: 'checkbox',
             operator: 'equal',
             type: 'string',
-            value: ''
+            value: []
           }
         ]
       }

@@ -20,17 +20,17 @@ class Checkbox extends React.Component<Props> {
   }
 
   getMultiValue (checked: boolean): Array<string> {
-    const valuePresent = this.props.values.includes(this.props.value)
+    const valuePresent = this.props.checked.includes(this.props.value)
 
     if (checked) {
       return valuePresent
-        ? this.props.values
-        : [...this.props.values, this.props.value]
+        ? this.props.checked
+        : [...this.props.checked, this.props.value]
     }
 
     return valuePresent
-      ? this.props.values.filter(value => value !== this.props.value)
-      : this.props.values
+      ? this.props.checked.filter(value => value !== this.props.value)
+      : this.props.checked
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -47,7 +47,11 @@ class Checkbox extends React.Component<Props> {
 
     return (
       <label>
-        <input checked={checked} type='checkbox' />
+        <input
+          checked={checked}
+          type='checkbox'
+          onChange={this.handleChange}
+        />
         {this.props.label}
       </label>
     )
