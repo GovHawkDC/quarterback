@@ -3,7 +3,7 @@ import type { Field } from './Field'
 import type { Operator } from './Operator'
 import type { Value } from './Value'
 
-function getDefaultValueByField (field: Field): Value {
+function getDefaultValueByField (field: Field): string {
   if (field.defaultValue != null) {
     return field.defaultValue
   }

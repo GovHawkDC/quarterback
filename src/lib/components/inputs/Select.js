@@ -1,11 +1,12 @@
 // @flow
 import * as React from 'react'
+import type { SelectValue } from '../utils/SelectValue'
 import Option from './Option'
 
 type Props = {
   className?: string,
   index?: number,
-  values: Array<{label: string, value: string}>,
+  values: Array<SelectValue>,
   value: string,
   handleUpdate: (value: string, index?: number) => void
 }
