@@ -7,7 +7,7 @@ type Props = {
   type?: string,
   value?: string,
   values?: Array<SelectValue>,
-  handleUpdate: (value: string, index: ?number) => void
+  handleUpdate: (value: string, index: number) => void
 }
 
 export type Field = {

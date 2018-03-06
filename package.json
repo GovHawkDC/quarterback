@@ -29,7 +29,10 @@
       "flowtype"
     ],
     "globals": [
-      "SyntheticEvent"
+      "HTMLInputElement",
+      "HTMLSelectElement",
+      "SyntheticEvent",
+      "SyntheticInputEvent"
     ]
   },
   "lint-staged": {

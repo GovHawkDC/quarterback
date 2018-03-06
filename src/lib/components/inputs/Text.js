@@ -2,14 +2,18 @@
 import * as React from 'react'
 
 type Props = {
-  index?: number,
+  index: number,
   value: string,
   type: string,
-  handleUpdate: (value: string, index: ?number) => void
+  handleUpdate: (value: string, index: number) => void
 }
 
 class Text extends React.Component<Props> {
-  handleChange = (event) => {
+  static defaultProps = {
+    index: -1
+  }
+
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.props.handleUpdate(event.target.value, this.props.index)
   }
 
