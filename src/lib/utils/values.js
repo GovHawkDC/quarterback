@@ -1,14 +1,18 @@
 // @flow
 import type { Field } from './Field'
 import type { Operator } from './Operator'
-import type { Value } from './Value'
+import type { NonEmptyValue, Value } from './Value'
 
-function getDefaultValueByField (field: Field): string {
+function getDefaultValueByField (field: Field): NonEmptyValue {
   if (field.defaultValue != null) {
     return field.defaultValue
   }
 
   switch (field.input) {
+    case 'checkbox':
+      return field.values != null && field.values.length > 1
+        ? []
+        : ''
     case 'select':
       const [value] = field.values || []
       return value ? value.value : ''
