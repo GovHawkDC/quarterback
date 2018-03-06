@@ -2,50 +2,35 @@ import React, { Component } from 'react'
 import './App.css'
 import './lib/components/QuarterBack.css'
 import './lib/components/QuarterBackClassic.css'
-import QuarterBack, { ruleAction, Checkboxes, Select, QuarterBackHeader, QuarterBackTitle } from './lib'
+import QuarterBack, { ruleAction, Checkboxes, Select, Text } from './lib'
 
 class PowerGroup extends Component {
   handleUpdate = (value, index) => {
-    const rule = { ...this.props.group.rules[index], value }
-    const rules = Object.assign([], [...this.props.group.rules], { [index]: rule })
-    const group = { ...this.props.group, rules }
-    this.props.handleUpdate(group, this.props.index)
+    const rule = { ...this.props.rules[index], value }
+    const rules = Object.assign([], [...this.props.rules], { [index]: rule })
+    this.props.handleUpdate({ rules })
   }
 
   render () {
-    const { rules } = this.props.group
-    const searchValue = rules[0].value
-    const typeValue = rules[1].value
+    const searchValue = this.props.rules[0].value
+    const typeValue = this.props.rules[1].value
 
     return (
-      <div className='QuarterBackGroup'>
-        <QuarterBackTitle title={this.props.title} />
-        <QuarterBackHeader
-          condition={this.props.group.condition}
-          conditions={this.props.conditions}
-          fields={this.props.fields}
-          index={this.props.index}
-          types={this.props.types}
-          handleCreate={this.handleCreate}
+      <div className='QuarterBackRules'>
+        <Text
+          index={0}
+          value={searchValue}
           handleUpdate={this.handleUpdate}
-          handleDelete={this.props.handleDelete}
         />
-        <div className='QuarterBackRules'>
-          <input
-            type='text'
-            value={searchValue}
-            onChange={event => this.handleUpdate(event.target.value, 0)}
-          />
-          <Checkboxes
-            index={1}
-            value={typeValue}
-            values={[
-              { label: 'Book', value: 'book' },
-              { label: 'Movie', value: 'movie' }
-            ]}
-            handleUpdate={this.handleUpdate}
-          />
-        </div>
+        <Checkboxes
+          index={1}
+          value={typeValue}
+          values={[
+            { label: 'Book', value: 'book' },
+            { label: 'Movie', value: 'movie' }
+          ]}
+          handleUpdate={this.handleUpdate}
+        />
       </div>
     )
   }
@@ -169,6 +154,7 @@ const types = [book, movie, {
       }
     }
   },
+  conditions: [],
   title: 'Search'
 }]
 

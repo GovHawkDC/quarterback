@@ -13,6 +13,7 @@ import QuarterBackTitle from './QuarterBackTitle'
 
 type Props = {
   QB: string,
+  QBComponent?: React.ComponentType<>, // TODO: Props (from Type)
   conditions: Array<Condition>,
   fields: Array<Field>,
   group: Group,
@@ -52,6 +53,10 @@ class QuarterBackGroup extends React.Component<Props> {
   }
 
   render () {
+    const RulesComponent = this.props.QBComponent
+      ? this.props.QBComponent
+      : QuarterBackRules
+
     return (
       <div className='QuarterBackGroup'>
         <QuarterBackTitle title={this.props.title} />
@@ -65,7 +70,7 @@ class QuarterBackGroup extends React.Component<Props> {
           handleUpdate={this.handleUpdate}
           handleDelete={this.props.handleDelete}
         />
-        <QuarterBackRules
+        <RulesComponent
           conditions={this.props.conditions}
           fields={this.props.fields}
           rules={this.props.group.rules}

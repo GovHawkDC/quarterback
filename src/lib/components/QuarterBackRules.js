@@ -90,20 +90,7 @@ class QuarterBackRules extends React.Component<Props> {
             throw new Error('Unable to find type')
           }
 
-          const { QBComponent, action, ...typeProps } = type
-
-          if (QBComponent) {
-            return (
-              <QBComponent
-                {...typeProps}
-                key={index}
-                group={data}
-                index={index}
-                handleUpdate={this.handleUpdate}
-                handleDelete={this.handleDelete}
-              />
-            )
-          }
+          const { action, ...typeProps } = type
 
           return (
             <QuarterBackGroup

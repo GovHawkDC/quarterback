@@ -11,7 +11,8 @@ type Props = {
 
 class Text extends React.Component<Props> {
   static defaultProps = {
-    index: -1
+    index: -1,
+    type: 'text'
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
