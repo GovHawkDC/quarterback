@@ -5,6 +5,7 @@ import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { GroupFragment } from '../utils/Group'
 import type { Type } from '../utils/Type'
+import { insertAt, removeAt } from '../utils/arrays'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 import { getTypeByQB } from '../utils/types'
 import QuarterBackRule from './QuarterBackRule'
@@ -25,7 +26,7 @@ class QuarterBackRules extends React.Component<Props> {
    * rules copy to parent
    */
   handleUpdate = (data: Data, index: number) => {
-    const rules = Object.assign([], [...this.props.rules], { [index]: data })
+    const rules = insertAt(this.props.rules, index, data)
     this.props.handleUpdate({ rules })
   }
 
@@ -35,7 +36,7 @@ class QuarterBackRules extends React.Component<Props> {
    * parent
    */
   handleDelete = (index: number) => {
-    const rules = this.props.rules.filter((...args) => args[1] !== index)
+    const rules = removeAt(this.props.rules, index)
     this.props.handleUpdate({ rules })
   }
 

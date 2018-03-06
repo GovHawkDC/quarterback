@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { NonEmptyValue } from '../../utils/Value'
+import { insertAt } from '../utils/arrays'
 import Select from './inputs/Select'
 import Text from './inputs/Text'
 
@@ -27,7 +28,7 @@ class QuarterBackValues extends React.Component<Props> {
   }
 
   handleUpdate = (value: NonEmptyValue, index: number) => {
-    const values = Object.assign([], [...this.getValues()], { [index]: value })
+    const values = insertAt(this.getValues(), index, value)
     const data = {
       ...this.props.rule,
       value: values.length === 1 ? values[0] : values
