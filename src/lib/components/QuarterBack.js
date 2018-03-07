@@ -2,6 +2,7 @@ import * as React from 'react'
 import type { Condition } from './Condition'
 import type { Field } from './Field'
 import type { Group } from './Group'
+import type { StyleClassMap } from './StyleClassMap'
 import type { Type } from './Type'
 import { groupAction } from '../utils/actions'
 import QuarterBackGroup from './QuarterBackGroup'
@@ -10,12 +11,14 @@ type Props = {
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   rules?: Group,
+  styleClassMap: StyleClassMap,
   types?: Array<Type>,
   handleUpdate: (data: Group) => void
 }
 
 class QuarterBack extends React.Component<Props> {
   static defaultProps = {
+    styleClassMap: {},
     handleUpdate: (data: Group) => {}
   }
 
