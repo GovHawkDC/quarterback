@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
 import type { FieldValue } from '../../utils/Field'
+import type { StyleClassMap } from './StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
 import Checkbox from './Checkbox'
 
 type Props = {
-  className?: string,
   index: number,
+  styleClassMap: StyleClassMap,
   values?: Array<FieldValue>,
   value: NonEmptyValue,
   handleUpdate: (value: NonEmptyValue, index: number) => void
@@ -14,24 +15,37 @@ type Props = {
 
 class Checkboxes extends React.Component<Props> {
   static defaultProps = {
-    index: -1
+    index: -1,
+    styleClassMap: {}
   }
 
   render () {
-    if (!this.props.values) {
+    const {
+      index,
+      styleClassMap,
+      value,
+      values,
+      handleUpdate
+    } = this.props
+
+    if (!values) {
       return null
     }
 
+    const addClass = styleClassMap.QuarterBackCheckboxes != null
+      ? styleClassMap.QuarterBackCheckboxes
+      : ''
+
     return (
-      <div className={this.props.className}>
-        {this.props.values.map((checkbox, index) => {
+      <div className={`QuarterBackCheckboxes ${addClass}`}>
+        {values.map((checkbox, checkboxIndex) => {
           return (
             <Checkbox
-              key={index}
-              checked={this.props.value}
-              index={this.props.index}
+              key={checkboxIndex}
+              checked={value}
+              index={index}
               {...checkbox}
-              handleUpdate={this.props.handleUpdate}
+              handleUpdate={handleUpdate}
             />
           )
         })}

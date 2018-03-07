@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
 import type { FieldValue } from '../../utils/Field'
+import type { StyleClassMap } from './StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
 import Option from './Option'
 
 type Props = {
-  className?: string,
   index: number,
+  styleClassMap: StyleClassMap,
   values?: Array<FieldValue>,
   value: string,
   handleUpdate: (value: NonEmptyValue, index: number) => void
@@ -14,7 +15,8 @@ type Props = {
 
 class Select extends React.Component<Props> {
   static defaultProps = {
-    index: -1
+    index: -1,
+    styleClassMap: {}
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLSelectElement>) => {
@@ -22,13 +24,30 @@ class Select extends React.Component<Props> {
   }
 
   render () {
-    if (!this.props.values) {
+    const {
+      styleClassMap,
+      value,
+      values
+    } = this.props
+
+    if (!values) {
       return null
     }
 
+    const addInputClass = styleClassMap.QuarterBackInput != null
+      ? styleClassMap.QuarterBackInput
+      : ''
+
+    const addClass = styleClassMap.QuarterBackSelect != null
+      ? styleClassMap.QuarterBackSelect
+      : ''
+
     return (
-      <select className={this.props.className} onChange={this.handleChange} value={this.props.value}>
-        {this.props.values.map((option, index) => {
+      <select
+        className={`QuarterBackSelect ${addInputClass} ${addClass}`}
+        onChange={this.handleChange}
+        value={value}>
+        {values.map((option, index) => {
           return <Option key={index} {...option} />
         })}
       </select>
