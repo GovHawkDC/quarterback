@@ -1,7 +1,6 @@
 pre,
 .QuarterBack {
-  max-width: 600px;
-  width: 50%;
+  width: 100%;
 }
 
 pre {
@@ -11,7 +10,6 @@ pre {
 }
 
 .App {
-  display: flex;
   margin: 0 auto;
   max-width: 1200px;
 }
