@@ -25,14 +25,19 @@ class QuarterBack extends React.Component<Props> {
   constructor (props: Props) {
     super(props)
 
+    const {
+      fields,
+      rules
+    } = props
+
     const defaultGroupData = groupAction.getDefaultData()
-    const group = this.props.fields && this.props.fields.length > 0
+    const group = fields && fields.length > 0
       ? defaultGroupData
       : { ...defaultGroupData, rules: [] }
 
     this.state = {
       ...group,
-      ...props.rules
+      ...rules
     }
   }
 
@@ -46,13 +51,25 @@ class QuarterBack extends React.Component<Props> {
   }
 
   render () {
+    const {
+      conditions,
+      fields,
+      styleClassMap,
+      types
+    } = this.props
+
+    const addClass = styleClassMap.QuarterBack != null
+      ? styleClassMap.QuarterBack
+      : ''
+
     return (
-      <div className='QuarterBack'>
+      <div className={`QuarterBack ${addClass}`}>
         <QuarterBackGroup
-          conditions={this.props.conditions}
-          fields={this.props.fields}
+          conditions={conditions}
+          fields={fields}
           group={this.state}
-          types={this.props.types}
+          styleClassMap={styleClassMap}
+          types={types}
           handleUpdate={this.handleUpdate}
         />
       </div>

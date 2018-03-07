@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
+import type { StyleClassMap } from './StyleClassMap'
 import { getFieldById } from '../utils/fields'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackOperators from './QuarterBackOperators'
@@ -13,40 +14,66 @@ type Props = {
   fields: Array<Field>,
   index: number,
   rule: Rule,
+  styleClassMap: StyleClassMap,
   handleUpdate: (data: Data, index: number) => void,
   handleDelete: (index: number) => void
 }
 
 class QuarterBackRule extends React.Component<Props> {
   render () {
-    const field = getFieldById(this.props.fields, this.props.rule.id)
+    const {
+      index,
+      fields,
+      rule,
+      styleClassMap,
+      handleUpdate,
+      handleDelete
+    } = this.props
+
+    const field = getFieldById(fields, rule.id)
+
+    const addRuleClass = styleClassMap.QuarterBackRule != null
+      ? styleClassMap.QuarterBackRule
+      : ''
+
+    const addRuleEditClass = styleClassMap.QuarterBackRuleEdit != null
+      ? styleClassMap.QuarterBackRuleEdit
+      : ''
+
+    const addRuleActionsClass = styleClassMap.QuarterBackRuleActions != null
+      ? styleClassMap.QuarterBackRuleActions
+      : ''
 
     return (
-      <div className='QuarterBackRuleWrapper'>
-        <div className='QuarterBackRule'>
+      <div className={`QuarterBackRule ${addRuleClass}`}>
+        <div className={`QuarterBackRuleEdit ${addRuleEditClass}`}>
           <QuarterBackFields
-            fields={this.props.fields}
-            index={this.props.index}
-            rule={this.props.rule}
-            handleUpdate={this.props.handleUpdate}
+            fields={fields}
+            index={index}
+            rule={rule}
+            styleClassMap={styleClassMap}
+            handleUpdate={handleUpdate}
           />
           <QuarterBackOperators
             field={field}
-            index={this.props.index}
-            rule={this.props.rule}
-            handleUpdate={this.props.handleUpdate}
+            index={index}
+            rule={rule}
+            styleClassMap={styleClassMap}
+            handleUpdate={handleUpdate}
           />
           <QuarterBackValues
             field={field}
-            index={this.props.index}
-            rule={this.props.rule}
-            handleUpdate={this.props.handleUpdate}
+            index={index}
+            rule={rule}
+            styleClassMap={styleClassMap}
+            handleUpdate={handleUpdate}
           />
         </div>
-        <div className='QuarterBackActions'>
+        <div className={`QuarterBackRuleActions ${addRuleActionsClass}`}>
           <QuarterBackActionDelete
-            index={this.props.index}
-            handleDelete={this.props.handleDelete}
+            index={index}
+            styleClassMap={styleClassMap}
+            handleDelete={handleDelete}
           />
         </div>
       </div>

@@ -1,11 +1,11 @@
 .QuarterBackHeader,
 .QuarterBackRule,
-.QuarterBackRuleWrapper {
+.QuarterBackRuleEdit {
   display: flex;
   justify-content: space-between;
 }
 
-.QuarterBackRule {
+.QuarterBackRuleEdit {
   justify-content: normal;
 }
 

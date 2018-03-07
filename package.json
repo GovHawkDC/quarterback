@@ -29,6 +29,7 @@
       "flowtype"
     ],
     "globals": [
+      "HTMLButtonElement",
       "HTMLInputElement",
       "HTMLSelectElement",
       "SyntheticEvent",

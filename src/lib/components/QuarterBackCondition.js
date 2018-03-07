@@ -10,19 +10,43 @@ type Props = {
 }
 
 class QuarterBackCondition extends React.Component<Props> {
-  handleClick = event => {
+  handleClick = (event: SyntheticEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    this.props.handleUpdate({ condition: this.props.condition.value })
+
+    const { condition } = this.props
+
+    this.props.handleUpdate({ condition: condition.value })
   }
 
   render () {
-    const className = this.props.condition.value === this.props.value
+    const {
+      condition,
+      styleClassMap,
+      value
+    } = this.props
+
+    const isActive = condition.value === value
+
+    const className = isActive
       ? 'QuarterBackCondition QuarterBackConditionActive'
       : 'QuarterBackCondition'
 
+    const addClass = styleClassMap.QuarterBackCondition != null
+      ? styleClassMap.QuarterBackCondition
+      : ''
+
+    const addClassActive = (
+      isActive && styleClassMap.QuarterBackConditionActive != null
+    )
+      ? styleClassMap.QuarterBackConditionActive
+      : ''
+
     return (
-      <button className={className} onClick={this.handleClick}>
-        {this.props.condition.display}
+      <button
+        className={`${className} ${addClass} ${addClassActive}`}
+        onClick={this.handleClick}
+      >
+        {condition.display}
       </button>
     )
   }

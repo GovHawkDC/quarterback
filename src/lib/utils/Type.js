@@ -8,6 +8,7 @@ export type Type = {
   QB?: string,
   QBComponent?: React.ComponentType<>, // TODO: Props
   action: Action,
+  actionAddClass?: string,
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   title?: string,

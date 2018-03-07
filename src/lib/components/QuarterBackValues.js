@@ -2,6 +2,7 @@
 import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
+import type { StyleClassMap } from './StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
 import Select from './inputs/Select'
@@ -11,6 +12,7 @@ type Props = {
   field: Field,
   index: number,
   rule: Rule,
+  styleClassMap: StyleClassMap,
   handleUpdate: (data: Rule, index: number) => void
 }
 
@@ -37,26 +39,42 @@ class QuarterBackValues extends React.Component<Props> {
   }
 
   render () {
+    const {
+      field,
+      styleClassMap
+    } = this.props
+
     const values = this.getValues()
 
     if (values === null) {
       return null
     }
 
-    // TODO: Maybe check for QBComponent here, earlier...
+    const addClass = styleClassMap.QuarterBackValues != null
+      ? styleClassMap.QuarterBackValues
+      : ''
+    const className = `QuarterBackValues ${addClass}`
 
-    switch (this.props.field.input) {
+    switch (field.input) {
+      // TODO: ...
+      // case 'textarea':
+      // case 'checkbox':
+      // case 'radio':
       case 'number':
       case 'text':
+        const TextComponent = field.QBComponent
+          ? field.QBComponent
+          : Text
+
         return (
-          <div>
+          <div className={className}>
             {values.map((value, index) => {
               return (
-                <Text
+                <TextComponent
                   key={index}
                   index={index}
                   value={value}
-                  type={this.props.field.input}
+                  type={field.input}
                   handleUpdate={this.handleUpdate}
                 />
               )
@@ -64,18 +82,19 @@ class QuarterBackValues extends React.Component<Props> {
           </div>
         )
       case 'select':
-        let QBComponent = this.props.field.QBComponent
-          ? this.props.field.QBComponent
+        const SelectComponent = field.QBComponent
+          ? field.QBComponent
           : Select
+
         return (
-          <div>
+          <div className={className}>
             {values.map((value, index) => {
               return (
-                <QBComponent
+                <SelectComponent
                   key={index}
                   index={index}
                   value={value}
-                  values={this.props.field.values}
+                  values={field.values}
                   handleUpdate={this.handleUpdate}
                 />
               )
