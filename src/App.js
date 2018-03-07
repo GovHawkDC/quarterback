@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import './lib/components/QuarterBack.css'
-import './lib/components/QuarterBackClassic.css'
+import './lib/components/styles/QuarterBack.css'
+import './lib/components/styles/QuarterBackClassic.css'
 import QuarterBack, { ruleAction, Checkboxes, Select, Text } from './lib'
 
 class PowerGroup extends Component {
