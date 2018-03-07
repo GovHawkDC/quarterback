@@ -7,6 +7,7 @@ export type StyleClassMap = {
   QuarterBackCondition?: string,
   QuarterBackConditionActive?: string,
   QuarterBackActions?: string,
+  QuarterBackAction?: string,
   QuarterBackActionRule?: string,
   QuarterBackActionGroup?: string,
   QuarterBackActionDelete?: string,

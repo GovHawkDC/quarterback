@@ -76,7 +76,6 @@ class AsyncSelect extends Component {
 
 const book = {
   QB: 'Book',
-  actionAddClass: 'btn btn-sm btn-success',
   fields: [
     { id: 'title', label: 'Title', input: 'text', type: 'string' },
     { id: 'pub_year', label: 'Year Published', input: 'number', type: 'integer' },
@@ -115,7 +114,6 @@ const movieAction = {
 const movie = {
   QB: 'Movie',
   action: movieAction,
-  actionAddClass: 'btn btn-sm btn-success',
   fields: [
     { id: 'title', label: 'Title', input: 'text', type: 'string' },
     { id: 'rel_year', label: 'Year Released', input: 'number', type: 'integer' },
@@ -157,7 +155,6 @@ const types = [book, movie, {
       }
     }
   },
-  actionAddClass: 'btn btn-sm btn-success',
   conditions: [],
   title: 'Search'
 }]
@@ -167,8 +164,7 @@ const styleClassMap = {
   QuarterBackCondition: 'btn btn-sm btn-primary',
   QuarterBackConditionActive: 'active',
   QuarterBackActions: 'btn-group',
-  QuarterBackActionRule: 'btn btn-sm btn-success',
-  QuarterBackActionGroup: 'btn btn-sm btn-success',
+  QuarterBackAction: 'btn btn-sm btn-success',
   QuarterBackActionDelete: 'btn btn-sm btn-danger'
 }
 

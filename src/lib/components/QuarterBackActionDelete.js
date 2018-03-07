@@ -32,13 +32,16 @@ class QuarterBackActionDelete extends React.Component<Props> {
       return null
     }
 
+    const addClassAction = styleClassMap.QuarterBackAction != null
+      ? styleClassMap.QuarterBackAction
+      : ''
     const addClass = styleClassMap.QuarterBackActionDelete != null
       ? styleClassMap.QuarterBackActionDelete
       : ''
 
     return (
       <button
-        className={`QuarterBackActionDelete ${addClass}`}
+        className={`QuarterBackActionDelete ${addClassAction} ${addClass}`}
         onClick={this.handleClick}
       >
         Delete

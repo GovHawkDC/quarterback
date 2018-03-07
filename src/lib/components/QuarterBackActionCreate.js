@@ -71,14 +71,18 @@ class QuarterBackActionCreate extends React.Component<Props> {
 
   render () {
     const {
-      action
+      action,
+      styleClassMap
     } = this.props
 
+    const addClassAction = styleClassMap.QuarterBackAction != null
+      ? styleClassMap.QuarterBackAction
+      : ''
     const addClass = this.getActionAddClass()
 
     return (
       <button
-        className={`QuarterBackActionCreate ${addClass}`}
+        className={`QuarterBackActionCreate ${addClassAction} ${addClass}`}
         onClick={this.handleClick}
       >
         {action.display}
