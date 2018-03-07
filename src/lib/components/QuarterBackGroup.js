@@ -3,7 +3,8 @@ import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
-import type { Group, GroupFragment } from '../utils/Group'
+import type { Group, GroupFragment, GroupRulesFragment } from '../utils/Group'
+import type { StyleClassMap } from './StyleClassMap'
 import type { Type } from '../utils/Type'
 import { andCondition, orCondition } from '../utils/conditions'
 import { QB_GROUP } from '../utils/constants'
@@ -18,6 +19,7 @@ type Props = {
   fields: Array<Field>,
   group: Group,
   index: number,
+  styleClassMap: StyleClassMap,
   title?: string,
   types: Array<Type>,
   handleUpdate: (group: Group) => void,
@@ -40,7 +42,13 @@ class QuarterBackGroup extends React.Component<Props> {
    * method
    */
   handleCreate = (data: Data) => {
-    this.handleUpdate({ rules: [...this.props.group.rules, data] })
+    const { group: { rules } } = this.props
+
+    const groupRulesFragment: GroupRulesFragment = {
+      rules: [...rules, data]
+    }
+
+    this.handleUpdate(groupRulesFragment)
   }
 
   /**
@@ -48,33 +56,66 @@ class QuarterBackGroup extends React.Component<Props> {
    * group prop. Passes the modified group copy to parent
    */
   handleUpdate = (fragment: GroupFragment) => {
-    const group = { QB: this.props.QB, ...this.props.group, ...fragment }
-    this.props.handleUpdate(group, this.props.index)
+    const {
+      QB,
+      group,
+      index,
+      handleUpdate
+    } = this.props
+
+    const updatedGroup = {
+      QB,
+      ...group,
+      ...fragment
+    }
+
+    handleUpdate(updatedGroup, index)
   }
 
   render () {
-    const RulesComponent = this.props.QBComponent
-      ? this.props.QBComponent
+    const {
+      QBComponent,
+      conditions,
+      fields,
+      group,
+      index,
+      styleClassMap,
+      title,
+      types,
+      handleDelete
+    } = this.props
+
+    const RulesComponent = QBComponent != null
+      ? QBComponent
       : QuarterBackRules
 
+    const addClass = styleClassMap.QuarterBackGroup != null
+      ? styleClassMap.QuarterBackGroup
+      : ''
+
     return (
-      <div className='QuarterBackGroup'>
-        <QuarterBackTitle title={this.props.title} />
+      <div className={`QuarterBackGroup ${addClass}`}>
+        <QuarterBackTitle
+          styleClassMap={styleClassMap}
+          title={title}
+        />
         <QuarterBackHeader
-          condition={this.props.group.condition}
-          conditions={this.props.conditions}
-          fields={this.props.fields}
-          index={this.props.index}
-          types={this.props.types}
+          condition={group.condition}
+          conditions={conditions}
+          fields={fields}
+          index={index}
+          styleClassMap={styleClassMap}
+          types={types}
           handleCreate={this.handleCreate}
           handleUpdate={this.handleUpdate}
-          handleDelete={this.props.handleDelete}
+          handleDelete={handleDelete}
         />
         <RulesComponent
-          conditions={this.props.conditions}
-          fields={this.props.fields}
-          rules={this.props.group.rules}
-          types={this.props.types}
+          conditions={conditions}
+          fields={fields}
+          rules={group.rules}
+          styleClassMap={styleClassMap}
+          types={types}
           handleUpdate={this.handleUpdate}
         />
       </div>

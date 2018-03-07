@@ -2,10 +2,12 @@
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { GroupConditionFragment } from '../utils/Group'
+import type { StyleClassMap } from './StyleClassMap'
 import QuarterBackCondition from './QuarterBackCondition'
 
 type Props = {
   conditions: Array<Condition>,
+  styleClassMap: StyleClassMap,
   value: string,
   handleUpdate: (fragment: GroupConditionFragment) => void,
 }
@@ -16,19 +18,31 @@ class QuarterBackConditions extends React.Component<Props> {
   }
 
   render () {
-    if (this.props.conditions.length < 1) {
+    const {
+      conditions,
+      styleClassMap,
+      value,
+      handleUpdate
+    } = this.props
+
+    if (conditions.length < 1) {
       return null
     }
 
+    const addClass = styleClassMap.QuarterBackConditions != null
+      ? styleClassMap.QuarterBackConditions
+      : ''
+
     return (
-      <div className='QuarterBackConditions'>
-        {this.props.conditions.map((condition, index) => {
+      <div className={`QuarterBackConditions ${addClass}`}>
+        {conditions.map((condition, index) => {
           return (
             <QuarterBackCondition
               key={index}
               condition={condition}
-              value={this.props.value}
-              handleUpdate={this.props.handleUpdate}
+              styleClassMap={styleClassMap}
+              value={value}
+              handleUpdate={handleUpdate}
             />
           )
         })}

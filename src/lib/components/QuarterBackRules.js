@@ -3,7 +3,8 @@ import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
-import type { GroupFragment } from '../utils/Group'
+import type { GroupFragment, GroupRulesFragment } from '../utils/Group'
+import type { StyleClassMap } from './StyleClassMap'
 import type { Type } from '../utils/Type'
 import { insertAt, removeAt } from '../utils/arrays'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
@@ -15,6 +16,7 @@ type Props = {
   conditions: Array<Condition>,
   fields: Array<Field>,
   rules: Array<Data>,
+  styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleUpdate: (fragment: GroupFragment) => void
 }
@@ -26,8 +28,16 @@ class QuarterBackRules extends React.Component<Props> {
    * rules copy to parent
    */
   handleUpdate = (data: Data, index: number) => {
-    const rules = insertAt(this.props.rules, index, data)
-    this.props.handleUpdate({ rules })
+    const {
+      rules,
+      handleUpdate
+    } = this.props
+
+    const groupRulesFragment: GroupRulesFragment = {
+      rules: insertAt(rules, index, data)
+    }
+
+    handleUpdate(groupRulesFragment)
   }
 
   /**
@@ -36,19 +46,37 @@ class QuarterBackRules extends React.Component<Props> {
    * parent
    */
   handleDelete = (index: number) => {
-    const rules = removeAt(this.props.rules, index)
-    this.props.handleUpdate({ rules })
+    const {
+      rules,
+      handleUpdate
+    } = this.props
+
+    const groupRulesFragment: GroupRulesFragment = {
+      rules: removeAt(rules, index)
+    }
+
+    handleUpdate(groupRulesFragment)
   }
 
   render () {
-    const { rules } = this.props
+    const {
+      conditions,
+      fields,
+      rules,
+      styleClassMap,
+      types
+    } = this.props
 
     if (rules.length < 1) {
       return null
     }
 
+    const addClass = styleClassMap.QuarterBackRules != null
+      ? styleClassMap.QuarterBackRules
+      : ''
+
     return (
-      <div className='QuarterBackRules'>
+      <div className={`QuarterBackRules ${addClass}`}>
         {rules.map((data, index) => {
           const { QB, condition } = data
 
@@ -59,9 +87,10 @@ class QuarterBackRules extends React.Component<Props> {
               <QuarterBackRule
                 key={index}
                 QB={QB_RULE}
-                fields={this.props.fields}
+                fields={fields}
                 index={index}
                 rule={data}
+                styleClassMap={styleClassMap}
                 handleUpdate={this.handleUpdate}
                 handleDelete={this.handleDelete}
               />
@@ -69,29 +98,33 @@ class QuarterBackRules extends React.Component<Props> {
           }
 
           // "Old" group data from jQuery plugin _will_ have a "condition" key
-          if (QB === QB_GROUP || (QB === undefined && condition !== undefined)) {
+          if (
+            (QB === QB_GROUP) ||
+            (QB === undefined && condition !== undefined)
+          ) {
             return (
               <QuarterBackGroup
                 key={index}
                 QB={QB_GROUP}
-                conditions={this.props.conditions}
-                fields={this.props.fields}
+                conditions={conditions}
+                fields={fields}
                 group={data}
                 index={index}
-                types={this.props.types}
+                styleClassMap={styleClassMap}
+                types={types}
                 handleUpdate={this.handleUpdate}
                 handleDelete={this.handleDelete}
               />
             )
           }
 
-          const type = getTypeByQB(this.props.types, QB)
+          const type = getTypeByQB(types, QB)
 
           if (!type) {
             throw new Error('Unable to find type')
           }
 
-          const { action, ...typeProps } = type
+          const { action, actionAddClass, ...typeProps } = type
 
           return (
             <QuarterBackGroup
@@ -99,6 +132,7 @@ class QuarterBackRules extends React.Component<Props> {
               key={index}
               group={data}
               index={index}
+              styleClassMap={styleClassMap}
               handleUpdate={this.handleUpdate}
               handleDelete={this.handleDelete}
             />

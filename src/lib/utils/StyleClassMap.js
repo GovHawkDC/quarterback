@@ -1,0 +1,21 @@
+export type StyleClassMap = {
+  QuarterBack?: string,
+  QuarterBackGroup?: string,
+  QuarterBackTitle?: string,
+  QuarterBackHeader?: string,
+  QuarterBackConditions?: string,
+  QuarterBackCondition?: string,
+  QuarterBackConditionActive?: string,
+  QuarterBackActions?: string,
+  QuarterBackActionRule?: string,
+  QuarterBackActionGroup?: string,
+  QuarterBackActionDelete?: string,
+  QuarterBackRules?: string,
+  QuarterBackRule?: string,
+  QuarterBackRuleProps?: string,
+  QuarterBackRuleActions?: string,
+  QuarterBackFields?: string,
+  QuarterBackOperators?: string,
+  QuarterBackOperator?: string,
+  QuarterBackValues?: string
+}

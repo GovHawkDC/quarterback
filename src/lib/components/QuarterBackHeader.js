@@ -4,6 +4,7 @@ import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { GroupConditionFragment } from '../utils/Group'
+import type { StyleClassMap } from './StyleClassMap'
 import type { Type } from '../utils/Type'
 import QuarterBackConditions from './QuarterBackConditions'
 import QuarterBackActions from './QuarterBackActions'
@@ -13,6 +14,7 @@ type Props = {
   conditions: Array<Condition>,
   fields: Array<Field>,
   index: number,
+  styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleCreate: (data: Data) => void,
   handleUpdate: (fragment: GroupConditionFragment) => void,
@@ -21,19 +23,37 @@ type Props = {
 
 class QuarterBackHeader extends React.Component<Props> {
   render () {
+    const {
+      condition,
+      conditions,
+      fields,
+      index,
+      styleClassMap,
+      types,
+      handleCreate,
+      handleUpdate,
+      handleDelete
+    } = this.props
+
+    const addClass = styleClassMap.QuarterBackHeader != null
+      ? styleClassMap.QuarterBackHeader
+      : ''
+
     return (
-      <div className='QuarterBackHeader'>
+      <div className={`QuarterBackHeader ${addClass}`}>
         <QuarterBackConditions
-          value={this.props.condition}
-          conditions={this.props.conditions}
-          handleUpdate={this.props.handleUpdate}
+          value={condition}
+          conditions={conditions}
+          styleClassMap={styleClassMap}
+          handleUpdate={handleUpdate}
         />
         <QuarterBackActions
-          fields={this.props.fields}
-          index={this.props.index}
-          types={this.props.types}
-          handleCreate={this.props.handleCreate}
-          handleDelete={this.props.handleDelete}
+          fields={fields}
+          index={index}
+          styleClassMap={styleClassMap}
+          types={types}
+          handleCreate={handleCreate}
+          handleDelete={handleDelete}
         />
       </div>
     )
