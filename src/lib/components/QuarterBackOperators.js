@@ -79,6 +79,7 @@ class QuarterBackOperators extends React.Component<Props> {
     return (
       <div className={`QuarterBackOperators ${addOperatorsClass}`}>
         <Select
+          styleClassMap={styleClassMap}
           value={this.props.rule.operator}
           values={operators.map(operator => {
             return {

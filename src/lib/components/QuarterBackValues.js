@@ -7,6 +7,7 @@ import type { NonEmptyValue } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
 import Select from './inputs/Select'
 import Text from './inputs/Text'
+import Textarea from './inputs/Textarea'
 
 type Props = {
   field: Field,
@@ -74,6 +75,7 @@ class QuarterBackValues extends React.Component<Props> {
                   key={index}
                   index={index}
                   value={value}
+                  styleClassMap={styleClassMap}
                   type={field.input}
                   handleUpdate={this.handleUpdate}
                 />
@@ -93,8 +95,30 @@ class QuarterBackValues extends React.Component<Props> {
                 <SelectComponent
                   key={index}
                   index={index}
+                  styleClassMap={styleClassMap}
                   value={value}
                   values={field.values}
+                  handleUpdate={this.handleUpdate}
+                />
+              )
+            })}
+          </div>
+        )
+      case 'textarea':
+        const TextareaComponent = field.QBComponent
+          ? field.QBComponent
+          : Textarea
+
+        return (
+          <div className={className}>
+            {values.map((value, index) => {
+              return (
+                <TextareaComponent
+                  key={index}
+                  index={index}
+                  value={value}
+                  styleClassMap={styleClassMap}
+                  type={field.input}
                   handleUpdate={this.handleUpdate}
                 />
               )

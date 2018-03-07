@@ -60,6 +60,7 @@ class QuarterBackFields extends React.Component<Props> {
     return (
       <div className={`QuarterBackFields ${addClass}`}>
         <Select
+          styleClassMap={styleClassMap}
           value={rule.id}
           values={values.map(value => {
             return {

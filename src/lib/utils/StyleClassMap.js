@@ -23,5 +23,6 @@ export type StyleClassMap = {
   QuarterBackText?: string,
   QuarterBackSelect?: string,
   QuarterBackCheckboxes?: string,
-  QuarterBackCheckbox?: string
+  QuarterBackCheckbox?: string,
+  QuarterBackTextarea?: string
 }
