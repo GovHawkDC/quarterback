@@ -44,6 +44,7 @@ class Checkboxes extends React.Component<Props> {
               key={checkboxIndex}
               checked={value}
               index={index}
+              styleClassMap={styleClassMap}
               {...checkbox}
               handleUpdate={handleUpdate}
             />

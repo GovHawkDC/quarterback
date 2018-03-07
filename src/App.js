@@ -20,11 +20,13 @@ class PowerGroup extends Component {
       <div className='QuarterBackRules'>
         <Text
           index={0}
+          styleClassMap={{QuarterBackInput: 'form-control'}}
           value={searchValue}
           handleUpdate={this.handleUpdate}
         />
         <Checkboxes
           index={1}
+          styleClassMap={{QuarterBackInput: 'form-control'}}
           value={typeValue}
           values={[
             { label: 'Book', value: 'book' },
