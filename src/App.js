@@ -26,7 +26,6 @@ class PowerGroup extends Component {
         />
         <Checkboxes
           index={1}
-          styleClassMap={{QuarterBackInput: 'form-control'}}
           value={typeValue}
           values={[
             { label: 'Book', value: 'book' },
