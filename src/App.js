@@ -120,7 +120,15 @@ const movie = {
     { id: 'title', label: 'Title', input: 'text', type: 'string' },
     { id: 'rel_year', label: 'Year Released', input: 'number', type: 'integer' },
     { id: 'duration', label: 'Running time (mins)', input: 'number', type: 'integer' },
-    { id: 'kw', label: 'Keywords', input: 'textarea', type: 'string' }
+    { id: 'kw', label: 'Keywords', input: 'textarea', type: 'string' },
+    { id: 'genre',
+      label: 'Genre',
+      input: 'checkbox',
+      type: 'string',
+      values: [
+        { label: 'Sci-Fi', value: 'scifi' },
+        { label: 'Romance', value: 'romance' }
+      ] }
   ],
   title: 'Movie Query'
 }

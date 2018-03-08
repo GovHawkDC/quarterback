@@ -5,6 +5,8 @@ import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from './StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
+import { getOperatorById } from '../utils/operators'
+import Checkboxes from './inputs/Checkboxes'
 import Select from './inputs/Select'
 import Text from './inputs/Text'
 import Textarea from './inputs/Textarea'
@@ -18,16 +20,41 @@ type Props = {
 }
 
 class QuarterBackValues extends React.Component<Props> {
-  getValues () {
-    if (this.props.rule.value === null) {
+  getNormalizedValue () {
+    const {
+      rule
+    } = this.props
+
+    if (rule.value === null) {
       return null
     }
 
-    if (typeof this.props.rule.value === 'string') {
-      return [this.props.rule.value]
+    return typeof rule.value === 'string' ? [rule.value] : rule.value
+  }
+
+  getValues () {
+    const {
+      field,
+      rule
+    } = this.props
+
+    const operator = getOperatorById(rule.operator)
+
+    if (!operator) {
+      return null
     }
 
-    return this.props.rule.value
+    const { meta: { numberOfInputs } } = operator
+    const normalizedValue = this.getNormalizedValue()
+
+    if (normalizedValue === null) {
+      return null
+    }
+
+    if (field.input === 'checkbox' && numberOfInputs === 1) {
+      return [normalizedValue]
+    }
+    return normalizedValue
   }
 
   handleUpdate = (value: NonEmptyValue, index: number) => {
@@ -58,9 +85,28 @@ class QuarterBackValues extends React.Component<Props> {
 
     switch (field.input) {
       // TODO: ...
-      // case 'textarea':
-      // case 'checkbox':
       // case 'radio':
+      case 'checkbox':
+        const CheckboxesComponent = field.QBComponent != null
+          ? field.QBComponent
+          : Checkboxes
+
+        return (
+          <div className={className}>
+            {values.map((value, index) => {
+              return (
+                <CheckboxesComponent
+                  key={index}
+                  index={index}
+                  styleClassMap={styleClassMap}
+                  value={value}
+                  values={field.values}
+                  handleUpdate={this.handleUpdate}
+                />
+              )
+            })}
+          </div>
+        )
       case 'number':
       case 'text':
         const TextComponent = field.QBComponent
@@ -76,7 +122,6 @@ class QuarterBackValues extends React.Component<Props> {
                   index={index}
                   value={value}
                   styleClassMap={styleClassMap}
-                  type={field.input}
                   handleUpdate={this.handleUpdate}
                 />
               )
