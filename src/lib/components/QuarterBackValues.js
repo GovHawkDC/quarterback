@@ -7,6 +7,7 @@ import type { NonEmptyValue } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
 import { getOperatorById } from '../utils/operators'
 import Checkboxes from './inputs/Checkboxes'
+import Radios from './inputs/Radios'
 import Select from './inputs/Select'
 import Text from './inputs/Text'
 import Textarea from './inputs/Textarea'
@@ -84,8 +85,6 @@ class QuarterBackValues extends React.Component<Props> {
     const className = `QuarterBackValues ${addClass}`
 
     switch (field.input) {
-      // TODO: ...
-      // case 'radio':
       case 'checkbox':
         const CheckboxesComponent = field.QBComponent != null
           ? field.QBComponent
@@ -122,6 +121,27 @@ class QuarterBackValues extends React.Component<Props> {
                   index={index}
                   value={value}
                   styleClassMap={styleClassMap}
+                  handleUpdate={this.handleUpdate}
+                />
+              )
+            })}
+          </div>
+        )
+      case 'radio':
+        const RadiosComponent = field.QBComponent
+          ? field.QBComponent
+          : Radios
+
+        return (
+          <div className={className}>
+            {values.map((value, index) => {
+              return (
+                <RadiosComponent
+                  key={index}
+                  index={index}
+                  styleClassMap={styleClassMap}
+                  value={value}
+                  values={field.values}
                   handleUpdate={this.handleUpdate}
                 />
               )

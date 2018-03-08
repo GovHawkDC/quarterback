@@ -128,6 +128,15 @@ const movie = {
       values: [
         { label: 'Sci-Fi', value: 'scifi' },
         { label: 'Romance', value: 'romance' }
+      ] },
+    { id: 'rating',
+      label: 'Rating',
+      input: 'radio',
+      type: 'string',
+      values: [
+        { label: 'Good', value: 'good' },
+        { label: 'Bad', value: 'bad' },
+        { label: 'Ugly', value: 'ugly' }
       ] }
   ],
   title: 'Movie Query'
