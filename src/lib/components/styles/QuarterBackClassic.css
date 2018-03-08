@@ -15,10 +15,11 @@
   margin-bottom: 10px;
 }
 
-/* .QuarterBackConditionActive {
-  background: #5caafa;
-  color: #fff;
-} */
+.QuarterBackActionCreate,
+.QuarterBackActionDelete {
+  font-size: 0.78rem;
+  padding: 0.15rem 0.3rem;
+}
 
 .QuarterBackRules {
   flex-flow: column;

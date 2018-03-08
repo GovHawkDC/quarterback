@@ -1,3 +1,7 @@
+.QuarterBack > .QuarterBackGroup {
+  margin: 0;
+}
+
 .QuarterBackHeader,
 .QuarterBackRule,
 .QuarterBackRuleEdit {

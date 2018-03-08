@@ -184,7 +184,7 @@ const styleClassMap = {
   QuarterBackConditionActive: 'active',
   QuarterBackActions: 'btn-group',
   QuarterBackAction: 'btn btn-sm btn-success',
-  QuarterBackActionDelete: 'btn btn-sm btn-danger',
+  QuarterBackActionDelete: 'btn-danger',
   QuarterBackSelect: 'form-control',
   QuarterBackText: 'form-control',
   QuarterBackTextarea: 'form-control'
