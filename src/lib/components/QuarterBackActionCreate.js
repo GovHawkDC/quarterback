@@ -19,6 +19,83 @@ type Props = {
 }
 
 class QuarterBackActionCreate extends React.Component<Props> {
+  getRuleActionIcon (): React.Component {
+    const {
+      actionIconMap
+    } = this.props
+
+    if (actionIconMap.QuarterBackActionRule != null) {
+      return actionIconMap.QuarterBackActionRule
+    }
+
+    if (actionIconMap.QuarterBackActionCreate != null) {
+      return actionIconMap.QuarterBackActionCreate
+    }
+
+    if (actionIconMap.QuarterBackAction != null) {
+      return actionIconMap.QuarterBackAction
+    }
+
+    return () => null
+  }
+
+  getGroupActionIcon (): React.Component {
+    const {
+      actionIconMap
+    } = this.props
+
+    if (actionIconMap.QuarterBackActionGroup != null) {
+      return actionIconMap.QuarterBackActionGroup
+    }
+
+    if (actionIconMap.QuarterBackActionCreate != null) {
+      return actionIconMap.QuarterBackActionCreate
+    }
+
+    if (actionIconMap.QuarterBackAction != null) {
+      return actionIconMap.QuarterBackAction
+    }
+
+    return () => null
+  }
+
+  getOtherActionIcon (type: Type): React.Component {
+    const {
+      actionIconMap
+    } = this.props
+
+    if (type.actionIcon != null) {
+      return type.actionIcon
+    }
+
+    if (actionIconMap.QuarterBackActionCreate != null) {
+      return actionIconMap.QuarterBackActionCreate
+    }
+
+    if (actionIconMap.QuarterBackAction != null) {
+      return actionIconMap.QuarterBackAction
+    }
+
+    return () => null
+  }
+
+  getActionIcon (): React.Component {
+    const {
+      action,
+      types
+    } = this.props
+
+    switch (action.QB) {
+      case QB_RULE:
+        return this.getRuleActionIcon()
+      case QB_GROUP:
+        return this.getGroupActionIcon()
+      default:
+        const type = getTypeByQB(types, action.QB)
+        return this.getOtherActionIcon(type)
+    }
+  }
+
   getActionData (): Data {
     const {
       action,
@@ -87,12 +164,14 @@ class QuarterBackActionCreate extends React.Component<Props> {
 
     const addClass = this.getActionAddClass()
 
+    const ActionIcon = this.getActionIcon()
+
     return (
       <button
         className={`QuarterBackActionCreate ${addClassAction} ${addClassCreate} ${addClass}`}
         onClick={this.handleClick}
       >
-        {action.display}
+        <ActionIcon /> {action.display}
       </button>
     )
   }

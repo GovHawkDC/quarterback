@@ -192,6 +192,12 @@ const styleClassMap = {
   QuarterBackTextarea: 'form-control'
 }
 
+const actionIconMap = {
+  QuarterBackActionRule: () => <i className='glyphicon glyphicon-plus' />,
+  QuarterBackActionCreate: () => <i className='glyphicon glyphicon-plus-sign' />,
+  QuarterBackActionDelete: () => <i className='glyphicon glyphicon-remove' />
+}
+
 // const data = {
 //   condition: 'or',
 //   rules: [
@@ -222,7 +228,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <QuarterBack handleUpdate={this.handleUpdate} styleClassMap={styleClassMap} types={types} />
+        <QuarterBack actionIconMap={actionIconMap} handleUpdate={this.handleUpdate} styleClassMap={styleClassMap} types={types} />
         <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
       </div>
     )

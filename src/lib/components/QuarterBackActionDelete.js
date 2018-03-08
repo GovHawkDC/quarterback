@@ -11,6 +11,22 @@ type Props = {
 }
 
 class QuarterBackActionDelete extends React.Component<Props> {
+  getActionIcon (): React.Component {
+    const {
+      actionIconMap
+    } = this.props
+
+    if (actionIconMap.QuarterBackActionDelete != null) {
+      return actionIconMap.QuarterBackActionDelete
+    }
+
+    if (actionIconMap.QuarterBackAction != null) {
+      return actionIconMap.QuarterBackAction
+    }
+
+    return () => null
+  }
+
   handleClick = (event: SyntheticEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
@@ -41,16 +57,14 @@ class QuarterBackActionDelete extends React.Component<Props> {
       ? styleClassMap.QuarterBackActionDelete
       : ''
 
+    const ActionIcon = this.getActionIcon()
+
     return (
       <button
         className={`QuarterBackActionDelete ${addClassAction} ${addClass}`}
         onClick={this.handleClick}
       >
-        {/* <span>
-          <i className='glyphicon glyphicon-remove' />{' '}
-        </span> */}
-        {' '}
-        Delete
+        <ActionIcon /> Delete
       </button>
     )
   }
