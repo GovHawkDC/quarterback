@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import type { ActionIconMap } from './ActionIconMap'
 import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
@@ -15,6 +16,7 @@ import QuarterBackTitle from './QuarterBackTitle'
 type Props = {
   QB: string,
   QBComponent?: React.ComponentType<>, // TODO: Props (from Type)
+  actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
   fields: Array<Field>,
   group: Group,
@@ -75,6 +77,7 @@ class QuarterBackGroup extends React.Component<Props> {
   render () {
     const {
       QBComponent,
+      actionIconMap,
       conditions,
       fields,
       group,
@@ -100,6 +103,7 @@ class QuarterBackGroup extends React.Component<Props> {
           title={title}
         />
         <QuarterBackHeader
+          actionIconMap={actionIconMap}
           condition={group.condition}
           conditions={conditions}
           fields={fields}
@@ -111,6 +115,7 @@ class QuarterBackGroup extends React.Component<Props> {
           handleDelete={handleDelete}
         />
         <RulesComponent
+          actionIconMap={actionIconMap}
           conditions={conditions}
           fields={fields}
           rules={group.rules}

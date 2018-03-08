@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { Action } from '../utils/Action'
+import type { ActionIconMap } from './ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { StyleClassMap } from './StyleClassMap'
@@ -10,6 +11,7 @@ import QuarterBackActionCreate from './QuarterBackActionCreate'
 import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 type Props = {
+  actionIconMap: ActionIconMap,
   fields: Array<Field>,
   index: number,
   styleClassMap: StyleClassMap,
@@ -45,6 +47,7 @@ class QuarterBackActions extends React.Component<Props> {
 
   render () {
     const {
+      actionIconMap,
       fields,
       index,
       styleClassMap,
@@ -63,6 +66,7 @@ class QuarterBackActions extends React.Component<Props> {
           return (
             <QuarterBackActionCreate
               key={index}
+              actionIconMap={actionIconMap}
               action={action}
               fields={fields}
               styleClassMap={styleClassMap}
@@ -72,6 +76,7 @@ class QuarterBackActions extends React.Component<Props> {
           )
         })}
         <QuarterBackActionDelete
+          actionIconMap={actionIconMap}
           index={index}
           styleClassMap={styleClassMap}
           handleDelete={handleDelete}

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { ActionIconMap } from './ActionIconMap'
 import type { Condition } from './Condition'
 import type { Field } from './Field'
 import type { Group } from './Group'
@@ -8,6 +9,7 @@ import { groupAction } from '../utils/actions'
 import QuarterBackGroup from './QuarterBackGroup'
 
 type Props = {
+  actionIconMap: ActionIconMap,
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   rules?: Group,
@@ -18,6 +20,7 @@ type Props = {
 
 class QuarterBack extends React.Component<Props> {
   static defaultProps = {
+    actionIconMap: {},
     styleClassMap: {},
     handleUpdate: (data: Group) => {}
   }
@@ -52,6 +55,7 @@ class QuarterBack extends React.Component<Props> {
 
   render () {
     const {
+      actionIconMap,
       conditions,
       fields,
       styleClassMap,
@@ -65,6 +69,7 @@ class QuarterBack extends React.Component<Props> {
     return (
       <div className={`QuarterBack ${addClass}`}>
         <QuarterBackGroup
+          actionIconMap={actionIconMap}
           conditions={conditions}
           fields={fields}
           group={this.state}

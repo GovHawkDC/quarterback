@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import type { ActionIconMap } from './ActionIconMap'
 import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
@@ -13,6 +14,7 @@ import QuarterBackRule from './QuarterBackRule'
 import QuarterBackGroup from './QuarterBackGroup'
 
 type Props = {
+  actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
   fields: Array<Field>,
   rules: Array<Data>,
@@ -60,6 +62,7 @@ class QuarterBackRules extends React.Component<Props> {
 
   render () {
     const {
+      actionIconMap,
       conditions,
       fields,
       rules,
@@ -87,6 +90,7 @@ class QuarterBackRules extends React.Component<Props> {
               <QuarterBackRule
                 key={index}
                 QB={QB_RULE}
+                actionIconMap={actionIconMap}
                 fields={fields}
                 index={index}
                 rule={data}
@@ -106,6 +110,7 @@ class QuarterBackRules extends React.Component<Props> {
               <QuarterBackGroup
                 key={index}
                 QB={QB_GROUP}
+                actionIconMap={actionIconMap}
                 conditions={conditions}
                 fields={fields}
                 group={data}
@@ -124,12 +129,13 @@ class QuarterBackRules extends React.Component<Props> {
             throw new Error('Unable to find type')
           }
 
-          const { action, actionAddClass, ...typeProps } = type
+          const { action, actionAddClass, actionIcon, ...typeProps } = type
 
           return (
             <QuarterBackGroup
               {...typeProps}
               key={index}
+              actionIconMap={actionIconMap}
               group={data}
               index={index}
               styleClassMap={styleClassMap}

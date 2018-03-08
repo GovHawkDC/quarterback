@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react'
+import type { ActionIconMap } from './ActionIconMap'
 import type { StyleClassMap } from './StyleClassMap'
 
 type Props = {
+  actionIconMap: ActionIconMap,
   index: number,
   styleClassMap: StyleClassMap,
   handleDelete: (index: number) => void
@@ -44,6 +46,10 @@ class QuarterBackActionDelete extends React.Component<Props> {
         className={`QuarterBackActionDelete ${addClassAction} ${addClass}`}
         onClick={this.handleClick}
       >
+        {/* <span>
+          <i className='glyphicon glyphicon-remove' />{' '}
+        </span> */}
+        {' '}
         Delete
       </button>
     )

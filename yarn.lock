@@ -3308,6 +3308,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+glyphicons-only-bootstrap@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/glyphicons-only-bootstrap/-/glyphicons-only-bootstrap-1.0.1.tgz#a04f9a25a20c4613f98f970b07af40918a11ef7c"
+
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"

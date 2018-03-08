@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'glyphicons-only-bootstrap/css/bootstrap.css'
 import './App.css'
 import './lib/components/styles/QuarterBack.css'
 import './lib/components/styles/QuarterBackClassic.css'

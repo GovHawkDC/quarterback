@@ -90,3 +90,7 @@
 .QuarterBackRadios > label {
   margin: 0 8px 0.1rem 0;
 }
+
+.glyphicon {
+  top: 2px;
+}

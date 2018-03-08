@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { Action } from '../utils/Action'
+import type { ActionIconMap } from './ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { StyleClassMap } from './StyleClassMap'
@@ -10,6 +11,7 @@ import { getTypeByQB } from '../utils/types'
 
 type Props = {
   action: Action,
+  actionIconMap: ActionIconMap,
   fields: Array<Field>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
