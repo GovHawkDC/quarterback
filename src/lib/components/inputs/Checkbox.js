@@ -70,7 +70,7 @@ class Checkbox extends React.Component<Props> {
           className={`QuarterBackCheckbox ${addInputClass} ${addClass}`}
           type='checkbox'
           onChange={this.handleChange}
-        />
+        />{' '}
         {label}
       </label>
     )

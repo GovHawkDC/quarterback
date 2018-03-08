@@ -1,20 +1,24 @@
 .QuarterBackGroup {
-  background: #fdf7e9;
+  background-color: #fdf7e9;
+  border-color: #ffe09e;
+  padding: 10px 10px 6px;
 }
 
 .QuarterBackTitle {
-  color: #ffe09e;
-  padding-bottom: 5px;
+  background-color: #ffe09e;
+  color: #fff;
+  margin: -10px -10px 10px;
+  padding: 6px 10px 6px;
 }
 
-.QuarterBackGroup,
-.QuarterBackRule {
-  border: 1px solid #ffe09e;
-  border-radius: 3px;
-  padding: 6px;
-  margin: 4px 0;
-  position: relative;
+.QuarterBackHeader {
+  margin-bottom: 10px;
 }
+
+/* .QuarterBackConditionActive {
+  background: #5caafa;
+  color: #fff;
+} */
 
 .QuarterBackRules {
   flex-flow: column;
@@ -26,7 +30,7 @@
   border-color: #ccc;
   border-style: solid;
   content: '';
-  height: calc(50% + 4px);
+  height: calc(50% + 11px);
   left: -12px;
   position: absolute;
   width: 10px;
@@ -39,7 +43,7 @@
 
 .QuarterBackRules > ::before {
   border-width: 0 0 2px 2px;
-  top: -6px;
+  top: -11px;
 }
 
 .QuarterBackRules > :last-child::after {
@@ -50,7 +54,39 @@
   border-radius: 0 0 0 4px;
 }
 
-.QuarterBackConditionActive {
-  background: #5caafa;
-  color: #fff;
+.QuarterBackGroup,
+.QuarterBackRule {
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 4px 0;
+  position: relative;
+}
+
+.QuarterBackRule {
+  background-color: #fff;
+  border-color: #eee;
+  padding: 5px;
+}
+
+/* .QuarterBackFields,
+.QuarterBackOperators,
+.QuarterBackValues, */
+.QuarterBackCheckboxes,
+.QuarterBackRadios {
+  align-items: center;
+  display: flex;
+}
+
+.QuarterBackFields {
+  padding-right: 5px;
+}
+
+.QuarterBackOperators {
+  padding: 0 10px 0 5px;
+}
+
+.QuarterBackValues {
+  border-left: 1px solid #ddd;
+  padding-left: 10px;
 }

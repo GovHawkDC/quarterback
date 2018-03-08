@@ -59,7 +59,7 @@ class Radio extends React.Component<Props> {
           className={`QuarterBackRadio ${addInputClass} ${addClass}`}
           type='radio'
           onChange={this.handleChange}
-        />
+        />{' '}
         {label}
       </label>
     )
