@@ -69,15 +69,6 @@
   padding: 5px;
 }
 
-/* .QuarterBackFields,
-.QuarterBackOperators,
-.QuarterBackValues, */
-.QuarterBackCheckboxes,
-.QuarterBackRadios {
-  align-items: center;
-  display: flex;
-}
-
 .QuarterBackFields {
   padding-right: 5px;
 }
@@ -87,6 +78,20 @@
 }
 
 .QuarterBackValues {
+  align-self: stretch;
+  display: flex;
   border-left: 1px solid #ddd;
   padding-left: 10px;
+}
+
+.QuarterBackCheckboxes,
+.QuarterBackRadios {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+}
+
+.QuarterBackCheckboxes > label,
+.QuarterBackRadios > label {
+  margin: 0 8px 0.1rem 0;
 }
