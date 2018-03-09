@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
+import type { Value } from '../utils/Value'
 import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
 import { getDefaultValue } from '../utils/values'
 import Select from './inputs/Select'
@@ -16,29 +17,50 @@ type Props = {
 }
 
 class QuarterBackOperators extends React.Component<Props> {
-  // TODO: Cleanup...
-  getValue (defaultValue) {
-    if (
-      defaultValue === null ||
-      this.props.rule.value === null ||
-      typeof defaultValue !== typeof this.props.rule.value
-    ) {
+  getValue (operatorId: string): Value {
+    const {
+      field,
+      rule
+    } = this.props
+
+    const operator = getOperatorById(operatorId)
+
+    if (operator == null) {
+      return null
+    }
+
+    const defaultValue = getDefaultValue(field, operator)
+
+    // Some operators do not require user input (e.g., 'is_empty'), so we
+    // want to force the value to be `null` (so no ui is rendered)
+    if (defaultValue === null) {
+      return null
+    }
+
+    // (a) If the existing rule value is null (e.g., the operator _was_
+    // 'is_empty') then always change to the default value
+    // (b) If the operator change results in a type change (e.g., string to
+    // array in the case of 'equal' -> 'between') use the default value
+    if (rule.value === null || typeof defaultValue !== typeof rule.value) {
       return defaultValue
     }
-    return this.props.rule.value
+
+    return rule.value
   }
 
-  handleUpdate = (val) => {
-    const operator = getOperatorById(val)
-    const value = getDefaultValue(this.props.field, operator)
+  handleUpdate = (operatorId: string) => {
+    const {
+      index,
+      rule
+    } = this.props
 
     const data = {
-      ...this.props.rule,
-      operator: operator.id,
-      value: this.getValue(value)
+      ...rule,
+      operator: operatorId,
+      value: this.getValue(operatorId)
     }
 
-    this.props.handleUpdate(data, this.props.index)
+    this.props.handleUpdate(data, index)
   }
 
   render () {
@@ -58,13 +80,8 @@ class QuarterBackOperators extends React.Component<Props> {
       return null
     }
 
-    const addOperatorsClass = styleClassMap.QuarterBackOperators != null
-      ? styleClassMap.QuarterBackOperators
-      : ''
-
-    const addOperatorClass = styleClassMap.QuarterBackOperator != null
-      ? styleClassMap.QuarterBackOperator
-      : ''
+    const addOperatorsClass = styleClassMap.QuarterBackOperators || ''
+    const addOperatorClass = styleClassMap.QuarterBackOperator || ''
 
     if (operators.length === 1) {
       return (
@@ -80,7 +97,7 @@ class QuarterBackOperators extends React.Component<Props> {
       <div className={`QuarterBackOperators ${addOperatorsClass}`}>
         <Select
           styleClassMap={styleClassMap}
-          value={this.props.rule.operator}
+          value={rule.operator}
           values={operators.map(operator => {
             return {
               label: operator.id.replace(/_/g, ' '),
