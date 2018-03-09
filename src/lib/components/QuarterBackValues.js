@@ -2,15 +2,11 @@
 import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { NonEmptyValue, Value } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
 import { getOperatorById } from '../utils/operators'
-import Checkboxes from './inputs/Checkboxes'
-import Radios from './inputs/Radios'
-import Select from './inputs/Select'
-import Text from './inputs/Text'
-import Textarea from './inputs/Textarea'
+import QuarterBackInputs from './QuarterBackInputs'
 
 type Props = {
   field: Field,
@@ -46,19 +42,19 @@ class QuarterBackValues extends React.Component<Props> {
     }
 
     const { meta: { numberOfInputs } } = operator
-    const values = typeof rule.value === 'string'
-      ? [rule.value]
-      : rule.value
 
     // A single checkbox is already an array by default, so we nest
     // it within another array as if it were a string (the typical default
     // for an input)
     // e.g., `[ [ 'book' ] ]`
-    if (field.input === 'checkbox' && numberOfInputs === 1) {
-      return [values]
+    if (
+      typeof rule.value === 'string' ||
+      (field.input === 'checkbox' && numberOfInputs === 1)
+    ) {
+      return [rule.value]
     }
 
-    return values
+    return rule.value
   }
 
   /**
@@ -108,120 +104,18 @@ class QuarterBackValues extends React.Component<Props> {
       return null
     }
 
-    const addClass = styleClassMap.QuarterBackValues != null
-      ? styleClassMap.QuarterBackValues
-      : ''
-    const className = `QuarterBackValues ${addClass}`
+    const addClass = styleClassMap.QuarterBackValues || ''
 
-    switch (field.input) {
-      case 'checkbox':
-        const CheckboxesComponent = field.QBComponent != null
-          ? field.QBComponent
-          : Checkboxes
-
-        return (
-          <div className={className}>
-            {values.map((value, index) => {
-              return (
-                <CheckboxesComponent
-                  key={index}
-                  index={index}
-                  styleClassMap={styleClassMap}
-                  value={value}
-                  values={field.values}
-                  handleUpdate={this.handleUpdate}
-                />
-              )
-            })}
-          </div>
-        )
-      case 'number':
-      case 'text':
-        const TextComponent = field.QBComponent
-          ? field.QBComponent
-          : Text
-
-        return (
-          <div className={className}>
-            {values.map((value, index) => {
-              return (
-                <TextComponent
-                  key={index}
-                  index={index}
-                  value={value}
-                  styleClassMap={styleClassMap}
-                  handleUpdate={this.handleUpdate}
-                />
-              )
-            })}
-          </div>
-        )
-      case 'radio':
-        const RadiosComponent = field.QBComponent
-          ? field.QBComponent
-          : Radios
-
-        return (
-          <div className={className}>
-            {values.map((value, index) => {
-              return (
-                <RadiosComponent
-                  key={index}
-                  index={index}
-                  styleClassMap={styleClassMap}
-                  value={value}
-                  values={field.values}
-                  handleUpdate={this.handleUpdate}
-                />
-              )
-            })}
-          </div>
-        )
-      case 'select':
-        const SelectComponent = field.QBComponent
-          ? field.QBComponent
-          : Select
-
-        return (
-          <div className={className}>
-            {values.map((value, index) => {
-              return (
-                <SelectComponent
-                  key={index}
-                  index={index}
-                  styleClassMap={styleClassMap}
-                  value={value}
-                  values={field.values}
-                  handleUpdate={this.handleUpdate}
-                />
-              )
-            })}
-          </div>
-        )
-      case 'textarea':
-        const TextareaComponent = field.QBComponent
-          ? field.QBComponent
-          : Textarea
-
-        return (
-          <div className={className}>
-            {values.map((value, index) => {
-              return (
-                <TextareaComponent
-                  key={index}
-                  index={index}
-                  value={value}
-                  styleClassMap={styleClassMap}
-                  type={field.input}
-                  handleUpdate={this.handleUpdate}
-                />
-              )
-            })}
-          </div>
-        )
-      default:
-        return null // TODO:
-    }
+    return (
+      <div className={`QuarterBackValues ${addClass}`}>
+        <QuarterBackInputs
+          field={field}
+          styleClassMap={styleClassMap}
+          values={values}
+          handleUpdate={this.handleUpdate}
+        />
+      </div>
+    )
   }
 }
 
