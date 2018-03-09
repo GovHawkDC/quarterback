@@ -1,5 +1,5 @@
 {
-  "name": "quarterback",
+  "name": "@doubleswirve/quarterback",
   "version": "0.1.0",
   "homepage": "https://doubleswirve.github.io/quarterback",
   "main": "lib/index.js",
@@ -17,6 +17,7 @@
   },
   "scripts": {
     "prepack": "NODE_ENV=production babel --plugins transform-flow-strip-types --presets react-app src/lib -d lib",
+    "pub": "npm publish --access=public",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
