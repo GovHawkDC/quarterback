@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react'
-import type { ActionIconMap } from './ActionIconMap'
+import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import { getFieldById } from '../utils/fields'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackOperators from './QuarterBackOperators'

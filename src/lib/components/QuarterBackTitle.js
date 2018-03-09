@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 
 type Props = {
   styleClassMap: StyleClassMap,

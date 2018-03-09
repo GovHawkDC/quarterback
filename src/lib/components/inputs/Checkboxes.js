@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { FieldValue } from '../../utils/Field'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
 import Checkbox from './Checkbox'
 

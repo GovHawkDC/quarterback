@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react'
 import type { Action } from '../utils/Action'
-import type { ActionIconMap } from './ActionIconMap'
+import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 import { getTypeByQB } from '../utils/types'

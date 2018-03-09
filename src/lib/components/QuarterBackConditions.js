@@ -2,7 +2,7 @@
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { GroupConditionFragment } from '../utils/Group'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import QuarterBackCondition from './QuarterBackCondition'
 
 type Props = {

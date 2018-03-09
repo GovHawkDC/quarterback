@@ -2,7 +2,7 @@
 import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import { getFieldById } from '../utils/fields'
 import { getDefaultOperatorByField } from '../utils/operators'
 import { getDefaultValue } from '../utils/values'

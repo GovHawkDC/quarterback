@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react'
-import type { ActionIconMap } from './ActionIconMap'
+import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { GroupConditionFragment } from '../utils/Group'
-import type { StyleClassMap } from './StyleClassMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
 import QuarterBackConditions from './QuarterBackConditions'
 import QuarterBackActions from './QuarterBackActions'

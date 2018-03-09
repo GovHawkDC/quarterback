@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
-import type { ActionIconMap } from './ActionIconMap'
-import type { StyleClassMap } from './StyleClassMap'
+import type { ActionIconMap } from '../utils/ActionIconMap'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 
 type Props = {
   actionIconMap: ActionIconMap,
