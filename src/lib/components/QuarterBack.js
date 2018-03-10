@@ -24,7 +24,7 @@ class QuarterBack extends React.Component<Props> {
     actionIconMap: {},
     selectPlaceholder: '------',
     styleClassMap: {},
-    handleUpdate: (data: Group) => {}
+    handleUpdate: (data: Group, index: number) => {}
   }
 
   constructor (props: Props) {

@@ -1,30 +1,15 @@
 // @flow
 import * as React from 'react'
-import type { ActionIconMap } from '../utils/ActionIconMap'
-import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
-import type { Field } from '../utils/Field'
-import type { GroupFragment, GroupRulesFragment } from '../utils/Group'
-import type { StyleClassMap } from '../utils/StyleClassMap'
-import type { Type } from '../utils/Type'
+import type { GroupRulesFragment } from '../utils/Group'
+import type { RulesProps } from '../utils/Rules'
 import { insertAt, removeAt } from '../utils/arrays'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
 import { getTypeByQB } from '../utils/types'
 import QuarterBackRule from './QuarterBackRule'
 import QuarterBackGroup from './QuarterBackGroup'
 
-type Props = {
-  actionIconMap: ActionIconMap,
-  conditions: Array<Condition>,
-  fields: Array<Field>,
-  rules: Array<Data>,
-  selectPlaceholder: string,
-  styleClassMap: StyleClassMap,
-  types: Array<Type>,
-  handleUpdate: (fragment: GroupFragment) => void
-}
-
-class QuarterBackRules extends React.Component<Props> {
+class QuarterBackRules extends React.Component<RulesProps> {
   /**
    * Takes a modified group or rule and index and overwrites a copy of
    * the current rules prop at the specified index. Passes the modified

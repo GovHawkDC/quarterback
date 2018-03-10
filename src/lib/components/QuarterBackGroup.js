@@ -5,6 +5,7 @@ import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Group, GroupFragment, GroupRulesFragment } from '../utils/Group'
+import type { RulesProps } from '../utils/Rules'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
 import { andCondition, orCondition } from '../utils/conditions'
@@ -15,7 +16,7 @@ import QuarterBackTitle from './QuarterBackTitle'
 
 type Props = {
   QB: string,
-  QBComponent?: React.ComponentType<>, // TODO: Props (from Type)
+  QBComponent?: React.ComponentType<RulesProps>,
   actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
   fields: Array<Field>,
@@ -25,7 +26,7 @@ type Props = {
   styleClassMap: StyleClassMap,
   title?: string,
   types: Array<Type>,
-  handleUpdate: (group: Group) => void,
+  handleUpdate: (group: Group, index: number) => void,
   handleDelete: (index: number) => void
 }
 
