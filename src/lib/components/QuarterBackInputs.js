@@ -62,6 +62,7 @@ class QuarterBackInputs extends React.Component<Props> {
               index={index}
               value={value}
               styleClassMap={styleClassMap}
+              type={field.type}
               handleUpdate={handleUpdate}
             />
           )

@@ -2,6 +2,7 @@
 import * as React from 'react'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { SingleValue } from '../../utils/Value'
+import { getInputType } from '../../utils/inputs'
 
 type Props = {
   index: number,
@@ -15,7 +16,7 @@ class Text extends React.Component<Props> {
   static defaultProps = {
     index: -1,
     styleClassMap: {},
-    type: 'text'
+    type: 'string'
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -47,7 +48,7 @@ class Text extends React.Component<Props> {
     return (
       <input
         className={`QuarterBackText ${addInputClass} ${addClass}`}
-        type={type}
+        type={getInputType(type)}
         value={value}
         onChange={this.handleChange}
       />
