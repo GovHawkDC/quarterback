@@ -9,7 +9,7 @@ type Props = {
   index: number,
   styleClassMap: StyleClassMap,
   values?: Array<FieldValue>,
-  value: string,
+  value: null | string,
   handleUpdate: (value: SingleValue, index: number) => void
 }
 
