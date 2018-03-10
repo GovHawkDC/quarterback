@@ -1,32 +1,44 @@
 // @flow
 import type { Field } from './Field'
 import type { Operator } from './Operator'
-import type { NonEmptyValue, Value } from './Value'
+import type { SingleValue, MultiValue, NestedMultiValue, Value } from './Value'
 
-function getDefaultValueByField (field: Field): NonEmptyValue {
-  if (field.defaultValue != null) {
-    return field.defaultValue
+function getDefaultValueByField (field: Field): SingleValue | MultiValue {
+  const {
+    defaultValue,
+    input,
+    values
+  } = field
+
+  if (defaultValue != null) {
+    return defaultValue
   }
 
-  switch (field.input) {
+  switch (input) {
     case 'checkbox':
-      return field.values != null && field.values.length > 1
-        ? []
-        : ''
+      return values != null && values.length > 1 ? [] : ''
     case 'select':
-      const [value] = field.values || []
-      return value ? value.value : ''
+      const [firstFieldValue] = values || []
+      return firstFieldValue ? firstFieldValue.value : ''
     default:
       return ''
   }
 }
 
 function getDefaultValue (field: Field, operator: Operator): Value {
-  switch (operator.meta.numberOfInputs) {
+  const { meta: { numberOfInputs } } = operator
+  const defaultValue = getDefaultValueByField(field)
+
+  switch (numberOfInputs) {
     case 1:
-      return getDefaultValueByField(field)
+      return defaultValue
     case 2:
-      return [getDefaultValueByField(field), getDefaultValueByField(field)]
+      if (typeof defaultValue === 'string') {
+        const singleValues: MultiValue = [defaultValue, defaultValue]
+        return singleValues
+      }
+      const multiValues: NestedMultiValue = [defaultValue, defaultValue]
+      return multiValues
     default:
       return null
   }
