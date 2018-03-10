@@ -29,14 +29,8 @@ class QuarterBackCondition extends React.Component<Props> {
 
     const isActive = condition.value === value
 
-    const className = isActive
-      ? 'QuarterBackCondition QuarterBackConditionActive'
-      : 'QuarterBackCondition'
-
-    const addClass = styleClassMap.QuarterBackCondition != null
-      ? styleClassMap.QuarterBackCondition
-      : ''
-
+    const className = isActive ? 'QuarterBackConditionActive' : ''
+    const addClass = styleClassMap.QuarterBackCondition || ''
     const addClassActive = (
       isActive && styleClassMap.QuarterBackConditionActive != null
     )
@@ -45,7 +39,7 @@ class QuarterBackCondition extends React.Component<Props> {
 
     return (
       <button
-        className={`${className} ${addClass} ${addClassActive}`}
+        className={`QuarterBackCondition ${className} ${addClass} ${addClassActive}`}
         onClick={this.handleClick}
       >
         {condition.display}
