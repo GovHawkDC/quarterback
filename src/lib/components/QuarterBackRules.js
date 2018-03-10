@@ -18,6 +18,7 @@ type Props = {
   conditions: Array<Condition>,
   fields: Array<Field>,
   rules: Array<Data>,
+  selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleUpdate: (fragment: GroupFragment) => void
@@ -66,6 +67,7 @@ class QuarterBackRules extends React.Component<Props> {
       conditions,
       fields,
       rules,
+      selectPlaceholder,
       styleClassMap,
       types
     } = this.props
@@ -94,6 +96,7 @@ class QuarterBackRules extends React.Component<Props> {
                 fields={fields}
                 index={index}
                 rule={data}
+                selectPlaceholder={selectPlaceholder}
                 styleClassMap={styleClassMap}
                 handleUpdate={this.handleUpdate}
                 handleDelete={this.handleDelete}
@@ -115,6 +118,7 @@ class QuarterBackRules extends React.Component<Props> {
                 fields={fields}
                 group={data}
                 index={index}
+                selectPlaceholder={selectPlaceholder}
                 styleClassMap={styleClassMap}
                 types={types}
                 handleUpdate={this.handleUpdate}
@@ -138,6 +142,7 @@ class QuarterBackRules extends React.Component<Props> {
               actionIconMap={actionIconMap}
               group={data}
               index={index}
+              selectPlaceholder={selectPlaceholder}
               styleClassMap={styleClassMap}
               handleUpdate={this.handleUpdate}
               handleDelete={this.handleDelete}

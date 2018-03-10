@@ -13,6 +13,7 @@ type Props = {
   conditions?: Array<Condition>,
   fields?: Array<Field>,
   rules?: Group,
+  selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   types?: Array<Type>,
   handleUpdate: (data: Group) => void
@@ -21,6 +22,7 @@ type Props = {
 class QuarterBack extends React.Component<Props> {
   static defaultProps = {
     actionIconMap: {},
+    selectPlaceholder: '------',
     styleClassMap: {},
     handleUpdate: (data: Group) => {}
   }
@@ -58,6 +60,7 @@ class QuarterBack extends React.Component<Props> {
       actionIconMap,
       conditions,
       fields,
+      selectPlaceholder,
       styleClassMap,
       types
     } = this.props
@@ -73,6 +76,7 @@ class QuarterBack extends React.Component<Props> {
           conditions={conditions}
           fields={fields}
           group={this.state}
+          selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}
           types={types}
           handleUpdate={this.handleUpdate}

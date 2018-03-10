@@ -16,6 +16,7 @@ type Props = {
   fields: Array<Field>,
   index: number,
   rule: Rule,
+  selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   handleUpdate: (data: Data, index: number) => void,
   handleDelete: (index: number) => void
@@ -28,6 +29,7 @@ class QuarterBackRule extends React.Component<Props> {
       index,
       fields,
       rule,
+      selectPlaceholder,
       styleClassMap,
       handleUpdate,
       handleDelete
@@ -54,6 +56,7 @@ class QuarterBackRule extends React.Component<Props> {
             fields={fields}
             index={index}
             rule={rule}
+            selectPlaceholder={selectPlaceholder}
             styleClassMap={styleClassMap}
             handleUpdate={handleUpdate}
           />

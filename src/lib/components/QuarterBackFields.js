@@ -12,6 +12,7 @@ type Props = {
   fields: Array<Field>,
   index: number,
   rule: Rule,
+  selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   handleUpdate: (data: Rule, index: number) => void
 }
@@ -48,10 +49,11 @@ class QuarterBackFields extends React.Component<Props> {
     const {
       fields,
       rule,
+      selectPlaceholder,
       styleClassMap
     } = this.props
 
-    const values = [ { label: '------', value: '' }, ...fields ]
+    const values = [ { label: selectPlaceholder, value: '' }, ...fields ]
 
     const addClass = styleClassMap.QuarterBackFields != null
       ? styleClassMap.QuarterBackFields

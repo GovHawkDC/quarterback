@@ -21,6 +21,7 @@ type Props = {
   fields: Array<Field>,
   group: Group,
   index: number,
+  selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   title?: string,
   types: Array<Type>,
@@ -82,6 +83,7 @@ class QuarterBackGroup extends React.Component<Props> {
       fields,
       group,
       index,
+      selectPlaceholder,
       styleClassMap,
       title,
       types,
@@ -119,6 +121,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={conditions}
           fields={fields}
           rules={group.rules}
+          selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}
           types={types}
           handleUpdate={this.handleUpdate}
