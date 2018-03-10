@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
+import type { SingleValue } from '../utils/Value'
 import { getFieldById } from '../utils/fields'
 import { getDefaultOperatorByField } from '../utils/operators'
 import { getDefaultValue } from '../utils/values'
@@ -18,7 +19,7 @@ type Props = {
 }
 
 class QuarterBackFields extends React.Component<Props> {
-  handleUpdate = (val) => {
+  handleUpdate = (fieldId: SingleValue) => {
     const {
       fields,
       index,
@@ -26,11 +27,9 @@ class QuarterBackFields extends React.Component<Props> {
       handleUpdate
     } = this.props
 
-    // TODO: Cleanup...
-
-    const field = getFieldById(fields, val)
-    const operator = field ? getDefaultOperatorByField(field) : null
-    const value = operator ? getDefaultValue(field, operator) : null
+    const field = getFieldById(fields, fieldId)
+    const operator = getDefaultOperatorByField(field)
+    const value = getDefaultValue(field, operator)
 
     const data = {
       ...rule,

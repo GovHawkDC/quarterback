@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
-import type { NonEmptyValue } from '../../utils/Value'
+import type { SingleValue } from '../../utils/Value'
 
 type Props = {
   checked: string | Array<string>,
@@ -9,7 +9,7 @@ type Props = {
   label: string,
   styleClassMap: StyleClassMap,
   value: string,
-  handleUpdate: (value: NonEmptyValue, index: number) => void
+  handleUpdate: (value: SingleValue, index: number) => void
 }
 
 class Radio extends React.Component<Props> {

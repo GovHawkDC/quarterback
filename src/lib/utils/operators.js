@@ -28,7 +28,11 @@ function getDefaultOperatorsByField (field: Field): Array<Operator> {
  * Takes a field and returns the user specified default operator or
  * first operator of list of all applicable operators
  */
-function getDefaultOperatorByField (field: Field): ?Operator {
+function getDefaultOperatorByField (field: ?Field): ?Operator {
+  if (!field) {
+    return null
+  }
+
   if (field.defaultOperator != null) {
     return getOperatorById(field.defaultOperator)
   }

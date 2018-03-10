@@ -1,14 +1,14 @@
 // @flow
 import * as React from 'react'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
-import type { NonEmptyValue } from '../../utils/Value'
+import type { SingleValue } from '../../utils/Value'
 
 type Props = {
   index: number,
   value: string,
   styleClassMap: StyleClassMap,
   type: string,
-  handleUpdate: (value: NonEmptyValue, index: number) => void
+  handleUpdate: (value: SingleValue, index: number) => void
 }
 
 class Text extends React.Component<Props> {
