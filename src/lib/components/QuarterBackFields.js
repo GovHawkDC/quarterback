@@ -53,11 +53,10 @@ class QuarterBackFields extends React.Component<Props> {
       styleClassMap
     } = this.props
 
-    const values = [ { label: selectPlaceholder, value: '' }, ...fields ]
+    const defaultValue = { label: selectPlaceholder, value: '' }
+    const values = [ defaultValue, ...fields ]
 
-    const addClass = styleClassMap.QuarterBackFields != null
-      ? styleClassMap.QuarterBackFields
-      : ''
+    const addClass = styleClassMap.QuarterBackFields || ''
 
     return (
       <div className={`QuarterBackFields ${addClass}`}>
