@@ -4,6 +4,7 @@ import type { Action } from '../utils/Action'
 import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
+import type { EmptyProps } from '../utils/Props'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
 import { QB_RULE, QB_GROUP } from '../utils/constants'
@@ -19,7 +20,7 @@ type Props = {
 }
 
 class QuarterBackActionCreate extends React.Component<Props> {
-  getRuleActionIcon (): React.Component {
+  getRuleActionIcon (): React.ComponentType<EmptyProps> {
     const {
       actionIconMap
     } = this.props
@@ -39,7 +40,7 @@ class QuarterBackActionCreate extends React.Component<Props> {
     return () => null
   }
 
-  getGroupActionIcon (): React.Component {
+  getGroupActionIcon (): React.ComponentType<EmptyProps> {
     const {
       actionIconMap
     } = this.props
@@ -59,7 +60,7 @@ class QuarterBackActionCreate extends React.Component<Props> {
     return () => null
   }
 
-  getOtherActionIcon (type: Type): React.Component {
+  getOtherActionIcon (type: Type): React.ComponentType<EmptyProps> {
     const {
       actionIconMap
     } = this.props
@@ -79,7 +80,7 @@ class QuarterBackActionCreate extends React.Component<Props> {
     return () => null
   }
 
-  getActionIcon (): React.Component {
+  getActionIcon (): React.ComponentType<EmptyProps> {
     const {
       action,
       types

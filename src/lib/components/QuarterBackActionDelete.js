@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { ActionIconMap } from '../utils/ActionIconMap'
+import type { EmptyProps } from '../utils/Props'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 }
 
 class QuarterBackActionDelete extends React.Component<Props> {
-  getActionIcon (): React.Component {
+  getActionIcon (): React.ComponentType<EmptyProps> {
     const {
       actionIconMap
     } = this.props
