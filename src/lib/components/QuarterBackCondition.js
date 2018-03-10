@@ -2,9 +2,11 @@
 import * as React from 'react'
 import type { Condition } from '../utils/Condition'
 import type { GroupConditionFragment } from '../utils/Group'
+import type { StyleClassMap } from '../utils/StyleClassMap'
 
 type Props = {
   condition: Condition,
+  styleClassMap: StyleClassMap,
   value: string,
   handleUpdate: (fragment: GroupConditionFragment) => void
 }
