@@ -2,6 +2,7 @@
 import type { Field } from './Field'
 import type { Operator } from './Operator'
 import type { SingleValue, MultiValue, NestedMultiValue, Value } from './Value'
+import { FIELD_INPUT_CHECKBOX, FIELD_INPUT_SELECT } from './constants'
 
 function getDefaultValueByField (field: Field): SingleValue | MultiValue {
   const {
@@ -15,9 +16,9 @@ function getDefaultValueByField (field: Field): SingleValue | MultiValue {
   }
 
   switch (input) {
-    case 'checkbox':
+    case FIELD_INPUT_CHECKBOX:
       return values != null && values.length > 1 ? [] : ''
-    case 'select':
+    case FIELD_INPUT_SELECT:
       const [firstFieldValue] = values || []
       return firstFieldValue ? firstFieldValue.value : ''
     default:

@@ -86,7 +86,7 @@ const OPERATORS: Array<Operator> = [
         FIELD_TYPE_DATE,
         FIELD_TYPE_TIME,
         FIELD_TYPE_DATETIME
-      ],
+      ]
     }
   },
   {
@@ -257,7 +257,20 @@ const OPERATORS: Array<Operator> = [
   }
 ]
 
+const FIELD_INPUT_TEXT = 'text'
+const FIELD_INPUT_NUMBER = 'number'
+const FIELD_INPUT_TEXTAREA = 'textarea'
+const FIELD_INPUT_RADIO = 'radio'
+const FIELD_INPUT_CHECKBOX = 'checkbox'
+const FIELD_INPUT_SELECT = 'select'
+
 export {
+  FIELD_INPUT_TEXT,
+  FIELD_INPUT_NUMBER,
+  FIELD_INPUT_TEXTAREA,
+  FIELD_INPUT_RADIO,
+  FIELD_INPUT_CHECKBOX,
+  FIELD_INPUT_SELECT,
   FIELD_TYPE_STRING,
   FIELD_TYPE_INTEGER,
   FIELD_TYPE_DOUBLE,

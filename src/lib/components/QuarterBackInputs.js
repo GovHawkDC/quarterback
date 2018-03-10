@@ -3,7 +3,15 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
-import type { NonEmptyValue } from '../../utils/Value'
+import type { NonEmptyValue } from '../utils/Value'
+import {
+  FIELD_INPUT_TEXT,
+  FIELD_INPUT_NUMBER,
+  FIELD_INPUT_TEXTAREA,
+  FIELD_INPUT_RADIO,
+  FIELD_INPUT_CHECKBOX,
+  FIELD_INPUT_SELECT
+} from '../utils/constants'
 import { getFieldComponent } from '../utils/fields'
 import Checkboxes from './inputs/Checkboxes'
 import Radios from './inputs/Radios'
@@ -28,7 +36,7 @@ class QuarterBackInputs extends React.Component<Props> {
     } = this.props
 
     switch (field.input) {
-      case 'checkbox':
+      case FIELD_INPUT_CHECKBOX:
         const CheckboxesComponent = getFieldComponent(field, Checkboxes)
 
         return values.map((value, index) => {
@@ -43,8 +51,8 @@ class QuarterBackInputs extends React.Component<Props> {
             />
           )
         })
-      case 'number':
-      case 'text':
+      case FIELD_INPUT_NUMBER:
+      case FIELD_INPUT_TEXT:
         const TextComponent = getFieldComponent(field, Text)
 
         return values.map((value, index) => {
@@ -58,7 +66,7 @@ class QuarterBackInputs extends React.Component<Props> {
             />
           )
         })
-      case 'radio':
+      case FIELD_INPUT_RADIO:
         const RadiosComponent = getFieldComponent(field, Radios)
 
         return values.map((value, index) => {
@@ -73,7 +81,7 @@ class QuarterBackInputs extends React.Component<Props> {
             />
           )
         })
-      case 'select':
+      case FIELD_INPUT_SELECT:
         const SelectComponent = getFieldComponent(field, Select)
 
         return values.map((value, index) => {
@@ -88,7 +96,7 @@ class QuarterBackInputs extends React.Component<Props> {
             />
           )
         })
-      case 'textarea':
+      case FIELD_INPUT_TEXTAREA:
         const TextareaComponent = getFieldComponent(field, Textarea)
 
         return values.map((value, index) => {
