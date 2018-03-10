@@ -2,7 +2,13 @@
 import type { Field } from './Field'
 import type { Operator } from './Operator'
 import type { Rule } from './Rule'
-import type { SingleValue, MultiValue, NestedMultiValue, Value } from './Value'
+import type {
+  EmptyValue,
+  SingleValue,
+  MultiValue,
+  NestedMultiValue,
+  Value
+} from './Value'
 import { FIELD_INPUT_CHECKBOX, FIELD_INPUT_SELECT } from './constants'
 
 function getDefaultValueByField (field: Field): SingleValue | MultiValue {
@@ -74,7 +80,50 @@ function getValue (field: ?Field, operator: ?Operator, rule: Rule): Value {
   return rule.value
 }
 
+/**
+ * Helper func that abstracts away the difference between initial value(s)
+ * for single and multi-input (e.g., 'between' operator will result in
+ * two inputs). For example, a single value for a text field will still
+ * return an array of length=1 (e.g., `[ '' ]`), while a 'between' operator
+ * field for a 'number' would return an array with length=2 (e.g.,
+ * `[ '1', '2' ]`)
+ */
+function getInputValues (
+  field: ?Field,
+  operator: ?Operator,
+  rule: Rule
+): EmptyValue | MultiValue | NestedMultiValue {
+  if (!field || !operator || rule.value === null) {
+    return null
+  }
+
+  const { meta: { numberOfInputs } } = operator
+
+  // A single checkbox is already an array by default, so we nest
+  // it within another array as if it were a string (the typical default
+  // for an input)
+  // e.g., `[ [ 'book' ] ]`
+  if (typeof rule.value === 'string') {
+    const singleValues: MultiValue = [rule.value]
+    return singleValues
+  }
+
+  if (
+    field.input === 'checkbox' &&
+    numberOfInputs === 1 &&
+    Array.isArray(rule.value)
+  ) {
+    const valueArray: MultiValue = rule.value
+    const singleNestedMultiValue: NestedMultiValue = [valueArray]
+    return singleNestedMultiValue
+  }
+
+  const nestedMultiValue: MultiValue | NestedMultiValue = rule.value
+  return nestedMultiValue
+}
+
 export {
   getDefaultValue,
-  getValue
+  getValue,
+  getInputValues
 }

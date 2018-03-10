@@ -3,9 +3,10 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
-import type { NonEmptyValue, Value } from '../../utils/Value'
+import type { NonEmptyValue } from '../../utils/Value'
 import { insertAt } from '../utils/arrays'
 import { getOperatorById } from '../utils/operators'
+import { getInputValues } from '../utils/values'
 import QuarterBackInputs from './QuarterBackInputs'
 
 type Props = {
@@ -17,76 +18,21 @@ type Props = {
 }
 
 class QuarterBackValues extends React.Component<Props> {
-  /**
-   * Helper func that abstracts away the difference between initial value(s)
-   * for single and multi-input (e.g., 'between' operator will result in
-   * two inputs). For example, a single value for a text field will still
-   * return an array of length=1 (e.g., `[ '' ]`), while a 'between' operator
-   * field for a 'number' would return an array with length=2 (e.g.,
-   * `[ '1', '2' ]`)
-   */
-  getValues (): null | Array<NonEmptyValue> {
-    const {
-      field,
-      rule
-    } = this.props
-
-    if (rule.value === null) {
-      return null
-    }
-
-    const operator = getOperatorById(rule.operator)
-
-    if (!operator) {
-      return null
-    }
-
-    const { meta: { numberOfInputs } } = operator
-
-    // A single checkbox is already an array by default, so we nest
-    // it within another array as if it were a string (the typical default
-    // for an input)
-    // e.g., `[ [ 'book' ] ]`
-    if (
-      typeof rule.value === 'string' ||
-      (field.input === 'checkbox' && numberOfInputs === 1)
-    ) {
-      return [rule.value]
-    }
-
-    return rule.value
-  }
-
-  /**
-   * Almost the reverse of the `getValues` helper; this method returns
-   * updated value in the original format for storing in the rules. E.g.,
-   * if a single input value was transformed into `[ 'book' ]` and the user
-   * changed the value to `'movie'`, this method would return just `'movie'`
-   */
-  getUpdatedValues (value: NonEmptyValue, valueIndex: number): Value {
-    const values = this.getValues()
-
-    if (values === null) {
-      return null
-    }
-
-    const updatedValues = insertAt(values, valueIndex, value)
-
-    return updatedValues.length === 1
-      ? updatedValues[0]
-      : updatedValues
-  }
-
   handleUpdate = (value: NonEmptyValue, valueIndex: number) => {
     const {
+      field,
       index,
       rule,
       handleUpdate
     } = this.props
 
+    const operator = getOperatorById(rule.operator)
+    const values = getInputValues(field, operator, rule)
+    const updatedValues = insertAt(values, valueIndex, value)
+
     const data = {
       ...rule,
-      value: this.getUpdatedValues(value, valueIndex)
+      value: updatedValues.length === 1 ? updatedValues[0] : updatedValues
     }
 
     handleUpdate(data, index)
@@ -95,10 +41,12 @@ class QuarterBackValues extends React.Component<Props> {
   render () {
     const {
       field,
+      rule,
       styleClassMap
     } = this.props
 
-    const values = this.getValues()
+    const operator = getOperatorById(rule.operator)
+    const values = getInputValues(field, operator, rule)
 
     if (values === null) {
       return null

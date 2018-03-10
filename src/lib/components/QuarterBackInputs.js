@@ -3,7 +3,7 @@ import * as React from 'react'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
-import type { NonEmptyValue } from '../utils/Value'
+import type { MultiValue, NestedMultiValue } from '../utils/Value'
 import {
   FIELD_INPUT_TEXT,
   FIELD_INPUT_NUMBER,
@@ -22,7 +22,7 @@ import Textarea from './inputs/Textarea'
 type Props = {
   field: Field,
   styleClassMap: StyleClassMap,
-  values: Array<NonEmptyValue>,
+  values: MultiValue | NestedMultiValue,
   handleUpdate: (data: Rule, index: number) => void
 }
 
