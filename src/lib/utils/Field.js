@@ -21,6 +21,7 @@ export type Field = {
   id: string,
   input: string, // TODO: Constrain to set?
   label: string,
+  multiple?: boolean,
   operators?: Array<string>,
   placeholder?: string,
   type: string, // TODO: Constrain to set?
