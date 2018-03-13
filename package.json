@@ -1,6 +1,6 @@
 {
   "name": "@doubleswirve/quarterback",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://doubleswirve.github.io/quarterback",
   "main": "lib/index.js",
   "files": [
@@ -12,12 +12,10 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
-    "standard": "^11.0.0"
+    "react-scripts": "1.1.1"
   },
   "scripts": {
     "prepack": "NODE_ENV=production babel --plugins transform-flow-strip-types --presets react-app src/lib -d lib",
-    "pub": "npm publish --access=public",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
@@ -64,6 +62,7 @@
     "gh-pages": "^1.1.0",
     "glyphicons-only-bootstrap": "^1.0.1",
     "husky": "^0.15.0-rc.8",
-    "lint-staged": "^7.0.0"
+    "lint-staged": "^7.0.0",
+    "standard": "^11.0.0"
   }
 }
