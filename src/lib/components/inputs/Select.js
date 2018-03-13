@@ -7,6 +7,7 @@ import Option from './Option'
 
 type Props = {
   index: number,
+  multiple: boolean,
   styleClassMap: StyleClassMap,
   values?: Array<FieldValue>,
   value: null | string,
@@ -16,15 +17,38 @@ type Props = {
 class Select extends React.Component<Props> {
   static defaultProps = {
     index: -1,
+    multiple: false,
     styleClassMap: {}
   }
 
+  getValue (event) {
+    const {
+      multiple
+    } = this.props
+
+    const { target: { options, value } } = event
+
+    if (!multiple) {
+      return value
+    }
+
+    return [...options]
+      .filter(option => option.selected)
+      .map(option => option.value)
+  }
+
   handleChange = (event: SyntheticInputEvent<HTMLSelectElement>) => {
-    this.props.handleUpdate(event.target.value, this.props.index)
+    const {
+      index,
+      handleUpdate
+    } = this.props
+
+    handleUpdate(this.getValue(event), index)
   }
 
   render () {
     const {
+      multiple,
       styleClassMap,
       value,
       values
@@ -45,8 +69,10 @@ class Select extends React.Component<Props> {
     return (
       <select
         className={`QuarterBackSelect ${addInputClass} ${addClass}`}
+        multiple={multiple}
+        value={value}
         onChange={this.handleChange}
-        value={value}>
+      >
         {values.map((option, index) => {
           return <Option key={index} {...option} />
         })}
