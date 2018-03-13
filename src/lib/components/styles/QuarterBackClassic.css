@@ -98,3 +98,7 @@
 .QuarterBackInputSeparator {
   padding: 0 5px;
 }
+
+.QuarterBackCondition {
+  text-transform: uppercase;
+}
