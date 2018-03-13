@@ -85,6 +85,7 @@ const book = {
     { id: 'genre',
       label: 'Genre',
       input: 'select',
+      multiple: true,
       type: 'string',
       values: [
         { label: 'Sci-Fi', value: 'scifi' },
