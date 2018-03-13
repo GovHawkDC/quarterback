@@ -72,9 +72,10 @@ class QuarterBackInputs extends React.Component<Props> {
             <TextComponent
               key={index}
               index={index}
-              value={value}
+              placeholder={field.placeholder}
               styleClassMap={styleClassMap}
               type={field.type}
+              value={value}
               handleUpdate={handleUpdate}
             />,
             <Separator
@@ -139,9 +140,10 @@ class QuarterBackInputs extends React.Component<Props> {
             <TextareaComponent
               key={index}
               index={index}
-              value={value}
+              placeholder={field.placeholder}
               styleClassMap={styleClassMap}
               type={field.input}
+              value={value}
               handleUpdate={handleUpdate}
             />,
             <Separator

@@ -5,8 +5,9 @@ import type { SingleValue } from '../../utils/Value'
 
 type Props = {
   index: number,
-  value: string,
+  placeholder?: string,
   styleClassMap: StyleClassMap,
+  value: string,
   handleUpdate: (value: SingleValue, index: number) => void
 }
 
@@ -29,6 +30,7 @@ class Textarea extends React.Component<Props> {
 
   render () {
     const {
+      placeholder,
       styleClassMap,
       value
     } = this.props
@@ -44,6 +46,7 @@ class Textarea extends React.Component<Props> {
     return (
       <textarea
         className={`QuarterBackText ${addInputClass} ${addClass}`}
+        placeholder={placeholder || ''}
         value={value}
         onChange={this.handleChange}
       />
