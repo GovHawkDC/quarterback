@@ -15,6 +15,7 @@ function getDefaultValueByField (field: Field): SingleValue | MultiValue {
   const {
     defaultValue,
     input,
+    multiple,
     values
   } = field
 
@@ -26,6 +27,9 @@ function getDefaultValueByField (field: Field): SingleValue | MultiValue {
     case FIELD_INPUT_CHECKBOX:
       return values != null && values.length > 1 ? [] : ''
     case FIELD_INPUT_SELECT:
+      if (multiple === true) {
+        return []
+      }
       const [firstFieldValue] = values || []
       return firstFieldValue ? firstFieldValue.value : ''
     default:
@@ -109,7 +113,7 @@ function getInputValues (
   }
 
   if (
-    field.input === 'checkbox' &&
+    (field.input === 'checkbox' || (field.input === 'select' && field.multiple)) &&
     numberOfInputs === 1 &&
     Array.isArray(rule.value)
   ) {
