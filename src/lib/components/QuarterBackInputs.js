@@ -55,7 +55,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
@@ -79,7 +79,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
@@ -101,7 +101,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
@@ -124,7 +124,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
@@ -147,7 +147,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
@@ -174,7 +174,7 @@ class QuarterBackInputs extends React.Component<Props> {
               handleUpdate={handleUpdate}
             />,
             <Separator
-              key={-index}
+              key={-index - 1}
               index={index}
               inputsSeparator={inputsSeparator}
               numValues={numValues}
