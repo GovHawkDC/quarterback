@@ -8,9 +8,12 @@ type Props = {
 
 class Option extends React.Component<Props> {
   render () {
-    return (
-      <option value={this.props.value}>{this.props.label}</option>
-    )
+    const {
+      label,
+      value
+    } = this.props
+
+    return <option value={value}>{label}</option>
   }
 }
 
