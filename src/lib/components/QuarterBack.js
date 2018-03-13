@@ -12,6 +12,7 @@ type Props = {
   actionIconMap: ActionIconMap,
   conditions?: Array<Condition>,
   fields?: Array<Field>,
+  inputsSeparator: string,
   rules?: Group,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
@@ -22,6 +23,7 @@ type Props = {
 class QuarterBack extends React.Component<Props> {
   static defaultProps = {
     actionIconMap: {},
+    inputsSeparator: ',',
     selectPlaceholder: '------',
     styleClassMap: {},
     handleUpdate: (data: Group, index: number) => {}
@@ -60,6 +62,7 @@ class QuarterBack extends React.Component<Props> {
       actionIconMap,
       conditions,
       fields,
+      inputsSeparator,
       selectPlaceholder,
       styleClassMap,
       types
@@ -76,6 +79,7 @@ class QuarterBack extends React.Component<Props> {
           conditions={conditions}
           fields={fields}
           group={this.state}
+          inputsSeparator={inputsSeparator}
           selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}
           types={types}

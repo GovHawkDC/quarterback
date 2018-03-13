@@ -15,6 +15,7 @@ type Props = {
   actionIconMap: ActionIconMap,
   fields: Array<Field>,
   index: number,
+  inputsSeparator: string,
   rule: Rule,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
@@ -26,8 +27,9 @@ class QuarterBackRule extends React.Component<Props> {
   render () {
     const {
       actionIconMap,
-      index,
       fields,
+      index,
+      inputsSeparator,
       rule,
       selectPlaceholder,
       styleClassMap,
@@ -70,6 +72,7 @@ class QuarterBackRule extends React.Component<Props> {
           <QuarterBackValues
             field={field}
             index={index}
+            inputsSeparator={inputsSeparator}
             rule={rule}
             styleClassMap={styleClassMap}
             handleUpdate={handleUpdate}

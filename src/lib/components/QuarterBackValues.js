@@ -12,6 +12,7 @@ import QuarterBackInputs from './QuarterBackInputs'
 type Props = {
   field: Field,
   index: number,
+  inputsSeparator: string,
   rule: Rule,
   styleClassMap: StyleClassMap,
   handleUpdate: (data: Rule, index: number) => void
@@ -41,6 +42,7 @@ class QuarterBackValues extends React.Component<Props> {
   render () {
     const {
       field,
+      inputsSeparator,
       rule,
       styleClassMap
     } = this.props
@@ -58,6 +60,7 @@ class QuarterBackValues extends React.Component<Props> {
       <div className={`QuarterBackValues ${addClass}`}>
         <QuarterBackInputs
           field={field}
+          inputsSeparator={inputsSeparator}
           styleClassMap={styleClassMap}
           values={values}
           handleUpdate={this.handleUpdate}
