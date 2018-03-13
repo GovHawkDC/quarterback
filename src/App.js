@@ -79,7 +79,7 @@ class AsyncSelect extends Component {
 const book = {
   QB: 'Book',
   fields: [
-    { id: 'title', label: 'Title', input: 'text', type: 'string' },
+    { id: 'title', label: 'Title', input: 'text', type: 'string', placeholder: 'Title...' },
     { id: 'pub_year', label: 'Year Published', input: 'number', type: 'integer' },
     { id: 'pages', label: 'Number of Pages', input: 'number', type: 'integer' },
     { id: 'genre',
