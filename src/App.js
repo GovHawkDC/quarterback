@@ -228,7 +228,17 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <QuarterBack actionIconMap={actionIconMap} handleUpdate={this.handleUpdate} styleClassMap={styleClassMap} types={types} />
+        <QuarterBack
+          actionIconMap={actionIconMap}
+          handleUpdate={this.handleUpdate}
+          lang={{
+            operators: {
+              not_in: 'does not contain'
+            }
+          }}
+          styleClassMap={styleClassMap}
+          types={types}
+        />
         <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
       </div>
     )
