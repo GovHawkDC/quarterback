@@ -52,6 +52,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
       conditions,
       fields,
       inputsSeparator,
+      lang,
       rules,
       selectPlaceholder,
       styleClassMap,
@@ -82,6 +83,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
                 fields={fields}
                 index={index}
                 inputsSeparator={inputsSeparator}
+                lang={lang}
                 rule={data}
                 selectPlaceholder={selectPlaceholder}
                 styleClassMap={styleClassMap}
@@ -106,6 +108,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
                 group={data}
                 index={index}
                 inputsSeparator={inputsSeparator}
+                lang={lang}
                 selectPlaceholder={selectPlaceholder}
                 styleClassMap={styleClassMap}
                 types={types}
@@ -131,6 +134,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
               group={data}
               index={index}
               inputsSeparator={inputsSeparator}
+              lang={lang}
               selectPlaceholder={selectPlaceholder}
               styleClassMap={styleClassMap}
               handleUpdate={this.handleUpdate}

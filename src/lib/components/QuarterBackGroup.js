@@ -23,6 +23,7 @@ type Props = {
   group: Group,
   index: number,
   inputsSeparator: string,
+  lang: Object,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   title?: string,
@@ -86,6 +87,7 @@ class QuarterBackGroup extends React.Component<Props> {
       group,
       index,
       inputsSeparator,
+      lang,
       selectPlaceholder,
       styleClassMap,
       title,
@@ -122,8 +124,9 @@ class QuarterBackGroup extends React.Component<Props> {
         <RulesComponent
           actionIconMap={actionIconMap}
           conditions={conditions}
-          inputsSeparator={inputsSeparator}
           fields={fields}
+          inputsSeparator={inputsSeparator}
+          lang={lang}
           rules={group.rules}
           selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}

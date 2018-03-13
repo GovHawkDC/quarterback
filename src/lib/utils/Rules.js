@@ -11,6 +11,7 @@ export type RulesProps = {
   conditions: Array<Condition>,
   fields: Array<Field>,
   inputsSeparator: string,
+  lang: Object,
   rules: Array<Data>,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
