@@ -10,6 +10,7 @@ export type RulesProps = {
   actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
   fields: Array<Field>,
+  inputsSeparator: string,
   rules: Array<Data>,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
