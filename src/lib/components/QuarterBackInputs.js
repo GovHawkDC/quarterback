@@ -118,6 +118,7 @@ class QuarterBackInputs extends React.Component<Props> {
               key={index}
               index={index}
               inputsSeparator={inputsSeparator}
+              multiple={field.multiple}
               styleClassMap={styleClassMap}
               value={value}
               values={field.values}
