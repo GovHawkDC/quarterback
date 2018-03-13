@@ -1,6 +1,6 @@
 {
   "name": "@doubleswirve/quarterback",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://doubleswirve.github.io/quarterback",
   "main": "lib/index.js",
   "files": [
