@@ -6,7 +6,9 @@ import { getInputPlaceholder } from '../../utils/inputs'
 
 type Props = {
   index: number,
+  operator?: string,
   placeholder?: string,
+  placeholderMap?: { [key: string]: string | Array<string> },
   styleClassMap: StyleClassMap,
   value: string,
   handleUpdate: (value: SingleValue, index: number) => void
@@ -31,7 +33,10 @@ class Textarea extends React.Component<Props> {
 
   render () {
     const {
+      index,
+      operator,
       placeholder,
+      placeholderMap,
       styleClassMap,
       value
     } = this.props
@@ -47,7 +52,12 @@ class Textarea extends React.Component<Props> {
     return (
       <textarea
         className={`QuarterBackText ${addInputClass} ${addClass}`}
-        placeholder={getInputPlaceholder(placeholder)}
+        placeholder={getInputPlaceholder(
+          placeholder,
+          placeholderMap,
+          operator,
+          index
+        )}
         value={value}
         onChange={this.handleChange}
       />

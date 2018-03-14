@@ -6,7 +6,9 @@ import { getInputPlaceholder, getInputType } from '../../utils/inputs'
 
 type Props = {
   index: number,
+  operator?: string,
   placeholder?: string,
+  placeholderMap?: { [key: string]: string | Array<string> },
   styleClassMap: StyleClassMap,
   type: string,
   value: string,
@@ -33,7 +35,10 @@ class Text extends React.Component<Props> {
 
   render () {
     const {
+      index,
+      operator,
       placeholder,
+      placeholderMap,
       styleClassMap,
       type,
       value
@@ -50,7 +55,12 @@ class Text extends React.Component<Props> {
     return (
       <input
         className={`QuarterBackText ${addInputClass} ${addClass}`}
-        placeholder={getInputPlaceholder(placeholder)}
+        placeholder={getInputPlaceholder(
+          placeholder,
+          placeholderMap,
+          operator,
+          index
+        )}
         type={getInputType(type)}
         value={value}
         onChange={this.handleChange}

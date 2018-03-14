@@ -65,6 +65,7 @@ class QuarterBackValues extends React.Component<Props> {
         <QuarterBackInputs
           field={field}
           inputsSeparator={inputsSeparator}
+          operator={operator.id}
           styleClassMap={styleClassMap}
           values={values}
           handleUpdate={this.handleUpdate}

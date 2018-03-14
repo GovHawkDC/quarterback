@@ -24,6 +24,7 @@ export type Field = {
   multiple?: boolean,
   operators?: Array<string>,
   placeholder?: string | Array<string>,
+  placeholderMap?: { [key: string]: string | Array<string> },
   type: string, // TODO: Constrain to set?
   values?: Array<FieldValue>
 }

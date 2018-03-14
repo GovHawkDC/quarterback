@@ -23,6 +23,7 @@ import Textarea from './inputs/Textarea'
 type Props = {
   field: Field,
   inputsSeparator: string,
+  operator: string,
   styleClassMap: StyleClassMap,
   values: MultiValue | NestedMultiValue,
   handleUpdate: (data: Rule, index: number) => void
@@ -33,6 +34,7 @@ class QuarterBackInputs extends React.Component<Props> {
     const {
       field,
       inputsSeparator,
+      operator,
       styleClassMap,
       values,
       handleUpdate
@@ -72,7 +74,9 @@ class QuarterBackInputs extends React.Component<Props> {
             <TextComponent
               key={index}
               index={index}
+              operator={operator}
               placeholder={field.placeholder}
+              placeholderMap={field.placeholderMap}
               styleClassMap={styleClassMap}
               type={field.type}
               value={value}
@@ -141,7 +145,9 @@ class QuarterBackInputs extends React.Component<Props> {
             <TextareaComponent
               key={index}
               index={index}
+              operator={operator}
               placeholder={field.placeholder}
+              placeholderMap={field.placeholderMap}
               styleClassMap={styleClassMap}
               type={field.input}
               value={value}

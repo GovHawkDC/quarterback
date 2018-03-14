@@ -1,16 +1,22 @@
 function getInputPlaceholder (
-  placeholder: null | string | Array<string>,
+  placeholder?: string | Array<string>,
+  placeholderMap?: { [key: string]: string | Array<string> },
+  operator?: string,
   index: number
 ): string {
-  if (!placeholder) {
+  const actualPlaceholder = (placeholderMap && operator)
+    ? (placeholderMap[operator] || placeholder)
+    : placeholder
+
+  if (!actualPlaceholder) {
     return ''
   }
 
-  if (typeof placeholder === 'string') {
-    return placeholder
+  if (typeof actualPlaceholder === 'string') {
+    return actualPlaceholder
   }
 
-  return placeholder[index] || ''
+  return actualPlaceholder[index] || ''
 }
 
 function getInputType (type: string): string {
