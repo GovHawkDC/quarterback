@@ -237,6 +237,19 @@ class App extends Component {
               not_in: 'does not contain'
             }
           }}
+          operatorsConfig={{
+            add: [
+              {
+                id: 'proximity',
+                meta: {
+                  fieldTypes: ['string'],
+                  multipleValuesAllowed: false,
+                  numberOfInputs: 2
+                }
+              }
+            ],
+            exclude: ['ends_with']
+          }}
           styleClassMap={styleClassMap}
           types={types}
         />
