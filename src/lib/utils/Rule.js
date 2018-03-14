@@ -7,6 +7,7 @@ export type Rule = {
   id: string,
   input?: string,
   operator: null | string,
+  touched?: boolean,
   type?: string,
   value: Value
 }

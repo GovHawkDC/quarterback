@@ -36,6 +36,7 @@ class QuarterBackValues extends React.Component<Props> {
 
     const data = {
       ...rule,
+      touched: true,
       value: updatedValues.length === 1 ? updatedValues[0] : updatedValues
     }
 
