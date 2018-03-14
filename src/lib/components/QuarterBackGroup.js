@@ -5,6 +5,7 @@ import type { Condition } from '../utils/Condition'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Group, GroupFragment, GroupRulesFragment } from '../utils/Group'
+import type { OperatorsConfig } from '../utils/OperatorsConfig'
 import type { RulesProps } from '../utils/Rules'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
@@ -24,6 +25,7 @@ type Props = {
   index: number,
   inputsSeparator: string,
   lang: Object,
+  operatorsConfig: OperatorsConfig,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
   title?: string,
@@ -88,6 +90,7 @@ class QuarterBackGroup extends React.Component<Props> {
       index,
       inputsSeparator,
       lang,
+      operatorsConfig,
       selectPlaceholder,
       styleClassMap,
       title,
@@ -127,6 +130,7 @@ class QuarterBackGroup extends React.Component<Props> {
           fields={fields}
           inputsSeparator={inputsSeparator}
           lang={lang}
+          operatorsConfig={operatorsConfig}
           rules={group.rules}
           selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}

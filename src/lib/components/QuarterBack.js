@@ -3,6 +3,7 @@ import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Condition } from '../utils/Condition'
 import type { Field } from '../utils/Field'
 import type { Group } from '../utils/Group'
+import type { OperatorsConfig } from '../utils/OperatorsConfig'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { Type } from '../utils/Type'
 import { groupAction } from '../utils/actions'
@@ -14,6 +15,7 @@ type Props = {
   fields?: Array<Field>,
   inputsSeparator: string,
   lang: Object,
+  operatorsConfig: OperatorsConfig,
   rules?: Group,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
@@ -26,6 +28,7 @@ class QuarterBack extends React.Component<Props> {
     actionIconMap: {},
     inputsSeparator: ',',
     lang: {},
+    operatorsConfig: {},
     selectPlaceholder: '------',
     styleClassMap: {},
     handleUpdate: (data: Group, index: number) => {}
@@ -66,6 +69,7 @@ class QuarterBack extends React.Component<Props> {
       fields,
       inputsSeparator,
       lang,
+      operatorsConfig,
       selectPlaceholder,
       styleClassMap,
       types
@@ -84,6 +88,7 @@ class QuarterBack extends React.Component<Props> {
           group={this.state}
           inputsSeparator={inputsSeparator}
           lang={lang}
+          operatorsConfig={operatorsConfig}
           selectPlaceholder={selectPlaceholder}
           styleClassMap={styleClassMap}
           types={types}

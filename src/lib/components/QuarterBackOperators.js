@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { Field } from '../utils/Field'
+import type { Operator } from '../utils/Operator'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import { getOperatorById, getDefaultOperatorsByField } from '../utils/operators'
@@ -11,6 +12,7 @@ type Props = {
   field: Field,
   index: number,
   lang: Object,
+  operators: Array<Operator>,
   rule: Rule,
   styleClassMap: StyleClassMap,
   handleUpdate: (data: Rule, index: number) => void
@@ -21,10 +23,11 @@ class QuarterBackOperators extends React.Component<Props> {
     const {
       field,
       index,
+      operators,
       rule
     } = this.props
 
-    const operator = getOperatorById(operatorId)
+    const operator = getOperatorById(operatorId, operators)
 
     const data = {
       ...rule,
@@ -39,6 +42,7 @@ class QuarterBackOperators extends React.Component<Props> {
     const {
       field,
       lang,
+      operators,
       rule,
       styleClassMap
     } = this.props
@@ -47,9 +51,9 @@ class QuarterBackOperators extends React.Component<Props> {
       return null
     }
 
-    const operators = getDefaultOperatorsByField(field)
+    const fieldOperators = getDefaultOperatorsByField(field, operators)
 
-    if (operators.length < 1) {
+    if (fieldOperators.length < 1) {
       return null
     }
 
@@ -58,7 +62,7 @@ class QuarterBackOperators extends React.Component<Props> {
     const addOperatorsClass = styleClassMap.QuarterBackOperators || ''
     const addOperatorClass = styleClassMap.QuarterBackOperator || ''
 
-    if (operators.length === 1) {
+    if (fieldOperators.length === 1) {
       return (
         <div className={`QuarterBackOperators ${addOperatorsClass}`}>
           <span className={`QuarterBackOperator ${addOperatorClass}`}>
@@ -74,7 +78,7 @@ class QuarterBackOperators extends React.Component<Props> {
         <Select
           styleClassMap={styleClassMap}
           value={rule.operator}
-          values={operators.map(operator => {
+          values={fieldOperators.map(operator => {
             return {
               label: (
                 operatorDisplayOverrides[operator.id] ||

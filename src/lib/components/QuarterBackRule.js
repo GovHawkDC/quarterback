@@ -4,8 +4,10 @@ import type { ActionIconMap } from '../utils/ActionIconMap'
 import type { Data } from '../utils/Data'
 import type { Field } from '../utils/Field'
 import type { Rule } from '../utils/Rule'
+import type { OperatorsConfig } from '../utils/OperatorsConfig'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import { getFieldById } from '../utils/fields'
+import { getAllOperators } from '../utils/operators'
 import QuarterBackFields from './QuarterBackFields'
 import QuarterBackOperators from './QuarterBackOperators'
 import QuarterBackValues from './QuarterBackValues'
@@ -17,6 +19,7 @@ type Props = {
   index: number,
   inputsSeparator: string,
   lang: Object,
+  operatorsConfig: OperatorsConfig,
   rule: Rule,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,
@@ -32,6 +35,7 @@ class QuarterBackRule extends React.Component<Props> {
       index,
       inputsSeparator,
       lang,
+      operatorsConfig,
       rule,
       selectPlaceholder,
       styleClassMap,
@@ -40,6 +44,7 @@ class QuarterBackRule extends React.Component<Props> {
     } = this.props
 
     const field = getFieldById(fields, rule.id)
+    const operators = getAllOperators(operatorsConfig)
 
     const addRuleClass = styleClassMap.QuarterBackRule != null
       ? styleClassMap.QuarterBackRule
@@ -59,6 +64,7 @@ class QuarterBackRule extends React.Component<Props> {
           <QuarterBackFields
             fields={fields}
             index={index}
+            operators={operators}
             rule={rule}
             selectPlaceholder={selectPlaceholder}
             styleClassMap={styleClassMap}
@@ -68,6 +74,7 @@ class QuarterBackRule extends React.Component<Props> {
             field={field}
             index={index}
             lang={lang}
+            operators={operators}
             rule={rule}
             styleClassMap={styleClassMap}
             handleUpdate={handleUpdate}
@@ -76,6 +83,7 @@ class QuarterBackRule extends React.Component<Props> {
             field={field}
             index={index}
             inputsSeparator={inputsSeparator}
+            operators={operators}
             rule={rule}
             styleClassMap={styleClassMap}
             handleUpdate={handleUpdate}

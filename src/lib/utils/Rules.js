@@ -3,6 +3,7 @@ import type { Condition } from './Condition'
 import type { Data } from './Data'
 import type { Field } from './Field'
 import type { GroupFragment } from './Group'
+import type { OperatorsConfig } from '../utils/OperatorsConfig'
 import type { StyleClassMap } from './StyleClassMap'
 import type { Type } from './Type'
 
@@ -12,6 +13,7 @@ export type RulesProps = {
   fields: Array<Field>,
   inputsSeparator: string,
   lang: Object,
+  operatorsConfig: OperatorsConfig,
   rules: Array<Data>,
   selectPlaceholder: string,
   styleClassMap: StyleClassMap,

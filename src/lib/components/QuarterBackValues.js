@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { Field } from '../utils/Field'
+import type { Operator } from '../utils/Operator'
 import type { Rule } from '../utils/Rule'
 import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { NonEmptyValue } from '../../utils/Value'
@@ -13,6 +14,7 @@ type Props = {
   field: Field,
   index: number,
   inputsSeparator: string,
+  operators: Array<Operator>,
   rule: Rule,
   styleClassMap: StyleClassMap,
   handleUpdate: (data: Rule, index: number) => void
@@ -23,11 +25,12 @@ class QuarterBackValues extends React.Component<Props> {
     const {
       field,
       index,
+      operators,
       rule,
       handleUpdate
     } = this.props
 
-    const operator = getOperatorById(rule.operator)
+    const operator = getOperatorById(rule.operator, operators)
     const values = getInputValues(field, operator, rule)
     const updatedValues = insertAt(values, valueIndex, value)
 
@@ -43,11 +46,12 @@ class QuarterBackValues extends React.Component<Props> {
     const {
       field,
       inputsSeparator,
+      operators,
       rule,
       styleClassMap
     } = this.props
 
-    const operator = getOperatorById(rule.operator)
+    const operator = getOperatorById(rule.operator, operators)
     const values = getInputValues(field, operator, rule)
 
     if (values === null) {
