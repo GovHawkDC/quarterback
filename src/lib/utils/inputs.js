@@ -34,7 +34,32 @@ function getInputType (type: string): string {
   }
 }
 
+function getInputValue (value) {
+  if (value === null) {
+    return ''
+  }
+  return value
+}
+
+function isInteger (str) {
+  const n = Math.floor(Number(str))
+  return isFinite(n) && String(n) === str
+}
+
+function parseInputValue (value, type) {
+  switch (type) {
+    case 'boolean':
+      return Boolean(value)
+    case 'integer':
+      return isInteger(value) ? parseInt(value, 10) : value
+    default:
+      return value
+  }
+}
+
 export {
   getInputPlaceholder,
-  getInputType
+  getInputType,
+  getInputValue,
+  parseInputValue
 }

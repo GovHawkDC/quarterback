@@ -10,31 +10,37 @@ import type {
   Value
 } from './Value'
 import { FIELD_INPUT_CHECKBOX, FIELD_INPUT_SELECT } from './constants'
+import { getOperatorById } from './operators'
 
-function getDefaultValueByField (field: Field): SingleValue | MultiValue {
-  const {
-    defaultValue,
-    input,
-    multiple,
-    values
-  } = field
-
-  if (defaultValue != null) {
-    return defaultValue
+function getDefaultValueByField (
+  field: Field
+): EmptyValue | SingleValue | MultiValue {
+  // allow user to provide value (it could be invalid, however)
+  if (field.defaultValue !== undefined) {
+    return field.defaultValue
   }
 
-  switch (input) {
-    case FIELD_INPUT_CHECKBOX:
-      return values != null && values.length > 1 ? [] : ''
-    case FIELD_INPUT_SELECT:
-      if (multiple === true) {
-        return []
-      }
-      const [firstFieldValue] = values || []
-      return firstFieldValue ? firstFieldValue.value : ''
-    default:
-      return ''
+  const fieldValuesIsArray = Array.isArray(field.values)
+  const fieldValuesLength = fieldValuesIsArray ? field.values.length : -1
+
+  // for checkboxes with values array length > 1, we want to return an array
+  // since multiple values are allowed
+  if (field.input === FIELD_INPUT_CHECKBOX && fieldValuesLength > 1) {
+    return []
   }
+
+  if (field.input === FIELD_INPUT_SELECT) {
+    // Similar to checkboxes; allow for multiple values
+    if (field.multiple === true) {
+      return []
+    }
+    // Default to the first defined value option in select values
+    if (fieldValuesLength > 0) {
+      return field.values[0]
+    }
+  }
+
+  return null
 }
 
 function getDefaultValue (field: ?Field, operator: ?Operator): Value {
@@ -42,43 +48,30 @@ function getDefaultValue (field: ?Field, operator: ?Operator): Value {
     return null
   }
 
-  const { meta: { numberOfInputs } } = operator
   const defaultValue = getDefaultValueByField(field)
 
-  switch (numberOfInputs) {
-    case 1:
-      return defaultValue
-    case 2:
-      if (typeof defaultValue === 'string') {
-        const singleValues: MultiValue = [defaultValue, defaultValue]
-        return singleValues
-      }
-      const multiValues: NestedMultiValue = [defaultValue, defaultValue]
-      return multiValues
-    default:
-      return null
+  if (operator.meta.numberOfInputs < 2) {
+    return defaultValue
   }
+
+  return Array.from(
+    { length: operator.meta.numberOfInputs },
+    () => defaultValue
+  )
 }
 
-function getValue (field: ?Field, operator: ?Operator, rule: Rule): Value {
+function getValue (field: ?Field, operator: ?Operator, operators, rule: Rule): Value {
   if (!field || !operator) {
     return null
   }
 
-  const defaultValue = getDefaultValue(field, operator)
+  const prevOperator = getOperatorById(rule.operator, operators)
 
-  // Some operators do not require user input (e.g., 'is_empty'), so we
-  // want to force the value to be `null` (so no ui is rendered)
-  if (defaultValue === null) {
-    return null
-  }
-
-  // (a) If the existing rule value is null (e.g., the operator _was_
-  // 'is_empty') then always change to the default value
-  // (b) If the operator change results in a type change (e.g., string to
-  // array in the case of 'equal' -> 'between') use the default value
-  if (rule.value === null || typeof defaultValue !== typeof rule.value) {
-    return defaultValue
+  if (
+    prevOperator &&
+    prevOperator.meta.numberOfInputs !== operator.meta.numberOfInputs
+  ) {
+    return getDefaultValue(field, operator)
   }
 
   return rule.value
@@ -97,33 +90,15 @@ function getInputValues (
   operator: ?Operator,
   rule: Rule
 ): EmptyValue | MultiValue | NestedMultiValue {
-  if (!field || !operator || rule.value === null) {
+  if (!field || !operator || operator.meta.numberOfInputs < 1) {
     return null
   }
 
-  const { meta: { numberOfInputs } } = operator
-
-  // A single checkbox is already an array by default, so we nest
-  // it within another array as if it were a string (the typical default
-  // for an input)
-  // e.g., `[ [ 'book' ] ]`
-  if (typeof rule.value === 'string') {
-    const singleValues: MultiValue = [rule.value]
-    return singleValues
+  if (operator.meta.numberOfInputs < 2) {
+    return [rule.value]
   }
 
-  if (
-    (field.input === 'checkbox' || (field.input === 'select' && field.multiple)) &&
-    numberOfInputs === 1 &&
-    Array.isArray(rule.value)
-  ) {
-    const valueArray: MultiValue = rule.value
-    const singleNestedMultiValue: NestedMultiValue = [valueArray]
-    return singleNestedMultiValue
-  }
-
-  const nestedMultiValue: MultiValue | NestedMultiValue = rule.value
-  return nestedMultiValue
+  return rule.value
 }
 
 export {

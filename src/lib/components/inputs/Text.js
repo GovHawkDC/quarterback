@@ -2,7 +2,12 @@
 import * as React from 'react'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { SingleValue } from '../../utils/Value'
-import { getInputPlaceholder, getInputType } from '../../utils/inputs'
+import {
+  getInputPlaceholder,
+  getInputType,
+  getInputValue,
+  parseInputValue
+} from '../../utils/inputs'
 
 type Props = {
   index: number,
@@ -25,12 +30,13 @@ class Text extends React.Component<Props> {
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const {
       index,
-      handleUpdate
+      handleUpdate,
+      type
     } = this.props
 
     const { target: { value } } = event
 
-    handleUpdate(value, index)
+    handleUpdate(parseInputValue(value, type), index)
   }
 
   render () {
@@ -62,7 +68,7 @@ class Text extends React.Component<Props> {
           index
         )}
         type={getInputType(type)}
-        value={value}
+        value={getInputValue(value)}
         onChange={this.handleChange}
       />
     )

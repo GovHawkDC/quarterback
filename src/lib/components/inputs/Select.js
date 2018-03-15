@@ -4,6 +4,7 @@ import type { FieldValue } from '../../utils/Field'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { SingleValue } from '../../utils/Value'
 import Option from './Option'
+import { getInputValue, parseInputValue } from '../../utils/inputs'
 
 type Props = {
   index: number,
@@ -23,18 +24,19 @@ class Select extends React.Component<Props> {
 
   getValue (event) {
     const {
-      multiple
+      multiple,
+      type
     } = this.props
 
     const { target: { options, value } } = event
 
     if (!multiple) {
-      return value
+      return parseInputValue(value, type)
     }
 
     return [...options]
       .filter(option => option.selected)
-      .map(option => option.value)
+      .map(option => parseInputValue(option.value, type))
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLSelectElement>) => {
@@ -70,7 +72,7 @@ class Select extends React.Component<Props> {
       <select
         className={`QuarterBackSelect ${addInputClass} ${addClass}`}
         multiple={multiple}
-        value={value}
+        value={getInputValue(value)}
         onChange={this.handleChange}
       >
         {values.map((option, index) => {
