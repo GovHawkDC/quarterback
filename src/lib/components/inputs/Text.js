@@ -5,7 +5,8 @@ import type { SingleValue } from '../../utils/Value'
 import {
   getInputPlaceholder,
   getInputType,
-  getInputValue
+  getInputValue,
+  parseInputValue
 } from '../../utils/inputs'
 
 type Props = {
@@ -29,12 +30,13 @@ class Text extends React.Component<Props> {
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const {
       index,
-      handleUpdate
+      handleUpdate,
+      type
     } = this.props
 
     const { target: { value } } = event
 
-    handleUpdate(value, index)
+    handleUpdate(parseInputValue(value, type), index)
   }
 
   render () {
