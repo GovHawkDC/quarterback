@@ -32,7 +32,7 @@ class QuarterBackOperators extends React.Component<Props> {
     const data = {
       ...rule,
       operator: operatorId,
-      value: getValue(field, operator, rule)
+      value: getValue(field, operator, operators, rule)
     }
 
     this.props.handleUpdate(data, index)
