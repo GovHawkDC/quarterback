@@ -34,7 +34,15 @@ function getInputType (type: string): string {
   }
 }
 
+function getInputValue (value) {
+  if (value === null) {
+    return ''
+  }
+  return value
+}
+
 export {
   getInputPlaceholder,
-  getInputType
+  getInputType,
+  getInputValue
 }
