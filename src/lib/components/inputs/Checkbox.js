@@ -71,7 +71,7 @@ class Checkbox extends React.Component<Props> {
           type='checkbox'
           onChange={this.handleChange}
         />{' '}
-        {label}
+        <span>{label}</span>
       </label>
     )
   }
