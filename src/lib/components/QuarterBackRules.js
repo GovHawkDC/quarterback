@@ -106,6 +106,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
                 QB={QB_GROUP}
                 actionIconMap={actionIconMap}
                 conditions={conditions}
+                defaultCondition={this.props.defaultCondition}
                 fields={fields}
                 group={data}
                 index={index}
@@ -127,13 +128,20 @@ class QuarterBackRules extends React.Component<RulesProps> {
             throw new Error('Unable to find type')
           }
 
-          const { action, actionAddClass, actionIcon, ...typeProps } = type
+          const {
+            action,
+            actionAddClass,
+            actionIcon,
+            defaultCondition = this.props.defaultCondition,
+            ...typeProps
+          } = type
 
           return (
             <QuarterBackGroup
               {...typeProps}
               key={index}
               actionIconMap={actionIconMap}
+              defaultCondition={defaultCondition}
               group={data}
               index={index}
               inputsSeparator={inputsSeparator}

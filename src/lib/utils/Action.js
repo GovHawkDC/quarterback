@@ -5,5 +5,5 @@ import type { Field } from './Field'
 export type Action = {
   QB: string,
   display: string,
-  getDefaultData: (fields: ?Array<Field>) => Data
+  getDefaultData: (fields: ?Array<Field>, defaultCondition: string) => Data
 }

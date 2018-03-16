@@ -27,7 +27,7 @@ class QuarterBackCondition extends React.Component<Props> {
       value
     } = this.props
 
-    const isActive = condition.value === value
+    const isActive = condition.value.toUpperCase() === value.toUpperCase()
 
     const className = isActive ? 'QuarterBackConditionActive' : ''
     const addClass = styleClassMap.QuarterBackCondition || ''

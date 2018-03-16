@@ -12,6 +12,7 @@ import QuarterBackActionDelete from './QuarterBackActionDelete'
 
 type Props = {
   actionIconMap: ActionIconMap,
+  defaultCondition: string,
   fields: Array<Field>,
   index: number,
   styleClassMap: StyleClassMap,
@@ -48,6 +49,7 @@ class QuarterBackActions extends React.Component<Props> {
   render () {
     const {
       actionIconMap,
+      defaultCondition,
       fields,
       index,
       styleClassMap,
@@ -66,8 +68,9 @@ class QuarterBackActions extends React.Component<Props> {
           return (
             <QuarterBackActionCreate
               key={index}
-              actionIconMap={actionIconMap}
               action={action}
+              actionIconMap={actionIconMap}
+              defaultCondition={defaultCondition}
               fields={fields}
               styleClassMap={styleClassMap}
               types={types}

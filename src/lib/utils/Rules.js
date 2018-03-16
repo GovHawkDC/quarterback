@@ -10,6 +10,7 @@ import type { Type } from './Type'
 export type RulesProps = {
   actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
+  defaultCondition: string,
   fields: Array<Field>,
   inputsSeparator: string,
   lang: Object,

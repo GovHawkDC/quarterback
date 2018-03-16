@@ -12,6 +12,7 @@ export type Type = {
   actionAddClass?: string,
   actionIcon?: React.ComponentType<EmptyProps>,
   conditions?: Array<Condition>,
+  defaultCondition?: string,
   fields?: Array<Field>,
   title?: string,
   types?: Array<Type>,

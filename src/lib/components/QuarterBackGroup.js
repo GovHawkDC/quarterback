@@ -20,6 +20,7 @@ type Props = {
   QBComponent?: React.ComponentType<RulesProps>,
   actionIconMap: ActionIconMap,
   conditions: Array<Condition>,
+  defaultCondition: string,
   fields: Array<Field>,
   group: Group,
   index: number,
@@ -85,6 +86,7 @@ class QuarterBackGroup extends React.Component<Props> {
       QBComponent,
       actionIconMap,
       conditions,
+      defaultCondition,
       fields,
       group,
       index,
@@ -116,6 +118,7 @@ class QuarterBackGroup extends React.Component<Props> {
           actionIconMap={actionIconMap}
           condition={group.condition}
           conditions={conditions}
+          defaultCondition={defaultCondition}
           fields={fields}
           index={index}
           styleClassMap={styleClassMap}
@@ -127,6 +130,7 @@ class QuarterBackGroup extends React.Component<Props> {
         <RulesComponent
           actionIconMap={actionIconMap}
           conditions={conditions}
+          defaultCondition={defaultCondition}
           fields={fields}
           inputsSeparator={inputsSeparator}
           lang={lang}

@@ -12,6 +12,7 @@ import QuarterBackGroup from './QuarterBackGroup'
 type Props = {
   actionIconMap: ActionIconMap,
   conditions?: Array<Condition>,
+  defaultCondition: string,
   fields?: Array<Field>,
   inputsSeparator: string,
   lang: Object,
@@ -26,6 +27,7 @@ type Props = {
 class QuarterBack extends React.Component<Props> {
   static defaultProps = {
     actionIconMap: {},
+    defaultCondition: 'AND',
     inputsSeparator: ',',
     lang: {},
     operatorsConfig: {},
@@ -38,14 +40,15 @@ class QuarterBack extends React.Component<Props> {
     super(props)
 
     const {
+      defaultCondition,
       fields,
       rules
     } = props
 
-    const defaultGroupData = groupAction.getDefaultData()
-    const group = fields && fields.length > 0
-      ? defaultGroupData
-      : { ...defaultGroupData, rules: [] }
+    const group = groupAction.getDefaultData(
+      fields,
+      defaultCondition
+    )
 
     this.state = {
       ...group,
@@ -66,6 +69,7 @@ class QuarterBack extends React.Component<Props> {
     const {
       actionIconMap,
       conditions,
+      defaultCondition,
       fields,
       inputsSeparator,
       lang,
@@ -84,6 +88,7 @@ class QuarterBack extends React.Component<Props> {
         <QuarterBackGroup
           actionIconMap={actionIconMap}
           conditions={conditions}
+          defaultCondition={defaultCondition}
           fields={fields}
           group={this.state}
           inputsSeparator={inputsSeparator}

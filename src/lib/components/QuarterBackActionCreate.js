@@ -13,6 +13,7 @@ import { getTypeByQB } from '../utils/types'
 type Props = {
   action: Action,
   actionIconMap: ActionIconMap,
+  defaultCondition: string,
   fields: Array<Field>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
@@ -100,6 +101,7 @@ class QuarterBackActionCreate extends React.Component<Props> {
   getActionData (): Data {
     const {
       action,
+      defaultCondition,
       fields,
       types
     } = this.props
@@ -108,10 +110,13 @@ class QuarterBackActionCreate extends React.Component<Props> {
       case QB_RULE:
         return action.getDefaultData()
       case QB_GROUP:
-        return action.getDefaultData(fields)
+        return action.getDefaultData(fields, defaultCondition)
       default:
         const type = getTypeByQB(types, action.QB)
-        return action.getDefaultData(type.fields)
+        return action.getDefaultData(
+          type.fields,
+          type.defaultCondition || defaultCondition
+        )
     }
   }
 

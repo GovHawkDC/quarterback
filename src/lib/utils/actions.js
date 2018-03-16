@@ -42,14 +42,14 @@ const ruleAction: Action = {
 const groupAction: Action = {
   QB: QB_GROUP,
   display: 'Add group',
-  getDefaultData: function (fields) {
+  getDefaultData: function (fields, defaultCondition) {
     const rules = fields != null && fields.length > 0
       ? [ruleAction.getDefaultData()]
       : []
 
     return {
       QB: this.QB,
-      condition: '',
+      condition: defaultCondition,
       rules
     }
   }
