@@ -84,11 +84,13 @@ class QuarterBackGroup extends React.Component<Props> {
 
   render () {
     const {
+      QB,
       QBComponent,
       actionIconMap,
       conditions,
       defaultCondition,
       fields,
+      filterTypes,
       group,
       index,
       inputsSeparator,
@@ -100,6 +102,10 @@ class QuarterBackGroup extends React.Component<Props> {
       types,
       handleDelete
     } = this.props
+
+    if (filterTypes.includes(QB)) {
+      return null
+    }
 
     const RulesComponent = QBComponent != null
       ? QBComponent
