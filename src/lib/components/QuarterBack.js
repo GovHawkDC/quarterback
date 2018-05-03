@@ -14,7 +14,7 @@ type Props = {
   conditions?: Array<Condition>,
   defaultCondition: string,
   fields?: Array<Field>,
-  filterTypes?: Array<string>,
+  filterTypes: Array<string>,
   inputsSeparator: string,
   lang: Object,
   operatorsConfig: OperatorsConfig,
@@ -29,6 +29,7 @@ class QuarterBack extends React.Component<Props> {
   static defaultProps = {
     actionIconMap: {},
     defaultCondition: 'AND',
+    filterTypes: [],
     inputsSeparator: ',',
     lang: {},
     operatorsConfig: {},
