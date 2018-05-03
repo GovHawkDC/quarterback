@@ -14,6 +14,7 @@ type Props = {
   actionIconMap: ActionIconMap,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   index: number,
   styleClassMap: StyleClassMap,
   types: Array<Type>,

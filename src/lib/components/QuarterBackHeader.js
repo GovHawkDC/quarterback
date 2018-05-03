@@ -33,6 +33,7 @@ class QuarterBackHeader extends React.Component<Props> {
       conditions,
       defaultCondition,
       fields,
+      filterTypes,
       index,
       styleClassMap,
       types,
@@ -57,6 +58,7 @@ class QuarterBackHeader extends React.Component<Props> {
           actionIconMap={actionIconMap}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           index={index}
           styleClassMap={styleClassMap}
           types={types}
