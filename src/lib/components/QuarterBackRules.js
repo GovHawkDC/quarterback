@@ -51,6 +51,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
       actionIconMap,
       conditions,
       fields,
+      filterTypes,
       inputsSeparator,
       lang,
       operatorsConfig,
@@ -108,6 +109,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
                 conditions={conditions}
                 defaultCondition={this.props.defaultCondition}
                 fields={fields}
+                filterTypes={filterTypes}
                 group={data}
                 index={index}
                 inputsSeparator={inputsSeparator}
@@ -142,6 +144,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
               key={index}
               actionIconMap={actionIconMap}
               defaultCondition={defaultCondition}
+              filterTypes={filterTypes}
               group={data}
               index={index}
               inputsSeparator={inputsSeparator}
