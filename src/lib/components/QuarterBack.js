@@ -14,7 +14,7 @@ type Props = {
   conditions?: Array<Condition>,
   defaultCondition: string,
   fields?: Array<Field>,
-  filterTypes: Array<string>,
+  filterTypes?: Array<string>,
   inputsSeparator: string,
   lang: Object,
   operatorsConfig: OperatorsConfig,
