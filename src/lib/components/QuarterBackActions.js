@@ -52,6 +52,7 @@ class QuarterBackActions extends React.Component<Props> {
       actionIconMap,
       defaultCondition,
       fields,
+      filterTypes,
       index,
       styleClassMap,
       types,
@@ -73,6 +74,7 @@ class QuarterBackActions extends React.Component<Props> {
               actionIconMap={actionIconMap}
               defaultCondition={defaultCondition}
               fields={fields}
+              filterTypes={filterTypes}
               styleClassMap={styleClassMap}
               types={types}
               handleCreate={handleCreate}
