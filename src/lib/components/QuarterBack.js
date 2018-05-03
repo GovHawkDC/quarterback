@@ -73,6 +73,7 @@ class QuarterBack extends React.Component<Props> {
       conditions,
       defaultCondition,
       fields,
+      filterTypes,
       inputsSeparator,
       lang,
       operatorsConfig,
@@ -92,6 +93,7 @@ class QuarterBack extends React.Component<Props> {
           conditions={conditions}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           group={this.state}
           inputsSeparator={inputsSeparator}
           lang={lang}

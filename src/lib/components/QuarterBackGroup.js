@@ -22,6 +22,7 @@ type Props = {
   conditions: Array<Condition>,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   group: Group,
   index: number,
   inputsSeparator: string,
