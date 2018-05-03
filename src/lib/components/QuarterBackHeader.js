@@ -16,6 +16,7 @@ type Props = {
   conditions: Array<Condition>,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   index: number,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
