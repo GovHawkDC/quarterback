@@ -158,8 +158,13 @@ class QuarterBackActionCreate extends React.Component<Props> {
   render () {
     const {
       action,
+      filterTypes,
       styleClassMap
     } = this.props
+
+    if (filterTypes.includes(action.QB)) {
+      return null
+    }
 
     const addClassAction = styleClassMap.QuarterBackAction != null
       ? styleClassMap.QuarterBackAction
