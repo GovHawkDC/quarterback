@@ -140,6 +140,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={conditions}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           inputsSeparator={inputsSeparator}
           lang={lang}
           operatorsConfig={operatorsConfig}
