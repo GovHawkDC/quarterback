@@ -12,6 +12,7 @@ export type RulesProps = {
   conditions: Array<Condition>,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   inputsSeparator: string,
   lang: Object,
   operatorsConfig: OperatorsConfig,

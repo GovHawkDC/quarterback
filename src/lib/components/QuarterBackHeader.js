@@ -16,6 +16,7 @@ type Props = {
   conditions: Array<Condition>,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   index: number,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
@@ -32,6 +33,7 @@ class QuarterBackHeader extends React.Component<Props> {
       conditions,
       defaultCondition,
       fields,
+      filterTypes,
       index,
       styleClassMap,
       types,
@@ -56,6 +58,7 @@ class QuarterBackHeader extends React.Component<Props> {
           actionIconMap={actionIconMap}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           index={index}
           styleClassMap={styleClassMap}
           types={types}

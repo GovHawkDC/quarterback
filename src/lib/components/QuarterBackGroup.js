@@ -22,6 +22,7 @@ type Props = {
   conditions: Array<Condition>,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   group: Group,
   index: number,
   inputsSeparator: string,
@@ -83,11 +84,13 @@ class QuarterBackGroup extends React.Component<Props> {
 
   render () {
     const {
+      QB,
       QBComponent,
       actionIconMap,
       conditions,
       defaultCondition,
       fields,
+      filterTypes,
       group,
       index,
       inputsSeparator,
@@ -99,6 +102,10 @@ class QuarterBackGroup extends React.Component<Props> {
       types,
       handleDelete
     } = this.props
+
+    if (filterTypes.includes(QB)) {
+      return null
+    }
 
     const RulesComponent = QBComponent != null
       ? QBComponent
@@ -120,6 +127,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={conditions}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           index={index}
           styleClassMap={styleClassMap}
           types={types}
@@ -132,6 +140,7 @@ class QuarterBackGroup extends React.Component<Props> {
           conditions={conditions}
           defaultCondition={defaultCondition}
           fields={fields}
+          filterTypes={filterTypes}
           inputsSeparator={inputsSeparator}
           lang={lang}
           operatorsConfig={operatorsConfig}

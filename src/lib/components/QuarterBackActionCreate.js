@@ -15,6 +15,7 @@ type Props = {
   actionIconMap: ActionIconMap,
   defaultCondition: string,
   fields: Array<Field>,
+  filterTypes: Array<string>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleCreate: (data: Data) => void
@@ -157,8 +158,13 @@ class QuarterBackActionCreate extends React.Component<Props> {
   render () {
     const {
       action,
+      filterTypes,
       styleClassMap
     } = this.props
+
+    if (filterTypes.includes(action.QB)) {
+      return null
+    }
 
     const addClassAction = styleClassMap.QuarterBackAction != null
       ? styleClassMap.QuarterBackAction
