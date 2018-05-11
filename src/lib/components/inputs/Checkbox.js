@@ -8,7 +8,7 @@ type Props = {
   index: number,
   label: string,
   styleClassMap: StyleClassMap,
-  value: string,
+  value: boolean | number | string,
   handleUpdate: (value: SingleValue | MultiValue, index: number) => void
 }
 
@@ -51,9 +51,9 @@ class Checkbox extends React.Component<Props> {
       value
     } = this.props
 
-    const isChecked = typeof checked === 'string'
-      ? value === checked
-      : checked.includes(value)
+    const isChecked = Array.isArray(checked)
+      ? checked.includes(value)
+      : value === checked
 
     const addInputClass = styleClassMap.QuarterBackInput != null
       ? styleClassMap.QuarterBackInput
