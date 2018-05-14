@@ -4,7 +4,7 @@ import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { SingleValue, MultiValue } from '../../utils/Value'
 
 type Props = {
-  checked: string | Array<string>,
+  checked: boolean | number | string | Array<string>,
   index: number,
   label: string,
   styleClassMap: StyleClassMap,
@@ -18,7 +18,8 @@ class Checkbox extends React.Component<Props> {
     styleClassMap: {}
   }
 
-  getSingleValue (checked: boolean): string {
+  getSingleValue (checked: boolean): boolean | number | string {
+    // TODO: bool/int? default
     return checked ? this.props.value : ''
   }
 
@@ -37,10 +38,13 @@ class Checkbox extends React.Component<Props> {
   }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const value = typeof this.props.checked === 'string'
-      ? this.getSingleValue(event.target.checked)
-      : this.getMultiValue(event.target.checked)
-    this.props.handleUpdate(value, this.props.index)
+    const { checked, index } = this.props
+
+    const value = Array.isArray(checked)
+      ? this.getMultiValue(checked)
+      : this.getSingleValue(checked)
+
+    this.props.handleUpdate(value, index)
   }
 
   render () {
