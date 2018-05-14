@@ -41,8 +41,8 @@ class Checkbox extends React.Component<Props> {
     const { checked, index } = this.props
 
     const value = Array.isArray(checked)
-      ? this.getMultiValue(checked)
-      : this.getSingleValue(checked)
+      ? this.getMultiValue(event.target.checked)
+      : this.getSingleValue(event.target.checked)
 
     this.props.handleUpdate(value, index)
   }
