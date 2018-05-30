@@ -12,14 +12,12 @@ function getActionByType (type: Type): Action {
     return type.action
   }
 
-  const display = type.title != null
-    ? type.title.toLowerCase()
-    : 'custom'
+  const display = type.title != null ? type.title : 'Custom'
 
   return {
     ...groupAction,
     QB: type.QB,
-    display: `Add ${display}`
+    display // TODO: Way to customize...
   }
 }
 
