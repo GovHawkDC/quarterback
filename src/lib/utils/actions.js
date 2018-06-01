@@ -23,7 +23,7 @@ function getActionByType (type: Type): Action {
 
 const ruleAction: Action = {
   QB: QB_RULE,
-  display: 'Add Rule',
+  display: 'Rule',
   getDefaultData: function () {
     return {
       QB: this.QB,
@@ -39,7 +39,7 @@ const ruleAction: Action = {
 
 const groupAction: Action = {
   QB: QB_GROUP,
-  display: 'Add Group',
+  display: 'Group',
   getDefaultData: function (fields, defaultCondition) {
     const rules = fields != null && fields.length > 0
       ? [ruleAction.getDefaultData()]
