@@ -3,12 +3,12 @@ import type { Condition } from './Condition'
 
 const andCondition: Condition = {
   display: 'And',
-  value: 'and'
+  value: 'AND'
 }
 
 const orCondition: Condition = {
   display: 'Or',
-  value: 'or'
+  value: 'OR'
 }
 
 export {
