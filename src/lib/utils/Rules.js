@@ -18,6 +18,7 @@ export type RulesProps = {
   operatorsConfig: OperatorsConfig,
   rules: Array<Data>,
   selectPlaceholder: string,
+  softFilterTypes: Array<string>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleUpdate: (fragment: GroupFragment) => void

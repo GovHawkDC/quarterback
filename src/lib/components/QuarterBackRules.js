@@ -56,6 +56,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
       lang,
       operatorsConfig,
       rules,
+      softFilterTypes,
       selectPlaceholder,
       styleClassMap,
       types
@@ -116,6 +117,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
                 lang={lang}
                 operatorsConfig={operatorsConfig}
                 selectPlaceholder={selectPlaceholder}
+                softFilterTypes={softFilterTypes}
                 styleClassMap={styleClassMap}
                 types={types}
                 handleUpdate={this.handleUpdate}
@@ -151,6 +153,7 @@ class QuarterBackRules extends React.Component<RulesProps> {
               lang={lang}
               operatorsConfig={operatorsConfig}
               selectPlaceholder={selectPlaceholder}
+              softFilterTypes={softFilterTypes}
               styleClassMap={styleClassMap}
               handleUpdate={this.handleUpdate}
               handleDelete={this.handleDelete}

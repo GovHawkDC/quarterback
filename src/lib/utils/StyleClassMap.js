@@ -28,5 +28,6 @@ export type StyleClassMap = {
   QuarterBackTextarea?: string,
   QuarterBackRadios?: string,
   QuarterBackRadio?: string,
-  QuarterBackInputSeparator?: string
+  QuarterBackInputSeparator?: string,
+  QuarterBackSoftFilter?: string
 }

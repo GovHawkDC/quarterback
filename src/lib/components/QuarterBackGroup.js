@@ -29,6 +29,7 @@ type Props = {
   lang: Object,
   operatorsConfig: OperatorsConfig,
   selectPlaceholder: string,
+  softFilterTypes: Array<string>,
   styleClassMap: StyleClassMap,
   title?: string,
   types: Array<Type>,
@@ -97,6 +98,7 @@ class QuarterBackGroup extends React.Component<Props> {
       lang,
       operatorsConfig,
       selectPlaceholder,
+      softFilterTypes,
       styleClassMap,
       title,
       types,
@@ -129,6 +131,7 @@ class QuarterBackGroup extends React.Component<Props> {
           fields={fields}
           filterTypes={filterTypes}
           index={index}
+          softFilterTypes={softFilterTypes}
           styleClassMap={styleClassMap}
           types={types}
           handleCreate={this.handleCreate}
@@ -146,6 +149,7 @@ class QuarterBackGroup extends React.Component<Props> {
           operatorsConfig={operatorsConfig}
           rules={group.rules}
           selectPlaceholder={selectPlaceholder}
+          softFilterTypes={softFilterTypes}
           styleClassMap={styleClassMap}
           types={types}
           handleUpdate={this.handleUpdate}
