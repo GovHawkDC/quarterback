@@ -18,6 +18,7 @@ type Props = {
   fields: Array<Field>,
   filterTypes: Array<string>,
   index: number,
+  softFilterTypes: Array<string>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleCreate: (data: Data) => void,
@@ -35,6 +36,7 @@ class QuarterBackHeader extends React.Component<Props> {
       fields,
       filterTypes,
       index,
+      softFilterTypes,
       styleClassMap,
       types,
       handleCreate,
@@ -60,6 +62,7 @@ class QuarterBackHeader extends React.Component<Props> {
           fields={fields}
           filterTypes={filterTypes}
           index={index}
+          softFilterTypes={softFilterTypes}
           styleClassMap={styleClassMap}
           types={types}
           handleCreate={handleCreate}

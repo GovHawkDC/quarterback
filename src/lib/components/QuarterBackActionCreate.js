@@ -16,6 +16,7 @@ type Props = {
   defaultCondition: string,
   fields: Array<Field>,
   filterTypes: Array<string>,
+  softFilterTypes: Array<string>,
   styleClassMap: StyleClassMap,
   types: Array<Type>,
   handleCreate: (data: Data) => void
