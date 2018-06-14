@@ -150,8 +150,14 @@ class QuarterBackActionCreate extends React.Component<Props> {
     event.preventDefault()
 
     const {
+      action,
+      softFilterTypes,
       handleCreate
     } = this.props
+
+    if (softFilterTypes.includes(action.QB)) {
+      return
+    }
 
     handleCreate(this.getActionData())
   }
