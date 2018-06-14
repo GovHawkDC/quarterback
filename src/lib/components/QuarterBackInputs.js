@@ -150,7 +150,7 @@ class QuarterBackInputs extends React.Component<Props> {
               placeholder={field.placeholder}
               placeholderMap={field.placeholderMap}
               styleClassMap={styleClassMap}
-              type={field.input}
+              type={field.type}
               value={value}
               handleUpdate={handleUpdate}
             />,
@@ -177,7 +177,7 @@ class QuarterBackInputs extends React.Component<Props> {
               index={index}
               value={value}
               styleClassMap={styleClassMap}
-              type={field.input}
+              type={field.type}
               values={field.values}
               handleUpdate={handleUpdate}
             />,
