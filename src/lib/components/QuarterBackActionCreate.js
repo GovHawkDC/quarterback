@@ -150,14 +150,8 @@ class QuarterBackActionCreate extends React.Component<Props> {
     event.preventDefault()
 
     const {
-      action,
-      softFilterTypes,
       handleCreate
     } = this.props
-
-    if (softFilterTypes.includes(action.QB)) {
-      return
-    }
 
     handleCreate(this.getActionData())
   }
@@ -182,17 +176,14 @@ class QuarterBackActionCreate extends React.Component<Props> {
       ? styleClassMap.QuarterBackActionCreate
       : ''
 
-    const addClassFilter = softFilterTypes.includes(action.QB) && styleClassMap.QuarterBackSoftFilter != null
-      ? styleClassMap.QuarterBackSoftFilter
-      : ''
-
     const addClass = this.getActionAddClass()
 
     const ActionIcon = this.getActionIcon()
 
     return (
       <button
-        className={`QuarterBackActionCreate ${addClassAction} ${addClassCreate} ${addClass} ${addClassFilter}`}
+        className={`QuarterBackActionCreate ${addClassAction} ${addClassCreate} ${addClass}`}
+        disabled={softFilterTypes.includes(action.QB)}
         onClick={this.handleClick}
       >
         <ActionIcon /> {action.display}
