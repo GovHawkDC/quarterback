@@ -7,7 +7,7 @@ import Checkbox from './Checkbox'
 
 type Props = {
   index: number,
-  softFilteredValues: Array<string>,
+  softFilterValues: Array<string>,
   styleClassMap: StyleClassMap,
   values?: Array<FieldValue>,
   value: NonEmptyValue,
@@ -23,7 +23,7 @@ class Checkboxes extends React.Component<Props> {
   render () {
     const {
       index,
-      softFilteredValues = [],
+      softFilterValues = [],
       styleClassMap,
       value,
       values,
@@ -46,7 +46,7 @@ class Checkboxes extends React.Component<Props> {
               key={checkboxIndex}
               checked={value}
               index={index}
-              softFilteredValues={softFilteredValues}
+              softFilterValues={softFilterValues}
               styleClassMap={styleClassMap}
               {...checkbox}
               handleUpdate={handleUpdate}
