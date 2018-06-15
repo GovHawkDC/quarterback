@@ -7,6 +7,7 @@ type Props = {
   checked: boolean | number | string | Array<string>,
   index: number,
   label: string,
+  softFilteredValues: Array<string>,
   styleClassMap: StyleClassMap,
   value: boolean | number | string,
   handleUpdate: (value: SingleValue | MultiValue, index: number) => void
@@ -51,6 +52,7 @@ class Checkbox extends React.Component<Props> {
     const {
       checked,
       label,
+      softFilteredValues,
       styleClassMap,
       value
     } = this.props
@@ -72,6 +74,7 @@ class Checkbox extends React.Component<Props> {
         <input
           checked={isChecked}
           className={`QuarterBackCheckbox ${addInputClass} ${addClass}`}
+          disabled={softFilteredValues.includes(value)}
           type='checkbox'
           onChange={this.handleChange}
         />{' '}
