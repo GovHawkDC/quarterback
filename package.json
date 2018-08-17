@@ -1,5 +1,5 @@
 {
-  "name": "@doubleswirve/quarterback",
+  "name": "@govhawkdc/quarterback",
   "version": "0.2.14",
   "homepage": "https://doubleswirve.github.io/quarterback",
   "main": "lib/index.js",
@@ -7,7 +7,7 @@
     "lib"
   ],
   "author": {
-    "name": "doubleswirve"
+    "name": "GovHawk, LLC."
   },
   "dependencies": {
     "react": "^16.2.0",
