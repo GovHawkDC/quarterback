@@ -101,17 +101,21 @@ function getInputValues (
   return rule.value
 }
 
-function prepSelectValues (values) {
+function prepSelectValues (values, opts = {}) {
   return values.map(({fields, id, label}) => {
+    const display = opts.labelFilter
+      ? opts.labelFilter(label, fields, id)
+      : label
+
     if (fields) {
       return {
         fields: prepSelectValues(fields),
-        label
+        label: display
       }
     }
 
     return {
-      label,
+      label: display,
       value: id
     }
   })
