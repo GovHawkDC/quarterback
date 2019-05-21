@@ -7,7 +7,7 @@ import type { StyleClassMap } from '../utils/StyleClassMap'
 import type { SingleValue } from '../utils/Value'
 import { getFieldById } from '../utils/fields'
 import { getDefaultOperatorByField } from '../utils/operators'
-import { getDefaultValue } from '../utils/values'
+import { getDefaultValue, prepSelectValues } from '../utils/values'
 import Select from './inputs/Select'
 
 type Props = {
@@ -65,12 +65,7 @@ class QuarterBackFields extends React.Component<Props> {
         <Select
           styleClassMap={styleClassMap}
           value={rule.id}
-          values={values.map(value => {
-            return {
-              label: value.label,
-              value: value.id
-            }
-          })}
+          values={prepSelectValues(values)}
           handleUpdate={this.handleUpdate}
         />
       </div>
