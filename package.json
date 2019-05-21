@@ -1,7 +1,7 @@
 {
   "name": "@govhawkdc/quarterback",
   "version": "0.3.0",
-  "homepage": "https://doubleswirve.github.io/quarterback",
+  "homepage": "https://govhawkdc.github.io/quarterback",
   "main": "lib/index.js",
   "files": [
     "lib"
