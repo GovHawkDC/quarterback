@@ -3,7 +3,7 @@ import * as React from 'react'
 import type { FieldValue } from '../../utils/Field'
 import type { StyleClassMap } from '../../utils/StyleClassMap'
 import type { SingleValue } from '../../utils/Value'
-import Option from './Option'
+import Opt from './Opt'
 import { getInputValue, parseInputValue } from '../../utils/inputs'
 
 type Props = {
@@ -76,7 +76,7 @@ class Select extends React.Component<Props> {
         onChange={this.handleChange}
       >
         {values.map((option, index) => {
-          return <Option key={index} {...option} />
+          return <Opt key={option.label + index} {...option} />
         })}
       </select>
     )
