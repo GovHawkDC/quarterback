@@ -147,7 +147,14 @@ const movie = {
         { label: 'Good', value: 'good' },
         { label: 'Bad', value: 'bad' },
         { label: 'Ugly', value: 'ugly' }
-      ] }
+      ] },
+    {
+      label: 'Cast & Crew',
+      fields: [
+        { id: 'director', label: 'Director', input: 'text', type: 'string' },
+        { id: 'producer', label: 'Producer', input: 'text', type: 'string' }
+      ]
+    }
   ],
   title: 'Movie Query'
 }
