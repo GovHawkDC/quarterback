@@ -101,8 +101,25 @@ function getInputValues (
   return rule.value
 }
 
+function prepSelectValues (values) {
+  return values.map(({fields, id, label}) => {
+    if (fields) {
+      return {
+        fields: prepSelectValues(fields),
+        label
+      }
+    }
+
+    return {
+      label,
+      value: id
+    }
+  })
+}
+
 export {
   getDefaultValue,
   getValue,
-  getInputValues
+  getInputValues,
+  prepSelectValues
 }
