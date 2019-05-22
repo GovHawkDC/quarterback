@@ -51,6 +51,7 @@ class QuarterBackInputs extends React.Component<Props> {
             <CheckboxesComponent
               key={index}
               index={index}
+              opts={field.opts}
               styleClassMap={styleClassMap}
               value={value}
               values={field.values}
@@ -75,6 +76,7 @@ class QuarterBackInputs extends React.Component<Props> {
               key={index}
               index={index}
               operator={operator}
+              opts={field.opts}
               placeholder={field.placeholder}
               placeholderMap={field.placeholderMap}
               styleClassMap={styleClassMap}
@@ -99,6 +101,7 @@ class QuarterBackInputs extends React.Component<Props> {
             <RadiosComponent
               key={index}
               index={index}
+              opts={field.opts}
               styleClassMap={styleClassMap}
               value={value}
               values={field.values}
@@ -123,6 +126,7 @@ class QuarterBackInputs extends React.Component<Props> {
               index={index}
               inputsSeparator={inputsSeparator}
               multiple={field.multiple}
+              opts={field.opts}
               styleClassMap={styleClassMap}
               value={value}
               values={field.values}
@@ -147,6 +151,7 @@ class QuarterBackInputs extends React.Component<Props> {
               key={index}
               index={index}
               operator={operator}
+              opts={field.opts}
               placeholder={field.placeholder}
               placeholderMap={field.placeholderMap}
               styleClassMap={styleClassMap}
@@ -175,6 +180,7 @@ class QuarterBackInputs extends React.Component<Props> {
             <CustomComponent
               key={index}
               index={index}
+              opts={field.opts}
               value={value}
               styleClassMap={styleClassMap}
               type={field.input}

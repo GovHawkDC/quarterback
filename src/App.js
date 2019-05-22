@@ -63,8 +63,13 @@ class AsyncSelect extends Component {
   }
 
   render () {
+    const {opts} = this.props
+    const borderColor = opts && opts.borderColor
+      ? opts.borderColor
+      : 'transparent'
+
     if (this.state.loading) {
-      return <p>Loading&hellip;</p>
+      return <p style={{border: `1px solid ${borderColor}`}}>Loading&hellip;</p>
     }
 
     const props = {
@@ -83,6 +88,9 @@ const book = {
       id: 'title',
       label: 'Title',
       input: 'text',
+      opts: {
+        color: 'blue'
+      },
       type: 'string',
       placeholder: 'Title...',
       placeholderMap: {
@@ -104,6 +112,9 @@ const book = {
       QBComponent: AsyncSelect,
       id: 'publisher',
       label: 'Publisher',
+      opts: {
+        borderColor: 'red'
+      },
       input: 'select',
       type: 'string',
       defaultValue: 'penguin'
