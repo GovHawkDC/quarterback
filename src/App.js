@@ -88,6 +88,9 @@ const book = {
       id: 'title',
       label: 'Title',
       input: 'text',
+      opts: {
+        color: 'blue'
+      },
       type: 'string',
       placeholder: 'Title...',
       placeholderMap: {
