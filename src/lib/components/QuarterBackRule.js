@@ -54,41 +54,49 @@ class QuarterBackRule extends React.Component<Props> {
       ? styleClassMap.QuarterBackRuleEdit
       : ''
 
+    const addRuleDeletedClass = styleClassMap.QuarterBackRuleDeleted != null
+      ? styleClassMap.QuarterBackRuleDeleted
+      : ''
+
     const addRuleActionsClass = styleClassMap.QuarterBackRuleActions != null
       ? styleClassMap.QuarterBackRuleActions
       : ''
 
     return (
       <div className={`QuarterBackRule ${addRuleClass}`}>
-        <div className={`QuarterBackRuleEdit ${addRuleEditClass}`}>
-          <QuarterBackFields
-            fields={fields}
-            index={index}
-            operators={operators}
-            rule={rule}
-            selectPlaceholder={selectPlaceholder}
-            styleClassMap={styleClassMap}
-            handleUpdate={handleUpdate}
-          />
-          <QuarterBackOperators
-            field={field}
-            index={index}
-            lang={lang}
-            operators={operators}
-            rule={rule}
-            styleClassMap={styleClassMap}
-            handleUpdate={handleUpdate}
-          />
-          <QuarterBackValues
-            field={field}
-            index={index}
-            inputsSeparator={inputsSeparator}
-            operators={operators}
-            rule={rule}
-            styleClassMap={styleClassMap}
-            handleUpdate={handleUpdate}
-          />
-        </div>
+        {field && field.deleted
+          ? <div className={`QuarterBackRuleEdit QuarterBackRuleDeleted ${addRuleEditClass} ${addRuleDeletedClass}`}>
+            <span>{field.deletedText || `"${field.label}" field was deleted`}</span>
+          </div>
+          : <div className={`QuarterBackRuleEdit ${addRuleEditClass}`}>
+            <QuarterBackFields
+              fields={fields}
+              index={index}
+              operators={operators}
+              rule={rule}
+              selectPlaceholder={selectPlaceholder}
+              styleClassMap={styleClassMap}
+              handleUpdate={handleUpdate}
+            />
+            <QuarterBackOperators
+              field={field}
+              index={index}
+              lang={lang}
+              operators={operators}
+              rule={rule}
+              styleClassMap={styleClassMap}
+              handleUpdate={handleUpdate}
+            />
+            <QuarterBackValues
+              field={field}
+              index={index}
+              inputsSeparator={inputsSeparator}
+              operators={operators}
+              rule={rule}
+              styleClassMap={styleClassMap}
+              handleUpdate={handleUpdate}
+            />
+          </div>}
         <div className={`QuarterBackRuleActions ${addRuleActionsClass}`}>
           <QuarterBackActionDelete
             actionIconMap={actionIconMap}
