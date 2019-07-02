@@ -56,7 +56,7 @@ class QuarterBackFields extends React.Component<Props> {
     } = this.props
 
     const defaultValue = { label: selectPlaceholder, id: '' }
-    const values = [ defaultValue, ...fields ]
+    const values = [ defaultValue, ...fields.filter(f => !f.deleted) ]
 
     const addClass = styleClassMap.QuarterBackFields || ''
 
