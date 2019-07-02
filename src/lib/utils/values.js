@@ -102,23 +102,29 @@ function getInputValues (
 }
 
 function prepSelectValues (values, opts = {}) {
-  return values.map(({fields, id, label}) => {
-    const display = opts.labelFilter
-      ? opts.labelFilter(label, fields, id)
-      : label
-
-    if (fields) {
-      return {
-        fields: prepSelectValues(fields),
-        label: display
+  return values
+    .map(({deleted, fields, id, label}) => {
+      if (deleted) {
+        return null
       }
-    }
 
-    return {
-      label: display,
-      value: id
-    }
-  })
+      const display = opts.labelFilter
+        ? opts.labelFilter(label, fields, id)
+        : label
+
+      if (fields) {
+        return {
+          fields: prepSelectValues(fields),
+          label: display
+        }
+      }
+
+      return {
+        label: display,
+        value: id
+      }
+    })
+    .filter(v => v !== null)
 }
 
 export {
