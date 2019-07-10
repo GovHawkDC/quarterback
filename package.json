@@ -1,7 +1,7 @@
 {
   "name": "@govhawkdc/quarterback",
-  "version": "0.5.1",
-  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.1",
+  "version": "0.5.2",
+  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.2",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "prepack": "NODE_ENV=production babel --plugins transform-flow-strip-types --presets react-app src/lib -d lib --copy-files",
@@ -53,10 +53,9 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.2",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-react-app": "^3.1.1",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "eslint-plugin-flowtype": "^2.46.1",
     "flow-bin": "^0.66.0",
     "gh-pages": "^1.1.0",
@@ -64,5 +63,17 @@
     "husky": "^0.15.0-rc.8",
     "lint-staged": "^7.0.0",
     "standard": "^11.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
