@@ -1,11 +1,18 @@
 {
-  "main.css": "static/css/main.635bac19.css",
-  "main.css.map": "static/css/main.635bac19.css.map",
-  "main.js": "static/js/main.41e6dd27.js",
-  "main.js.map": "static/js/main.41e6dd27.js.map",
-  "static/media/glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
-  "static/media/glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.f7214668.svg",
-  "static/media/glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
-  "static/media/glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
-  "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2"
+  "files": {
+    "main.css": "/quarterback/static/css/main.0e1e5572.chunk.css",
+    "main.js": "/quarterback/static/js/main.6fe15d5f.chunk.js",
+    "main.js.map": "/quarterback/static/js/main.6fe15d5f.chunk.js.map",
+    "runtime~main.js": "/quarterback/static/js/runtime~main.1021fe1b.js",
+    "runtime~main.js.map": "/quarterback/static/js/runtime~main.1021fe1b.js.map",
+    "static/css/2.3f03741a.chunk.css": "/quarterback/static/css/2.3f03741a.chunk.css",
+    "static/js/2.7d21686f.chunk.js": "/quarterback/static/js/2.7d21686f.chunk.js",
+    "static/js/2.7d21686f.chunk.js.map": "/quarterback/static/js/2.7d21686f.chunk.js.map",
+    "index.html": "/quarterback/index.html",
+    "precache-manifest.b01de0f6958b187f9eb0968632eb127f.js": "/quarterback/precache-manifest.b01de0f6958b187f9eb0968632eb127f.js",
+    "service-worker.js": "/quarterback/service-worker.js",
+    "static/css/2.3f03741a.chunk.css.map": "/quarterback/static/css/2.3f03741a.chunk.css.map",
+    "static/css/main.0e1e5572.chunk.css.map": "/quarterback/static/css/main.0e1e5572.chunk.css.map",
+    "static/media/bootstrap.css": "/quarterback/static/media/glyphicons-halflings-regular.fa277232.woff"
+  }
 }
