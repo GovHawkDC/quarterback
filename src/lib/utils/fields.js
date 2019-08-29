@@ -3,7 +3,8 @@ import * as React from 'react'
 import type { Field } from './Field'
 
 function getFieldById (fields: Array<Field>, id: string): ?Field {
-  for (let f of fields) {
+  let f
+  for (f of fields) {
     if (f.fields) {
       let match = getFieldById(f.fields, id)
 

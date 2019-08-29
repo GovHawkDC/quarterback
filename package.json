@@ -1,7 +1,7 @@
 {
   "name": "@govhawkdc/quarterback",
-  "version": "0.5.2",
-  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.2",
+  "version": "0.5.3",
+  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.3",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "3.1.1"
   },
   "scripts": {
     "prepack": "NODE_ENV=production babel --plugins transform-flow-strip-types --presets react-app src/lib -d lib --copy-files",
