@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a1605f4c0fb0300c6187ee384049be93",
+    "revision": "45bd02f35adb4a634ccdb294377253f9",
     "url": "/quarterback/index.html"
   },
   {
-    "revision": "9c1626b510da34aae54e",
+    "revision": "68d8936567b8ffbaad1f",
     "url": "/quarterback/static/css/2.3f03741a.chunk.css"
   },
   {
-    "revision": "ae02c9106220aa6dd33d",
+    "revision": "9cc42a6068edcc994f1a",
     "url": "/quarterback/static/css/main.0e1e5572.chunk.css"
   },
   {
-    "revision": "9c1626b510da34aae54e",
-    "url": "/quarterback/static/js/2.7d21686f.chunk.js"
+    "revision": "68d8936567b8ffbaad1f",
+    "url": "/quarterback/static/js/2.5b26a7b7.chunk.js"
   },
   {
-    "revision": "ae02c9106220aa6dd33d",
-    "url": "/quarterback/static/js/main.6fe15d5f.chunk.js"
+    "revision": "9cc42a6068edcc994f1a",
+    "url": "/quarterback/static/js/main.46a3a4ab.chunk.js"
   },
   {
-    "revision": "e9ae96f3abfa9b33c2bd",
-    "url": "/quarterback/static/js/runtime~main.1021fe1b.js"
+    "revision": "0f906ede6453136696ed",
+    "url": "/quarterback/static/js/runtime~main.c0977b00.js"
   },
   {
     "revision": "448c34a56d699c29117adc64c43affeb",
