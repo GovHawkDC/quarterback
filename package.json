@@ -1,7 +1,7 @@
 {
   "name": "@govhawkdc/quarterback",
-  "version": "0.5.4",
-  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.4",
+  "version": "0.5.5",
+  "homepage": "https://govhawkdc.github.io/quarterback/?v=0.5.5",
   "main": "lib/index.js",
   "files": [
     "lib"
