@@ -34,9 +34,11 @@ class QuarterBackFields extends React.Component<Props> {
     const operator = getDefaultOperatorByField(field, operators)
     const value = getDefaultValue(field, operator)
 
+    const esField = field.field ? field.field : (field.id ? field.id : '')
+
     const data = {
       ...rule,
-      field: field ? field.id : '',
+      field: field ? esField : '',
       id: field ? field.id : '',
       input: field ? field.input : '',
       operator: operator ? operator.id : null,
