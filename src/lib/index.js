@@ -7,6 +7,7 @@ import Checkbox from './components/inputs/Checkbox'
 import Checkboxes from './components/inputs/Checkboxes'
 import Select from './components/inputs/Select'
 import Text from './components/inputs/Text'
+import Textarea from './components/inputs/Textarea'
 
 export default QuarterBack
 
@@ -20,5 +21,6 @@ export {
   Checkbox,
   Checkboxes,
   Select,
-  Text
+  Text,
+  Textarea
 }
