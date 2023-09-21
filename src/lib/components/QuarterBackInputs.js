@@ -188,6 +188,7 @@ class QuarterBackInputs extends React.Component<Props> {
               values={field.values}
               handleUpdate={handleUpdate}
               softFilterValues={field.softFilterValues}
+              includeFuture={field.includeFuture}
             />,
             <Separator
               key={-index - 1}
