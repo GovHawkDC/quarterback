@@ -1,31 +1,36 @@
-// @flow
-import type { Action } from './Action'
-import type { Type } from './Type'
 import { QB_RULE, QB_GROUP } from './constants'
 
-function getActionByQB (actions: Array<Action>, QB: string): ?Action {
-  return actions.find(action => action.QB === QB)
+var uidCounter = 0
+function createUid () {
+  uidCounter += 1
+  return 'qb_' + Date.now().toString(36) + '_' + uidCounter.toString(36)
 }
 
-function getActionByType (type: Type): Action {
+function getActionByQB (actions, QB) {
+  return actions.find(function (action) {
+    return action.QB === QB
+  })
+}
+
+function getActionByType (type) {
   if (type.action != null) {
     return type.action
   }
 
-  const display = type.title != null ? type.title : 'Custom'
+  var display = type.title != null ? type.title : 'Custom'
 
-  return {
-    ...groupAction,
+  return Object.assign({}, groupAction, {
     QB: type.QB,
-    display // TODO: Way to customize...
-  }
+    display: display // TODO: Way to customize...
+  })
 }
 
-const ruleAction: Action = {
+var ruleAction = {
   QB: QB_RULE,
   display: 'Rule',
-  getDefaultData: function () {
+  getDefaultData: function getDefaultData () {
     return {
+      _uid: createUid(),
       QB: this.QB,
       field: '',
       id: '',
@@ -37,25 +42,19 @@ const ruleAction: Action = {
   }
 }
 
-const groupAction: Action = {
+var groupAction = {
   QB: QB_GROUP,
   display: 'Group',
-  getDefaultData: function (fields, defaultCondition) {
-    const rules = fields != null && fields.length > 0
-      ? [ruleAction.getDefaultData()]
-      : []
+  getDefaultData: function getDefaultData (fields, defaultCondition) {
+    var rules = fields != null && fields.length > 0 ? [ruleAction.getDefaultData()] : []
 
     return {
+      _uid: createUid(),
       QB: this.QB,
       condition: defaultCondition,
-      rules
+      rules: rules
     }
   }
 }
 
-export {
-  getActionByQB,
-  getActionByType,
-  ruleAction,
-  groupAction
-}
+export { getActionByQB, getActionByType, ruleAction, groupAction }
